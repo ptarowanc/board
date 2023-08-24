@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Threading.Tasks</name>
+    </assembly>
+    <members>
+        <member name="T:System.Threading.Tasks.Task">
+            <summary>
+            Represents an asynchronous operation.
+            </summary>
+        </member>
+        <member name="P:System.Threading.Tasks.Task.AsyncWaitHandle">
+            <summary>
+            Gets a WaitHandle that is used to wait for an asynchronous operation to complete.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.Run(System.Action)">
+            <summary>
+            Queues the specified work to run on the thread pool and returns a Task object that represents that work.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.ITask})">
+            <summary>
+            Creates a task that will complete when all of the Task objects in an enumerable collection have completed.
+            </summary>
+            <param name="tasks">The tasks to wait on for completion.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.ITask})">
+            <summary>
+            Creates a task that will complete when any of the supplied tasks have completed.
+            </summary>
+            <param name="tasks">The tasks to wait on for completion.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.WaitAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.ITask})">
+            <summary>
+            Waits for all of the provided Task objects to complete execution.
+            </summary>
+            <param name="tasks">The tasks to wait on for completion.</param>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.WaitAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.ITask})">
+            <summary>
+            Waits for any of the provided Task objects to complete execution within a specified time interval.
+            </summary>
+            <param name="tasks">The tasks to wait on for completion.</param>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.#ctor(System.Action)">
+            <summary>
+            Initializes a new Task with the specified action.
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.#ctor">
+            <summary>
+            WARNING: For internal use only
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.Start">
+            <summary>
+            Starts the Task, scheduling it for execution in the Thread Pool
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.Task.Wait">
+            <summary>
+            Waits for the Task to complete execution.
+            </summary>
+        </member>
+        <member name="T:System.Threading.Tasks.Task`1">
+            <summary>
+            Represents an asynchronous operation that can return a value.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:System.Threading.Tasks.Task`1.Result">
+            <summary>
+            Gets the result value of this Task.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.Task`1.Run(System.Func{`0})">
+            <summary>
+            Queues the specified work to run on the thread pool and returns a Task object that represents that work. 
+            </summary>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Threading.Tasks.Task`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new Task with the specified function.
+            </summary>
+            <param name="function"></param>
+        </member>
+        <member name="M:System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.ITask{`0}})">
+            <summary>
+            Creates a continuation that executes asynchronously when the target task completes. 
+            </summary>
+            <param name="continuationAction">An action to run when the antecedent Task_TResult completes. When run, the delegate will be passed the completed task as an argument.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,9 @@
+[keystore]
+vongvonggame
+
+[Key]
+vongvonggame
+
+
+[SHA1]
+96:4A:69:16:2C:EB:AB:2D:4A:8F:5D:C1:A8:B9:0C:07:97:5E:E0:8F

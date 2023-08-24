@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 3623282538
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: daa95bf4af37b10a8372ce43a70d1652
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b99251b768fff376999730200c309c7f
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: b6c88e76926c9a64b92874e628e03a83, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/AndroidPatch/img_card/Cards.asset
+- Assets/AndroidPatch/img_card/Cards.png
+Dependencies: []

@@ -1,0 +1,44 @@
+Version 1.1.2
+- Minimum required Unity 5.5.0
+- UIWidgets scripts update
+
+Version 1.1.1
+- Updated php scripts to use PHPMailer with smtp authentification
+
+Version 1.1.0
+- New event notification system.
+- DebugFilter
+- After this update you need to redrag/drop the LoginSettings to the LoginSystem
+- Use LoginEventTrigger for the old style triggers inside LoginSystem.
+
+Version 1.0.9
+- ICode integration
+
+Version 1.0.8
+- LoginSystemEditor extends from BaseSystemEditor
+- Updated to new UI Widgets
+
+Version 1.0.7
+- Moved base ui classes to Unitycoding/UI Controls
+- MessageBox accepts string array for buttons
+- Changed result of MessageBox to string button text
+- Next base ui changes will be inside Unitycoding/UI Controls/Version Changes.txt
+
+Version 1.0.6
+- Replaced UINotification with more advanced MessageBox
+- Moved window names to LoginSettings
+- Skip login setting
+
+Version 1.0.5
+- Shared scripts update
+- Code documentation  
+- Moved UINotification to Shared scripts.
+
+Version 1.0.4
+- UI scripts optimization
+- New interface
+- Global editor
+- New documentation
+
+Version 1.0.3
+- Updated to uGUI and unity's event system.

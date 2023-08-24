@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "640212702564",
+    "firebase_url": "https://jangbibadugi.firebaseio.com",
+    "project_id": "jangbibadugi",
+    "storage_bucket": "jangbibadugi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640212702564:android:c5fe1c6d545b5b1a",
+        "android_client_info": {
+          "package_name": "com.nsoft.jangbibadugi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640212702564-i26ti0c5cfeocbn08kaccmrtes8b2hig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdOs8-NA7DdIyh3vcjuNhG3xQVcpcbuRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640212702564-i26ti0c5cfeocbn08kaccmrtes8b2hig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

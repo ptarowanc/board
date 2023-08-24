@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f6d4c74719aab6349887bbbac6c80a69
+timeCreated: 1539686688
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: netmarble
+  fontNames:
+  - netmarble
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: eaaf9ff6758e4f34ea6aaeaceb8832d7, type: 3}
+  - {fileID: 12800000, guid: 115535bba6853ea49a9706b5c1ef9ebb, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

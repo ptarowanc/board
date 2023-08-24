@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/android/M_Logo.unity
+    guid: 5c2e31a6c5e223442a42b3487779966c
+  - enabled: 1
+    path: Assets/Scenes/android/M_Android.unity
+    guid: 9291296109ac76a44a25d911847ca5de
+  - enabled: 1
+    path: Assets/Scenes/android/M_Login.unity
+    guid: 3b1fc674090894d48a7afc653ee4c415
+  - enabled: 1
+    path: Assets/Scenes/android/M_Lobby.unity
+    guid: ed4dc3b6e996f4b438b61a9029e93fe3
+  - enabled: 1
+    path: Assets/Scenes/android/M_Store.unity
+    guid: fc3dd36969c5a38478af04040d2682da
+  - enabled: 1
+    path: Assets/Scenes/android/M_MyRoom.unity
+    guid: abab4cdd7b3c0e94d9da0860373f457b
+  - enabled: 1
+    path: Assets/Scenes/android/M_Game.unity
+    guid: 31af2c38cff430b499a3d893b4559965

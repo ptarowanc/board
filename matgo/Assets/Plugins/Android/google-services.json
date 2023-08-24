@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "706090314946",
+    "firebase_url": "https://jangbimatgo.firebaseio.com",
+    "project_id": "jangbimatgo",
+    "storage_bucket": "jangbimatgo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706090314946:android:2bb218126794af2c",
+        "android_client_info": {
+          "package_name": "com.nsoft.jangbimatgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706090314946-ld5cpp16vj1a3mp9b43btqdk64dv9er7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nsoft.jangbimatgo",
+            "certificate_hash": "964a69162cebab2d4a8f5dc1a8b90c07975ee08f"
+          }
+        },
+        {
+          "client_id": "706090314946-ildudat68pshuchoeitcqoa64rgqab0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLRNNBWON7d9devQNNkDtPxwbmbREnmyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706090314946-ildudat68pshuchoeitcqoa64rgqab0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

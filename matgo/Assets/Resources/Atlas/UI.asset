@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c88e76926c9a64b92874e628e03a83, type: 3}
+  m_Name: UI
+  m_EditorClassIdentifier: 
+  m_Texture: {fileID: 2800000, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  m_Padding: 1
+  m_MaxSize: 4096
+  m_PackingMethod: 0
+  m_DefaultPivot: 0
+  m_DefaultCustomPivot: {x: 0.5, y: 0.5}
+  m_Sprites:
+  - source: {fileID: 21300000, guid: 08ca814611df44a4da6dedd5eb7a045f, type: 3}
+    targetSprite: {fileID: 21300036, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: e1ed45eb7037e2447b5655920dd17730, type: 3}
+    targetSprite: {fileID: 21300038, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 66be81d19ebb26f47a0c4ec1ab82ec17, type: 3}
+    targetSprite: {fileID: 21300050, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: be0038925857cf04682860f30105b286, type: 3}
+    targetSprite: {fileID: 21300052, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: e44c6f7591f95914daf161e9703bf574, type: 3}
+    targetSprite: {fileID: 21300054, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 9fa22de19d27425468678179159b7a9f, type: 3}
+    targetSprite: {fileID: 21300056, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: fe84d451984711145a85fcaaa0053c01, type: 3}
+    targetSprite: {fileID: 21300010, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 2800000, guid: 32a0ae0fb0e9e7940a9fe0ace14d326d, type: 3}
+    targetSprite: {fileID: 21300008, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 894af23a132187041941d1f95b4bf407, type: 3}
+    targetSprite: {fileID: 21300020, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: ff1d34bf6705c0a4089587614c829ad5, type: 3}
+    targetSprite: {fileID: 21300018, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: fc2537fe932576a4485a132744a1cda1, type: 3}
+    targetSprite: {fileID: 21300012, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 248b1345d27866545817c49125dd06be, type: 3}
+    targetSprite: {fileID: 21300026, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: dc416d6af0d291a41add38da5ddd26be, type: 3}
+    targetSprite: {fileID: 21300022, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 52a857fdfd05b914d86a6e60bfeb80ce, type: 3}
+    targetSprite: {fileID: 21300058, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 0139a26b3ebdd7c489035b2e2f33dfa8, type: 3}
+    targetSprite: {fileID: 21300028, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 50768681bafc56440b1970f616a6f684, type: 3}
+    targetSprite: {fileID: 21300024, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: 5d7735593fed7a84fa0d0e65f88526ce, type: 3}
+    targetSprite: {fileID: 21300014, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  - source: {fileID: 21300000, guid: c743fb126c296f74899881ce86e04db6, type: 3}
+    targetSprite: {fileID: 21300030, guid: 0fc5984041f2af54baf859aa4b12b6da, type: 3}
+  m_PendingActions: []

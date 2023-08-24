@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1906253695
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3975b3c121c104218ee1e0597ad2e477
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4774d6da9b606debf00b5a5d61c4487c
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/AndroidPatch/img_store/avatar_0001.png
+- Assets/AndroidPatch/img_store/avatar_0006.png
+Dependencies: []
