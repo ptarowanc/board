@@ -1,0 +1,274 @@
+namespace SS 100
+{
+	//SS///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 마스터 서버 
+	MasterAllShutdown(string msg);
+	MasterNotifyP2PServerInfo(ZNet.ArrByte data);
+
+	// 룸 -> 로비
+	RoomLobbyMakeRoom(Rmi.Marshaler.RoomInfo roomInfo, Rmi.Marshaler.LobbyUserList userInfo, int userID, string IP, string Pass, int shopId);
+	RoomLobbyJoinRoom(System.Guid roomID, Rmi.Marshaler.LobbyUserList userInfo, int userID, string IP, int shopId);
+	RoomLobbyOutRoom(System.Guid roomID, int userID);
+
+	RoomLobbyMessage(ZNet.RemoteID userRemote, string message); //RoomLobbyError
+
+	RoomLobbyEventStart(System.Guid roomID, int type);
+	RoomLobbyEventEnd(System.Guid roomID, int type, string name, long reward);
+
+
+	// 로비 -> 룸
+	LobbyRoomJackpotInfo(long jackpot);
+	LobbyRoomNotifyMessage(int type, string message, int period);
+	LobbyRoomNotifyServermaintenance(int type, string message, int release);
+	LobbyRoomReloadServerData(int type);
+	LobbyRoomCalling(int type, int chanId, System.Guid roomId, int playerId);
+	LobbyRoomKickUser(int userID);
+
+	// 로비 -> 로그인
+	LobbyLoginKickUser(int userID);
+
+	// 방이동
+	RoomLobbyRequestMoveRoom(System.Guid roomID, ZNet.RemoteID remoteS, ZNet.RemoteID userRemote, int userID, long money, bool ipFree, bool shopFree, int shopId, bool restrict);
+	LobbyRoomResponseMoveRoom(bool makeRoom, System.Guid roomID, ZNet.NetAddress addr, int chanID, ZNet.RemoteID remoteS, ZNet.RemoteID userRemote, string message);
+
+
+	// 서버간 데이터 동기화 (current)
+	ServerRequestDataSync(bool isLobby); // 로비 -> 룸, 로비 -> 릴레이, 릴레이 -> 룸
+	RoomLobbyResponseDataSync(ZNet.ArrByte data); // 룸 -> 로비, 룸 -> 릴레이
+	RelayLobbyResponseDataSync(ZNet.ArrByte data); // 릴레이 -> 로비
+
+	////////// 릴레이 통신 //////////
+	// 릴레이서버 CoreHandle Relay
+	RelayClientJoin(ZNet.RemoteID userRemote, ZNet.NetAddress addr, ZNet.ArrByte param); // 릴레이 -> 룸/로비
+	RelayClientLeave(ZNet.RemoteID userRemote, bool bMoveServer); // 릴레이 -> 룸/로비
+	RelayCloseRemoteClient(ZNet.RemoteID userRemote); // 룸/로비 -> 릴레이
+	RelayServerMoveFailure(ZNet.RemoteID userRemote);
+
+	// 클라 -> 릴레이  -> 로비
+	RelayRequestLobbyKey(ZNet.RemoteID userRemote, string id, string key);
+	RelayRequestJoinInfo(ZNet.RemoteID userRemote);
+	RelayRequestChannelMove(ZNet.RemoteID userRemote, int chanID);
+	RelayRequestRoomMake(ZNet.RemoteID userRemote, int relayID, int chanID, int betType, string pass);
+	RelayRequestRoomJoin(ZNet.RemoteID userRemote, int relayID, int chanID, int betType);
+	RelayRequestRoomJoinSelect(ZNet.RemoteID userRemote, int relayID, int chanID, int roomNumber, string pass);
+	RelayRequestBank(ZNet.RemoteID userRemote, int option, long money, string pass);
+
+	// 모바일 -> 릴레이 -> 로비
+	RelayRequestPurchaseList(ZNet.RemoteID userRemote);
+	RelayRequestPurchaseAvailability(ZNet.RemoteID userRemote, string pid);
+	RelayRequestPurchaseReceiptCheck(ZNet.RemoteID userRemote, string result);
+	RelayRequestPurchaseResult(ZNet.RemoteID userRemote, System.Guid token);
+	RelayRequestPurchaseCash(ZNet.RemoteID userRemote, string pid);
+	RelayRequestMyroomList(ZNet.RemoteID userRemote);
+	RelayRequestMyroomAction(ZNet.RemoteID userRemote, string pid);
+	// 로비 -> 릴레이 -> 모바일
+	LobbyRelayResponsePurchaseList(ZNet.RemoteID userRemote, List<string> Purchase_avatar, List<string> Purchase_card, List<string> Purchase_evt, List<string> Purchase_charge);
+	LobbyRelayResponsePurchaseAvailability(ZNet.RemoteID userRemote, bool available, string reason);
+	LobbyRelayResponsePurchaseReceiptCheck(ZNet.RemoteID userRemote, bool result, System.Guid token);
+	LobbyRelayResponsePurchaseResult(ZNet.RemoteID userRemote, bool result, string reason);
+	LobbyRelayResponsePurchaseCash(ZNet.RemoteID userRemote, bool result, string reason);
+	LobbyRelayResponseMyroomList(ZNet.RemoteID userRemote, string json);
+	LobbyRelayResponseMyroomAction(ZNet.RemoteID userRemote, string pid, bool result, string reason);
+
+
+	// 로비 -> 릴레이 -> 클라
+	LobbyRelayServerMoveStart(ZNet.RemoteID userRemote, string moveServerIP, ushort moveServerPort, ZNet.ArrByte param);
+	LobbyRelayResponseLobbyKey(ZNet.RemoteID userRemote, string key);
+	LobbyRelayNotifyUserInfo(ZNet.RemoteID userRemote, Rmi.Marshaler.LobbyUserInfo userInfo);
+	LobbyRelayNotifyUserList(ZNet.RemoteID userRemote, System.Collections.Generic.List<Rmi.Marshaler.LobbyUserList> lobbyUserInfos, System.Collections.Generic.List<string> lobbyFriendList);
+	LobbyRelayNotifyRoomList(ZNet.RemoteID userRemote, int channelID, System.Collections.Generic.List<Rmi.Marshaler.RoomInfo> roomInfos);
+	LobbyRelayResponseChannelMove(ZNet.RemoteID userRemote, int chanID); // not use
+	LobbyRelayResponseLobbyMessage(ZNet.RemoteID userRemote, string message);
+	LobbyRelayResponseBank(ZNet.RemoteID userRemote, bool result, int resultType);
+	LobbyRelayNotifyJackpotInfo(ZNet.RemoteID userRemote, long jackpot);
+	LobbyRelayNotifyLobbyMessage(ZNet.RemoteID userRemote, int type, string message, int period);
+
+	// 릴레이 - > 룸
+	RoomRelayServerMoveStart(ZNet.RemoteID userRemote, string moveServerIP, ushort moveServerPort, ZNet.ArrByte param);
+	RelayRequestRoomOutRsvn(ZNet.RemoteID userRemote, bool IsRsvn);
+	RelayRequestRoomOut(ZNet.RemoteID userRemote);
+	RelayResponseRoomOut(ZNet.RemoteID userRemote, bool resultOut);
+	RelayRequestRoomMove(ZNet.RemoteID userRemote);
+	RelayResponseRoomMove(ZNet.RemoteID userRemote, bool resultMove, string errorMessage);
+
+
+	// 클라이언트 Request Relay
+	RelayGameRoomIn(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	RelayGameRequestReady(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	RelayGameDealCardsEnd(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	RelayGameActionBet(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	RelayGameActionChangeCard(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+
+	// 클라이언트 Response Relay
+	GameRelayResponseRoomOutRsvn(ZNet.RemoteID userRemote, byte player_index, bool Rsvn);
+	GameRelayResponseRoomOut(ZNet.RemoteID userRemote, bool permissionOut);
+	GameRelayResponseRoomMove(ZNet.RemoteID userRemote, bool resultMove, string errorMessage);
+	GameRelayRoomIn(ZNet.RemoteID userRemote, bool result);
+	GameRelayRoomReady(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayStart(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayDealCards(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+
+	GameRelayUserIn(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelaySetBoss(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayNotifyStat(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+
+	GameRelayRoundStart(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayChangeTurn(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayRequestBet(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayResponseBet(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayChangeRound(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayRequestChangeCard(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayResponseChangeCard(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayCardOpen(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayOver(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+
+	GameRelayRoomInfo(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayKickUser(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayEventInfo(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayUserInfo(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayUserOut(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayEventStart(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayEvent2Start(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayEventRefresh(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayEventEnd(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayMileageRefresh(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayEventNotify(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayCurrentInfo(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayEntrySpectator(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayNotifyMessage(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	GameRelayNotifyJackpotInfo(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+
+	// 로비이벤트
+	RelayRequestLobbyEventInfo(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	LobbyRelayResponseLobbyEventInfo(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	RelayRequestLobbyEventParticipate(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+	LobbyRelayResponseLobbyEventParticipate(ZNet.RemoteID userRemote, ZNet.ArrByte data);
+
+	//SC///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 서버이동 관련
+	ServerMoveStart(string moveServerIP, ushort moveServerPort, ZNet.ArrByte param); // 서버에서 클라이언트에게 이동할 서버 정보 전달 -> 클라이언트에서 이동할 서버로 접속시 이동데이터 전달 -> ClientJoin에서 데이터 유효성 확인 후 목록에 추가
+	ServerMoveEnd(bool Moved);
+
+
+	// 런처
+	ResponseLauncherLogin(bool result, string nickname, string key, byte resultType);
+	ResponseLauncherLogout();
+	ResponseLoginKey(bool result, string resultMessage);
+	ResponseLobbyKey(string key);
+
+	// 로그인 서버
+	ResponseLogin(bool result, string resultMessage);
+	NotifyLobbyList(System.Collections.Generic.List<string> lobbyList);
+
+	// 로비 서버
+	NotifyUserInfo(Rmi.Marshaler.LobbyUserInfo userInfo);
+	NotifyUserList(System.Collections.Generic.List<Rmi.Marshaler.LobbyUserList> lobbyUserInfos, System.Collections.Generic.List<string> lobbyFriendList);
+	NotifyRoomList(int channelID, System.Collections.Generic.List<Rmi.Marshaler.RoomInfo> roomInfos);
+	ResponseChannelMove(int chanID); // not use
+	ResponseLobbyMessage(string message);
+	ResponseBank(bool result, int resultType);
+	NotifyJackpotInfo(long jackpot);
+	NotifyLobbyMessage(int type, string message, int period);
+
+	// 게임서버
+	GameResponseRoomOutRsvp(byte player_index, bool IsRsvn);
+	GameResponseRoomOut(bool result);
+	GameResponseRoomMove(bool move, string errorMessage);
+	GameRoomIn(bool result);
+	GameRoomReady(ZNet.ArrByte data);
+	GameStart(ZNet.ArrByte data);
+	GameDealCards(ZNet.ArrByte data);
+	GameUserIn(ZNet.ArrByte data);
+	GameSetBoss(ZNet.ArrByte data);
+	GameNotifyStat(ZNet.ArrByte data);
+	GameRoundStart(ZNet.ArrByte data);
+	GameChangeTurn(ZNet.ArrByte data);
+	GameRequestBet(ZNet.ArrByte data);
+	GameResponseBet(ZNet.ArrByte data);
+	GameChangeRound(ZNet.ArrByte data);
+	GameRequestChangeCard(ZNet.ArrByte data);
+	GameResponseChangeCard(ZNet.ArrByte data);
+	GameCardOpen(ZNet.ArrByte data);
+	GameOver(ZNet.ArrByte data);
+
+	GameRoomInfo(ZNet.ArrByte data);
+	GameKickUser(ZNet.ArrByte data);
+	GameEventInfo(ZNet.ArrByte data);
+	GameUserInfo(ZNet.ArrByte data);
+	GameUserOut(ZNet.ArrByte data);
+	GameUserOutRsvn(ZNet.ArrByte data);
+	GameEventStart(ZNet.ArrByte data);
+	GameEvent2Start(ZNet.ArrByte data);
+	GameEventRefresh(ZNet.ArrByte data);
+	GameEventEnd(ZNet.ArrByte data);
+	GameMileageRefresh(ZNet.ArrByte data);
+	GameEventNotify(ZNet.ArrByte data);
+	GameCurrentInfo(ZNet.ArrByte data);
+	GameEntrySpectator(ZNet.ArrByte data);
+	GameNotifyMessage(ZNet.ArrByte data);
+
+	// 모바일
+	ResponsePurchaseList(System.Collections.Generic.List<string> Purchase_avatar, System.Collections.Generic.List<string> Purchase_card, System.Collections.Generic.List<string> Purchase_evt, System.Collections.Generic.List<string> Purchase_charge);
+	ResponsePurchaseAvailability(bool available, string reason);
+	ResponsePurchaseReceiptCheck(bool result, System.Guid token);
+	ResponsePurchaseResult(bool result, string reason);
+	ResponsePurchaseCash(bool result, string reason);
+	ResponseMyroomList(string json);
+	ResponseMyroomAction(string pid, bool result, string reason);
+
+	ResponseGameOptions(ZNet.ArrByte data);
+
+	// 로비 이벤트
+	ResponseLobbyEventInfo(ZNet.ArrByte data);
+	ResponseLobbyEventParticipate(ZNet.ArrByte data);
+
+	//CS///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// 서버이동 관련
+	ServerMoveFailure(); // 2. 이동할 서버에 접속 실패시, 서버에 알림
+
+	// 런처
+	RequestLauncherLogin(string id, string pass);
+	RequestLauncherLogout(string id, string key);
+	RequestLoginKey(string id, string key);
+	RequestLobbyKey(string id, string key);
+
+	// 로그인 서버
+	RequestLogin(string name, string pass);
+	RequestLobbyList();
+	RequestGoLobby(string lobbyName);
+
+	// 로비 서버 (릴레이 서버)
+	RequestJoinInfo();
+	RequestChannelMove(int chanID);
+	RequestRoomMake(int chanID, int betType, string pass);
+	RequestRoomJoin(int chanID, int betType);
+	RequestRoomJoinSelect(int chanID, int roomNumber, string pass);
+	RequestBank(int option, long money, string pass);
+
+	// 게임 서버 (릴레이 서버)
+	GameRoomOutRsvn(bool IsRsvn);
+	GameRoomOut(ZNet.ArrByte data);
+	GameRoomMove(ZNet.ArrByte data);
+	GameRoomInUser(ZNet.ArrByte data);
+	GameRequestReady(ZNet.ArrByte data);
+	GameDealCardsEnd(ZNet.ArrByte data);
+	GameActionBet(ZNet.ArrByte data);
+	GameActionChangeCard(ZNet.ArrByte data);
+
+	// 모바일 (릴레이 서버)
+	RequestPurchaseList();
+	RequestPurchaseAvailability(string pid);
+	RequestPurchaseReceiptCheck(string result);
+	RequestPurchaseResult(System.Guid token);
+	RequestPurchaseCash(string pid);
+	RequestMyroomList();
+	RequestMyroomAction(string pid);
+
+	RequestGameOptions(ZNet.ArrByte data);
+
+	// 로비 이벤트
+	RequestLobbyEventInfo(ZNet.ArrByte data);
+	RequestLobbyEventParticipate(ZNet.ArrByte data);
+}
