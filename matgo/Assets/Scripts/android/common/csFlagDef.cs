@@ -12,6 +12,11 @@ public class csFlagDef {
 	/// </remarks>
 	public enum NET_RECV_CODE { NONE , S_OK , S_FALSE}
 
+    #region Screen Resolution
+    public readonly static int SCREEN_WIDTH = 1920;
+    public readonly static int SCREEN_HEIGHT = 1080;
+    #endregion
+
 #if TEST
     #region URL's
     /// <summary>

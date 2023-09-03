@@ -282,8 +282,6 @@ public class csAndroidManager : MonoBehaviour {
 
 	IEnumerator CoReqSerVersion()
 	{
-		yield return null;
-
 		csWWWiki.RESET_ARGS ();
 		csWWWiki.Instance.GET (csFlagDef.URL_VERSION_CHECK);
 		while (!csWWWiki.RECV) 
@@ -336,12 +334,13 @@ public class csAndroidManager : MonoBehaviour {
                                 //ErrCallBack = EvtQuit;
 
                                 bSuccess = false;
-                                ErrMSG = "최신버전이 업데이트 되었습니다.\n마켓에서 업데이트 후 이용해 주세요.";
+                                ErrMSG = "최신버전이 업데이트 되었습니다.\n홈페이지에서 업데이트 후 이용해 주세요.";
                                 if (jsVer.market.Length > 0)
                                 {
                                     csFlagDef.URL_MARKET = jsVer.market;
                                 }
-                                ErrCallBack = EvtGoMarket;
+                                //ErrCallBack = EvtGoMarket;
+                                ErrCallBack = EvtQuit;
                             }
                         }
                     }
@@ -355,7 +354,7 @@ public class csAndroidManager : MonoBehaviour {
 
 		}
 
-        EventHandler.Execute(csFlagDef.EVTNAME_REQ_POPUP_OPEN, csFlagDef.POPUP_KIND_GLOBALMSG, ErrMSG, ErrCallBack);
+        //EventHandler.Execute(csFlagDef.EVTNAME_REQ_POPUP_OPEN, csFlagDef.POPUP_KIND_GLOBALMSG, ErrMSG, ErrCallBack);
         if (m_CBQProc != null)
         {
             m_CBQProc(bSuccess, csFlagDef.POPUP_KIND_GLOBALMSG, ErrMSG, ErrCallBack);

@@ -32,65 +32,66 @@ namespace UserWeb.Controllers
 
         public ActionResult RegisterForm(string req_tx)
         {
-            if (String.IsNullOrEmpty(req_tx))
-            {   // 앱에서 처음 진입 하는 경우
+            //if (String.IsNullOrEmpty(req_tx))
+            //{   // 앱에서 처음 진입 하는 경우
 
-                string orderId = Guid.NewGuid().ToString();
-                log.Info("본인 인증 요청 ID = " + orderId);
+            //    string orderId = Guid.NewGuid().ToString();
+            //    log.Info("본인 인증 요청 ID = " + orderId);
 
-                string upHash = generateKcpHash(null, orderId, "", "", "", "");
+            //    string upHash = generateKcpHash(null, orderId, "", "", "", "");
 
-                UrlHelper urlHelper = new UrlHelper(Url.RequestContext);
-                var RetUrl = Request.Url.AbsoluteUri; // urlHelper.Action("RegisterForm", null, null, HttpContext.Request.Url.Scheme);     // 나한테 돌아와~
-                return View("StartCert", new Tuple<String, string, string>(RetUrl, orderId, upHash));
-            }
-            else if(req_tx == "otp_auth" || req_tx == "auth")
-            {   // KCP 인증 받으러 갔다가 돌아오는 길
-                var response = Models.KCPResponseData.Parse(Request);
+            //    UrlHelper urlHelper = new UrlHelper(Url.RequestContext);
+            //    var RetUrl = Request.Url.AbsoluteUri; // urlHelper.Action("RegisterForm", null, null, HttpContext.Request.Url.Scheme);     // 나한테 돌아와~
+            //    return View("StartCert", new Tuple<String, string, string>(RetUrl, orderId, upHash));
+            //}
+            //else if(req_tx == "otp_auth" || req_tx == "auth")
+            //{   // KCP 인증 받으러 갔다가 돌아오는 길
+            //    var response = Models.KCPResponseData.Parse(Request);
 
-                if (response.IsSucceeded)
-                {   // 본인 인증 성공
+            //    if (response.IsSucceeded)
+            //    {   // 본인 인증 성공
 
-                    // 나이제한 확인
-                    if (Int32.Parse(response.birth_day.Substring(0, 4)) > (DateTime.Now.Year - 18))
-                    {
-                        string Massage = "미성년자는 서비스를 이용하실 수 없습니다.";
-                        return View("CertFail", new Tuple<string, string>("", Massage));
-                    }
+            //        // 나이제한 확인
+            //        if (Int32.Parse(response.birth_day.Substring(0, 4)) > (DateTime.Now.Year - 18))
+            //        {
+            //            string Massage = "미성년자는 서비스를 이용하실 수 없습니다.";
+            //            return View("CertFail", new Tuple<string, string>("", Massage));
+            //        }
 
-                    // #1. 이미 가입한 회원인지 확인
-                    var entry = userService.GetExistingMemberId(response.ci, response.di);
-                    if(entry != null)
-                    {
-                        // 이미 가입한 회원~
-                        string Massage = entry.UserName + "님은 [ " + entry.UserID + " ] 계정으로 가입되어 있습니다.";
-                        return View("CertFail", new Tuple<string,string>("", Massage));
-                        //return View("ExistingMember", entry);
-                    }
+            //        // #1. 이미 가입한 회원인지 확인
+            //        var entry = userService.GetExistingMemberId(response.ci, response.di);
+            //        if(entry != null)
+            //        {
+            //            // 이미 가입한 회원~
+            //            string Massage = entry.UserName + "님은 [ " + entry.UserID + " ] 계정으로 가입되어 있습니다.";
+            //            return View("CertFail", new Tuple<string,string>("", Massage));
+            //            //return View("ExistingMember", entry);
+            //        }
 
-                    // #2. 표시용 전화번호
-                    List<string> phoneTokens = MemberController.MakePrettyPhoneNo(response.phone_no).Split(new char[] { '-' } ).ToList();
-                    while (phoneTokens.Count < 3)
-                        phoneTokens.Add("-");
+            //        // #2. 표시용 전화번호
+            //        List<string> phoneTokens = MemberController.MakePrettyPhoneNo(response.phone_no).Split(new char[] { '-' } ).ToList();
+            //        while (phoneTokens.Count < 3)
+            //            phoneTokens.Add("-");
 
-                    return View("RegisterForm", new Tuple<Models.KCPResponseData, string, string[]>(response
-                                                                                                        , DBLIB.Service.CryptoHelper.Encrypt(response, MemberController.InternalFormDataPassword)
-                                                                                                        , phoneTokens.ToArray()));
-                }
-                else
-                {   // 본인 인증 실패
+            //        return View("RegisterForm", new Tuple<Models.KCPResponseData, string, string[]>(response
+            //                                                                                            , DBLIB.Service.CryptoHelper.Encrypt(response, MemberController.InternalFormDataPassword)
+            //                                                                                            , phoneTokens.ToArray()));
+            //    }
+            //    else
+            //    {   // 본인 인증 실패
 
-                    return View("CertFail", new Tuple<string,string>(response.res_cd, response.res_msg));
-                    //return View("CertFail", response);
-                }
-            }
-            else
-            {
-                log.Info("알 수 없음 요청 식별자 [" + req_tx + "]");
-            }
+            //        return View("CertFail", new Tuple<string,string>(response.res_cd, response.res_msg));
+            //        //return View("CertFail", response);
+            //    }
+            //}
+            //else
+            //{
+            //    log.Info("알 수 없음 요청 식별자 [" + req_tx + "]");
+            //}
 
-            return null;
+            //return null;
 
+            return View("RegisterForm");
         }
 
         public enum CheckType
@@ -130,18 +131,18 @@ namespace UserWeb.Controllers
 
             try
             {
-                UserWeb.Models.KCPResponseData certData = null;
-                try
-                {
-                    string raw = DBLIB.Service.CryptoHelper.Decrypt(data, MemberController.InternalFormDataPassword);
-                    certData = JsonConvert.DeserializeObject<KCPResponseData>(raw);
-                }
-                catch(Exception e)
-                {
-                    throw new InvalidOperationException("인증 데이터를 복원 할 수 없습니다", e);
-                }
+                //UserWeb.Models.KCPResponseData certData = null;
+                //try
+                //{
+                //    string raw = DBLIB.Service.CryptoHelper.Decrypt(data, MemberController.InternalFormDataPassword);
+                //    certData = JsonConvert.DeserializeObject<KCPResponseData>(raw);
+                //}
+                //catch(Exception e)
+                //{
+                //    throw new InvalidOperationException("인증 데이터를 복원 할 수 없습니다", e);
+                //}
 
-                UserName = certData.user_name;
+                //UserName = certData.user_name;
 
                 if (string.IsNullOrWhiteSpace(LoginID))
                     throw new YoloException("아이디를 입력하세요");
@@ -161,7 +162,8 @@ namespace UserWeb.Controllers
                 }
 
                 string message;
-                bool ok = userService.AddUser(UserService.CreatedFrom.MOBILE, LoginID, UserName, Nickname, LoginPassword, "", MemberController.MakePrettyPhoneNo( certData.phone_no), RecomCode, certData.ci, certData.di, certData.cert_no, ipAddress, out message);
+                //bool ok = userService.AddUser(UserService.CreatedFrom.MOBILE, LoginID, UserName, Nickname, LoginPassword, "", MemberController.MakePrettyPhoneNo( certData.phone_no), RecomCode, certData.ci, certData.di, certData.cert_no, ipAddress, out message);
+                bool ok = userService.AddUser(UserService.CreatedFrom.MOBILE, LoginID, UserName, Nickname, LoginPassword, "", MemberController.MakePrettyPhoneNo( $"010-{PhoneNo2}-{PhoneNo3}" ), RecomCode, "","","", ipAddress, out message);
 
                 result = ok ? StandardResult.createSucceeded() : StandardResult.createError(message);
             }

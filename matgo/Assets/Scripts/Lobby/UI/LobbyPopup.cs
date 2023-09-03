@@ -568,4 +568,44 @@ public class LobbyPopup : MonoBehaviour
 
         m_inputMoney.text = iCurrentMoney.ToString();
     }
+
+    public void MoveToBadugi()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        string id = PlayerPrefs.GetString("usernameauto", string.Empty);
+        string pw = PlayerPrefs.GetString("passwordauto", string.Empty);
+
+        AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+
+        AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
+
+        AndroidJavaObject pm = jo.Call<AndroidJavaObject>("getPackageManager");
+
+
+        bool fail = false;
+        AndroidJavaObject launch = null;
+        try
+        {
+            AndroidJavaObject intent = pm.Call<AndroidJavaObject>("getLaunchIntentForPackage", "com.xzygames.badugi");
+            launch = intent.Call<AndroidJavaObject>("putExtra", "arguments", string.Format("auto\n{0}\n{1}",id,pw));
+        }
+        catch (System.Exception e)
+        {
+            fail = true;
+        }
+
+        if (fail)
+        {
+            NetworkManager.Instance.PopupLevelUp();
+            NetworkManager.Instance.PopupMessage.SetActive(true);
+            NetworkManager.Instance.PopupMessage.transform.Find("Text").GetComponent<UnityEngine.UI.Text>().text = "바둑이가 설치되어 있지 않습니다. \r\n 바둑이 설치 후 시도해주세요.";
+        }
+        else
+        {
+            jo.Call("startActivity", launch);
+            Application.Quit();
+        }
+#endif
+    }
+
 }

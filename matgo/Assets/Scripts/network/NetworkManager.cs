@@ -855,6 +855,41 @@ public class NetworkManager : MonoBehaviour
             {
                 //PopupServerDisconnect();
             }
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            string arguments = "";
+
+            AndroidJavaClass UnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject currentActivity = UnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+
+            AndroidJavaObject intent = currentActivity.Call<AndroidJavaObject>("getIntent");
+            bool hasExtra = intent.Call<bool>("hasExtra", "arguments");
+
+            if (hasExtra)
+            {
+                AndroidJavaObject extras = intent.Call<AndroidJavaObject>("getExtras");
+                arguments = extras.Call<string>("getString", "arguments");
+
+                if (string.IsNullOrEmpty(arguments) == false)
+                {
+                    var split = arguments.Split('\n');
+
+                    if (split.Count() > 0)
+                    {
+                        string command = split.First();
+
+                        if (command == "auto" && split.Count() == 3)
+                        {
+                            string id = split[1];
+                            string pw = split[2];
+
+                            csAndroidManager.USERID = id;
+                            NetworkManager.Instance.LoginAccount(id, pw);
+                        }
+                    }
+                }
+            }
+#endif
         }
     }
     void ServerConnect(bool isConnectSuccess)

@@ -60,6 +60,10 @@ public class UILoginWindow : UIWidget
             PlayerPrefs.DeleteKey("username");
             PlayerPrefs.DeleteKey("password");
         }
+
+        PlayerPrefs.SetString("usernameauto", username.text);
+        PlayerPrefs.SetString("passwordauto", password.text);
+
         Debug.Log("로그인");
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
     }
