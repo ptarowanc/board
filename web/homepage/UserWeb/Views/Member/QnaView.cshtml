@@ -1,0 +1,150 @@
+﻿@model DBLIB.qna
+@{
+
+    var replyStatus = Model.AnsweredOn != null ? "답변 완료" : "대기";
+
+}
+<style>
+    body {
+        background: #000000;
+    }
+</style>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>1:1문의</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap" style="min-height:700px;">
+                                <!-- 내용 시작 -->
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">1:1문의</h1>
+                                </div>
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td colspan="6" height="2" bgcolor="#94ccf4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td height="35" width="80" background="/images/board/write_bg.gif" align="left">
+                                            &nbsp;&nbsp;
+                                            <img src="/images/board/ico_title_arrow.gif" align="absmiddle" alt="" /> 제 목
+                                        </td>
+                                        <td height="35" width="*" background="/images/board/write_bg.gif" align="left">
+                                            @Model.title
+                                        </td>
+                                        <td height="35" width="80" background="/images/board/write_bg.gif" align="left">
+                                            &nbsp;&nbsp;
+                                            <img src="/images/board/ico_title_arrow.gif" align="absmiddle" alt="" /> 종 류
+                                        </td>
+                                        <td height="35" width="80" background="/images/board/write_bg.gif" align="left">
+                                            @Model.qna_articletype.label
+                                        </td>
+                                        <td height="35" width="80" background="/images/board/write_bg.gif" align="left">
+                                            &nbsp;&nbsp;
+                                            <img src="/images/board/ico_title_arrow.gif" align="absmiddle" alt="" /> 상 태
+                                        </td>
+                                        <td height="35" width="80" background="/images/board/write_bg.gif" align="left">
+                                            @replyStatus
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="35" colspan="6" background="/images/board/write_bg.gif" align="left">
+                                            &nbsp;&nbsp;
+                                            <img src="/images/board/ico_title_arrow.gif" align="absmiddle" alt="" /> 작성일 : @Model.CreatedOn.ToString("yyyy-MM-dd HH:mm")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td height="35" colspan="6" background="" align="left">
+                                            &nbsp;&nbsp;
+                                            <div style="padding:0 0 20px 20px;"><pre>@Html.Raw(@Model.question)</pre></div>
+                                        </td>
+                                    </tr>
+
+                                    @if (Model.AnsweredOn.HasValue)
+                                    {
+                                        <tr>
+                                            <td colspan="6" height="2" bgcolor="#94ccf4"></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="35" colspan="6" background="/images/board/write_bg.gif" align="left">
+                                                &nbsp;&nbsp;
+                                                <img src="/images/board/ico_title_arrow.gif" align="absmiddle" alt="" /> <b>답변일 : @Model.AnsweredOn.Value.ToString("yyyy-MM-dd HH:mm")</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="35" colspan="6" background="" align="left">
+                                                &nbsp;&nbsp;
+                                                <div style="padding:0 0 0 20px;"><pre>@Html.Raw(@Model.answer)</pre></div>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="6" height="2" bgcolor="#94ccf4"></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="35" colspan="6" background="/images/board/write_bg.gif" align="left">
+                                                &nbsp;&nbsp;
+                                                <img src="/images/board/ico_title_arrow.gif" align="absmiddle" alt="" /> <b>대기중입니다</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="35" colspan="6" background="" align="left">
+                                                &nbsp;&nbsp;
+                                                <div style="padding:0 0 0 20px;">&nbsp;</div>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="6" height="25" bgcolor="" align="center">
+                                            <a href="#" onclick="uf_GoList();;" class="btn btn-concrete" style="width:80px;height:25px;font-size:15px; padding: 1px 15px 1px 15px;">글목록</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                </div>
+                <!-- // content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+<form name="GoFrm" method="post">
+    <input type="hidden" name="n_no" value="@Model.id" />
+    <!--
+    <input type="hidden" name="PageNo" value="<%=PageNo%>" />
+    <input type="hidden" name="StartPage" value="<%=StartPage%>" />
+    <input type="hidden" name="PageSize" value="<%=PageSize%>" />
+        -->
+</form>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //목록으로
+    function uf_GoList() {
+        var frm = document.GoFrm;
+        frm.action = "qna";
+        frm.target = "_self";
+        frm.submit();
+    }
+//]]>
+</script>

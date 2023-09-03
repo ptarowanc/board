@@ -1,0 +1,452 @@
+.mySubTitle{
+	margin-top: 20px;
+}
+.myChangeInfo{
+	width: 100%;
+	padding-top: 20px;
+	display: table;
+	font-size: 12px;
+	color: #555;
+}
+.myPeopleImg{
+	width: 160px;
+	height: 221px;
+	border-top: 1px solid #aaaaaa;
+	border-bottom: 1px solid #aaaaaa;
+	text-align: center
+}
+.myChangeInfoForm{
+	width: 640px;
+	display: table;
+}
+.myChangeInfoForm tr {
+	height: 55px;
+	border-top: 1px solid #aaaaaa;
+}
+.myChangeInfoForm td:nth-child(1){
+	background: #F8F9F8;
+	width: 180px;
+	font-weight: bold
+}
+.myChangeInfoForm td{
+	height: 35px;
+	padding-left: 10px
+}
+.myChangeInfoForm td:nth-child(1) img{
+	vertical-align: middle;
+	position: relative;
+	top: -1px;
+	margin-right: 10px
+}
+.myChangeInfoForm td input{
+	width: 174px;
+	height: 34px;
+	line-height: 24px;
+	padding-left: 5px;
+	border: 1px solid #ccc
+}
+.myChangeInfoForm td span {
+	margin-left: 10px;
+	color: #e54d78;
+	display:-moz-inline-box;
+	display:inline-block;
+}
+
+.MemChangeBtn{
+	width: 550px;
+	float: right;
+	margin-top: 20px;
+}
+.MemChangeBtn img{
+	cursor: pointer
+}
+.myBankMainNav a{
+	font-size: 12px;
+	color: #000;
+	margin-right: 5px;
+	display: inline-block;
+	width: 94px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	border: 1px solid #999;
+	font-weight: bold
+}
+.myBankMainNav a:hover{
+	background: #CFECF2
+}
+.myBankMainNav a.clickBankMain{
+	background: #CFECF2
+}
+.myBankInFont div{
+	margin-bottom: 5px;
+	text-align: left;
+	color: #ac399a;
+}
+
+.myTable{
+	width: 100%;
+	text-align: center;
+	background-image:url(/Img/my/tb_my_cash.jpg);
+	background-repeat:no-repeat;
+	/* border-top: 2px solid #000; */
+	margin-top:20px;
+	font-size: 12px;
+}
+.myTable td,.myTable th{
+	height: 32px;
+	text-align: center;
+	/* border: 1px solid #999 */
+}
+.myTable tbody td:nth-child(1){
+	width: 70px;
+}
+.myTable tbody td:nth-child(2){
+	width: 133px;
+}
+.myTable tbody td:nth-child(3){
+	width: 123px;
+}
+.myTable tbody td:nth-child(4){
+	width: 146px;
+}
+.myTable tbody td:nth-child(5){
+	width: 165px;
+}
+
+.avatarTable{
+	width: 100%;
+	text-align: center;
+	background-image:url(/Img/my/tb_my_avatar.jpg);
+	background-repeat:no-repeat;
+	/* border-top: 2px solid #000; */
+	margin-top:20px;
+	font-size: 12px;
+}
+.avatarTable td,.avatarTable th{
+	height: 32px;
+	text-align: center;
+	/* border: 1px solid #999 */
+}
+.avatarTable tbody td:nth-child(1){
+	width: 70px;
+}
+.avatarTable tbody td:nth-child(2){
+	width: 133px;
+}
+.avatarTable tbody td:nth-child(3){
+	width: 123px;
+}
+.avatarTable tbody td:nth-child(4){
+	width: 146px;
+}
+.avatarTable tbody td:nth-child(5){
+	width: 165px;
+}
+
+
+
+.bankTable{
+	width: 100%;
+	text-align: center;
+	/* border-top: 2px solid #000; */
+	margin-top:20px;
+	font-size: 12px;
+}
+.bankTable th {
+	background-color: #6B7898;
+	color: #ffffff;
+}
+.bankTable td,.bankTable th{
+	height: 32px;
+	text-align: center;
+	border: 1px solid #aaa;
+}
+.bankTable td input {
+	width: 440px;
+	height: 30px;
+	padding-left: 5px;
+	border: 0px solid #ccc
+}
+.bankTableBg{
+	background: #f4f4f4
+}
+.bankTableBtn {
+	background-color: #6F94C8; 
+	cursor: pointer; 
+	color: #fff;
+	font-weight: bold;
+}
+
+
+.myTableForm{
+	width: 100%;
+	margin-top: 20px;
+}
+.myTableForm td{
+	height: 35px;
+	text-align: center;
+	border: 1px solid #999
+}
+.myTableFormBg{
+	background: #f4f4f4
+}
+.changepwdBtn{
+	cursor: pointer
+}
+.myTableForm td input{
+	width: 174px;
+	height: 24px;
+	padding-left: 5px;
+	border: 1px solid #ccc
+}
+.progress{
+	margin-bottom: 0!important
+}
+
+.memberOut{
+	border: 1px solid #d2d3d5;
+	width: 675px;
+	height: 215px;
+	margin: 0 auto;
+	margin-top: 50px;
+	box-shadow: 0px -5px 0px #f2f2f2
+}
+.memberOut{
+	text-align: center;
+	padding-top: 20px
+}
+.memberOut li{
+	height: 35px;
+	line-height: 35px;
+}
+.memberOut li span{
+	display: inline-block;
+	width: 100px;
+	height: 35px;
+	line-height: 35px;
+	background: #fafcfc;
+	font-weight: bold
+}
+.memberOut li input{
+	width: 130px;
+	height: 18px;
+	line-height:18px;
+	padding-left: 5px;
+	border: 1px solid #ccc
+}
+.memberOut li img{
+	cursor: pointer
+}
+
+.hand {
+	cursor: pointer
+}
+
+
+/*myfrienflist*/
+.xjFriendSelect {
+	height: 30px;
+	width: 470px;
+	line-height: 30px;
+	background: #F7F7F7;
+	border-bottom: 1px solid #05AB99;
+}
+
+	.xjFriendSelect span {
+		margin-left: 20px;
+		display: inline-block;
+	}
+
+.xjFriendContent {
+	height: 250px;
+	width: 470px;
+}
+
+.xjFriendBottom {
+	width: 100%;
+	display: table
+}
+
+	.xjFriendBottom .xjPage ul {
+		margin: 10px 0
+	}
+
+.xjFriendContent {
+	height: 250px;
+	width: 470px;
+}
+
+.xjFriendContainer {
+	width: 470px;
+	margin: 0 auto;
+}
+	.xjFriendContainer .noticeTitle span span {
+		color: #ffbf02
+	}
+
+	.xjFriendContainer .noticeTitle span small {
+		font-size: 60%
+	}
+
+	.xjFriendContainer .noticeTitle > span {
+		display: inline-block;
+		height: 39px;
+	}
+
+
+/**************************MyFriend Start*********************/
+#demo {
+	width: 230px;
+	float: left;
+	padding-left: 5px;
+}
+	/*
+.myfriendinforadio{
+	display: inline-block;
+	width:15px;
+	height: 15px;
+	border-radius: 15px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	position: relative;
+	top: 5px;
+}
+.myfriendinforadioBg{
+	background: #5363b4
+}
+*/
+
+.myfriendinfoleft {
+	float: left;
+	width: 230px;
+}
+#demo {
+	width: 180px;
+	min-height: 550px;
+	background-color: #f9f9f9;
+	border-top: 1px solid #aaaaaa;
+	border-bottom: 1px solid #aaaaaa;
+	float: left;
+}
+
+#demo .citeClick {
+	color: #ac399a !important
+}
+#demo img {
+	width: 36px;
+	height: 15px;
+	margin-right: 3px;
+}
+#demo cite {
+	color: #333;
+	font-size: 12px;
+}
+
+.myfriendMenu {
+	float: right;
+	padding: 10px 15px 10px 0px;
+}
+.myfriendMenu button {
+	width: 200px;
+}
+
+.myfriendinfoRight {
+	float: right;
+	width: 570px;	
+	border-bottom: 1px solid #aaaaaa;
+}
+.myfriendinfoTable {
+	float: right;
+	width: 100%;
+	font-size: 12px;
+}
+
+.myfriendinfoTable td, .myfriendinfoTable th {
+	height: 30px;
+	line-height: 30px;
+	border-top: 1px solid #aaaaaa;
+	text-align: center;
+}
+
+.myfriendinfoTable th {
+	font-weight: bold;
+	background-color: #f9f9f9;
+}
+
+.myfriendLiatContainer {
+	float: left;
+	width: 100%;
+	display: table
+}
+
+.layui-box a:hover, .layui-box a:active, .layui-box a:focus {
+	text-decoration: none !important;
+}
+
+.myfriendstateTable {
+	width: 100%;
+}
+
+	.myfriendstateTable td:nth-child(2) {
+		width: 145px;
+		text-align: center
+	}
+
+	.myfriendstateTable td:nth-child(1) {
+		width: 47px;
+		text-align: center
+	}
+
+
+.layui-progress {
+	width: 80px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.myFriendStateContainer {
+	width: 670px;
+	float: left;
+	display: table;
+}
+
+.myfriendstateTable td {
+	padding: 0
+}
+
+.myfriendstateTable td > div {
+	float: left;
+	padding-bottom: 4px;
+	padding-top: 4px
+}
+
+.myfriendstateTable .layui-box {
+	margin-bottom: 0
+}
+
+
+.myfriendTopBg {
+	/*float: left;
+	margin-top: 4px;
+	width: 1000px;
+	height: 847px;
+	background-image: url(/Img/my/my_friendtitle.png);
+	display: table;
+	background-repeat: no-repeat;*/
+	margin-left: 21px;
+	width: 600px;
+	display: table;
+}
+/*******************************MyFriend End***********************/
+
+
+
+
+
+
+
+
+
+
+

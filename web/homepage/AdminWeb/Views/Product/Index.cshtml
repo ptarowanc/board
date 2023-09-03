@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .toolbar {
+        float: left;
+    }
+</style>
+<h2>상품 관리</h2>
+
+<table id="DataTable" class="table table-striped table-bordered table-sm table-hover">
+    <!--
+    <colgroup>
+        <col style="width : 10%" />
+        <col style="width : 20%" />
+        <col style="width : 20%" />
+    </colgroup>
+        -->
+    <thead>
+        <tr>
+            <th>상품번호</th>
+            <th>유형</th>
+            <th>상품명</th>
+            <th>이미지</th>
+            <th>설정값</th>
+            <th>상품식별자</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var dataTable = $("#DataTable").DataTable({
+                info: false,
+                processing: true,
+                serverSide: true,
+                paging: true,
+                language: {
+                    "url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/Korean.json"
+                },
+                columns: [
+                    { "data": "id", "orderable": false},
+                    {
+                        "data": "ptype",
+                        "orderable": false,
+                        "render": function (data, type, row) {
+                            if (data == "charge")
+                                return "충전";
+                            else if (data == "evt")
+                                return "이벤트";
+                            else if (data == "avatar")
+                                return "아바타";
+                            else if (data == "card") {
+                                return "카드";
+                            }
+                            else
+                                return data;
+                        }
+                    },
+                    { "data": "pname", "orderable": false },
+                    { "data": "img", "orderable": false },
+                    { "data": "value1", "orderable": false },
+                    { "data": "string1", "orderable": false }
+                ],
+                /*
+                columnDefs: [
+                    { targets: -1, data: null, defaultContent: "<button class=\"btn btn-sm edit\">수정</button>" }
+                ],*/
+                ajax: {
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "@Url.Action("ProductList", "Product")",
+                    data: function (d) {
+                        return JSON.stringify({ parameters: d });
+                    }
+                },
+                select: true,
+                dom: '<"toolbar">frtip',
+                fnInitComplete: function () {
+                    $("div.toolbar").html( "<button class=\"btn btn-sm new\">상품 등록</button>");
+                }
+            });
+
+            // 라인 선택
+            dataTable.off("select").on("select", function (e, dt, type, indexes) {
+
+                if (type != "row")
+                    return;
+
+                var selectedData = dataTable.rows({ selected: true }).data()[0];
+                window.open("/Article/EditProduct?id=" + selectedData.id, "_blank", "width = 600px, height=400px " );
+            });
+
+            // 상품 등록 버튼
+            $(document).on("click", "button.new", function (e, dt, type, indexes) {
+                e.preventDefault();
+
+                window.open("/Article/NewProduct", "_blank", "width=600px, height=400px");
+            });
+        });
+
+    </script>
+}
+

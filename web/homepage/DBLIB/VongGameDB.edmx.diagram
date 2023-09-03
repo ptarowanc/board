@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7f2a969933274b198ee7628d7a82c489" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="VongGameDB.AdminUser" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.GameBadugiMadeLimit" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.GameBadugiPush" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.GameGiveMoney" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.MemberGamePoint" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.MemberGameRestrict" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerBadugiMission" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerGameMoney" Width="2.625" PointX="9.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerItemList" Width="1.5" PointX="8.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.ReportBadugiResult" Width="1.5" PointX="25.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.WebNoticeList" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.AdminCode" Width="1.5" PointX="18.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.AdminLog" Width="1.5" PointX="19.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.LogUserLogin" Width="1.5" PointX="17.875" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.PurchaseAndroid" Width="1.5" PointX="20.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VongGameDB.ReportCurrentUsers" Width="1.5" PointX="20.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="VongGameDB.FK_WebNoticeList_AdminUser" ManuallyRouted="false" />
+        <AssociationConnector Association="VongGameDB.FK_WebNoticeList_AdminUser1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VongGameDB.RankBadugiFreeMoney" Width="1.5" PointX="22.375" PointY="3.75" />
+        <EntityTypeShape EntityType="VongGameDB.ProductList" Width="1.5" PointX="14.625" PointY="5.125" />
+        <EntityTypeShape EntityType="VongGameDB.V_WEB_PlayerInfo" Width="1.5" PointX="21.375" PointY="18.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_WEB_RankingMatgoBetting" Width="5.125" PointX="16.375" PointY="15.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_WEB_ShopItem" Width="1.5" PointX="11.125" PointY="19.875" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerAdminMemo" Width="1.5" PointX="8" PointY="0.75" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerAdminMemo_AdminUser" />
+        <EntityTypeShape EntityType="VongGameDB.V_WEB_RankingBadugiBetting" Width="1.5" PointX="17.375" PointY="8.75" />
+        <EntityTypeShape EntityType="VongGameDB.PurchaseList" Width="1.5" PointX="16.875" PointY="22.625" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerItemList_PurchaseList" />
+        <AssociationConnector Association="VongGameDB.FK_PurchaseList_ProductList" />
+        <EntityTypeShape EntityType="VongGameDB.LogExchangeMileage" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogPlayerNicknameChange" Width="1.5" PointX="8" PointY="19" />
+        <EntityTypeShape EntityType="VongGameDB.V_WEB_PlayerItemList" Width="1.5" PointX="12.375" PointY="12.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_MobileShop" Width="1.5" PointX="14.375" PointY="15.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_PlayerItemList" Width="1.5" PointX="3.375" PointY="19.75" />
+        <EntityTypeShape EntityType="VongGameDB.EventLottoEnter" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VongGameDB.qna" Width="1.5" PointX="14.375" PointY="9.625" />
+        <EntityTypeShape EntityType="VongGameDB.qna_articletype" Width="1.5" PointX="18.5" PointY="11.375" />
+        <AssociationConnector Association="VongGameDB.FK_qna_qna_articletype" />
+        <EntityTypeShape EntityType="VongGameDB.EventLotto" Width="1.5" PointX="18.125" PointY="4.5" />
+        <EntityTypeShape EntityType="VongGameDB.EventLottoResult" Width="1.5" PointX="16.5" PointY="4.625" />
+        <EntityTypeShape EntityType="VongGameDB.Player" Width="1.5" PointX="4.75" PointY="5.625" />
+        <AssociationConnector Association="VongGameDB.FK_EventLotto_Player" />
+        <AssociationConnector Association="VongGameDB.FK_EventLottoEnter_Player" />
+        <AssociationConnector Association="VongGameDB.FK_LogExchangeMileage_Player" />
+        <AssociationConnector Association="VongGameDB.FK_LogNicknameChange_Player" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerAdminMemo_Player" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerItemList_Player" />
+        <AssociationConnector Association="VongGameDB.FK_qna_Player" />
+        <EntityTypeShape EntityType="VongGameDB.EventLottoBase" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="VongGameDB.AdminBlockIP" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="VongGameDB.AdminBlockUser" Width="1.5" PointX="11.75" PointY="4.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameBadugiPushBase" Width="1.5" PointX="11.75" PointY="7.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameBadugiPushGame" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameBadugiPushUser" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameCurrentUser" Width="1.5" PointX="0.75" PointY="20.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameDealFee" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameJackPotMoney" Width="1.5" PointX="13.75" PointY="21.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameJackPotSet" Width="1.5" PointX="5.75" PointY="22.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameMoneyFlow" Width="1.5" PointX="7.75" PointY="22.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameRoomList" Width="1.5" PointX="23.75" PointY="19.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameServerMessage" Width="1.5" PointX="24.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogGameBadugi" Width="1.5" PointX="0.75" PointY="24.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogGameMatgo" Width="1.5" PointX="24.75" PointY="4.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogGamePlayer" Width="1.5" PointX="9.75" PointY="24.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogPurchase" Width="1.5" PointX="11.75" PointY="24.75" />
+        <EntityTypeShape EntityType="VongGameDB.PaymentType" Width="1.5" PointX="21.25" PointY="22.875" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerBadugi" Width="1.5" PointX="13.75" PointY="24.75" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerMatgo" Width="1.5" PointX="2.75" PointY="25.75" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerMatgoMission" Width="1.5" PointX="25.75" PointY="14.75" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerPassword" Width="1.5" PointX="19.75" PointY="25.75" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerPayment" Width="1.5" PointX="23.5" PointY="15.25" />
+        <EntityTypeShape EntityType="VongGameDB.PlayerSafeBox" Width="1.5" PointX="25.75" PointY="20.75" />
+        <EntityTypeShape EntityType="VongGameDB.C_error" Width="1.5" PointX="21.75" PointY="25.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameDefaultMileage" Width="1.5" PointX="25.75" PointY="23.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogGiftMemberPoint" Width="1.5" PointX="26.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogJackPot" Width="1.5" PointX="26.75" PointY="3.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogMemberPoint" Width="1.5" PointX="23.75" PointY="26.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogRechargeMoney" Width="1.5" PointX="25.75" PointY="26.75" />
+        <EntityTypeShape EntityType="VongGameDB.ReportGameMoney" Width="1.5" PointX="4.75" PointY="27.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_AdminList" Width="1.5" PointX="6.75" PointY="27.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_AdminLog" Width="1.5" PointX="27.75" PointY="14.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_BlockUser" Width="1.5" PointX="27.75" PointY="17.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_CurrentRoom" Width="1.5" PointX="27.75" PointY="21.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_CurrentUser" Width="1.5" PointX="27.75" PointY="27.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogEventLotto" Width="1.5" PointX="28.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogGameResult" Width="1.5" PointX="28.75" PointY="4.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogJackPotReward" Width="1.5" PointX="28.75" PointY="9.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogMileage" Width="1.5" PointX="11.75" PointY="28.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogMileageMove" Width="1.5" PointX="13.75" PointY="28.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogRechargeMoney" Width="1.5" PointX="15.75" PointY="28.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogUserLogin" Width="1.5" PointX="17.75" PointY="28.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_Player" Width="1.5" PointX="19.75" PointY="28.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_PurchaseAndroidMonth" Width="1.5" PointX="8.75" PointY="29.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_UserList" Width="1.5" PointX="29.75" PointY="14.75" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerPayment_PaymentType" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerPayment_Player" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerPayment_PurchaseList" />
+        <EntityTypeShape EntityType="VongGameDB.Coupon" PointX="0.75" PointY="30.75" Width="1.5" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogPurchase" Width="1.5" PointX="30.375" PointY="19.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogCoupon" Width="1.5" PointX="22.375" PointY="30.75" />
+        <AssociationConnector Association="VongGameDB.FK_LogGamePlayer_Player" />
+        <AssociationConnector Association="VongGameDB.FK_PlayerItemList_ProductList" />
+        <EntityTypeShape EntityType="VongGameDB.LogMemberDailyPoint" Width="1.5" PointX="30.375" PointY="23.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogMemberDailyPoint2" Width="1.5" PointX="24.375" PointY="30.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_MemberFriendList" Width="1.5" PointX="30.375" PointY="28.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_MemberUserList" Width="1.5" PointX="31.375" PointY="0.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameCurrentDummy" Width="1.5" PointX="3.375" PointY="31.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameMatgoPush" Width="1.5" PointX="31.375" PointY="5.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameMatgoPushBase" Width="1.5" PointX="31.375" PointY="8.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameMatgoPushGame" Width="1.5" PointX="31.375" PointY="11.75" />
+        <EntityTypeShape EntityType="VongGameDB.GameMatgoPushUser" Width="1.5" PointX="14.375" PointY="31.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_CurrentUserMoney" Width="1.5" PointX="30.375" PointY="31.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_GameResultBadugiUser" Width="1.5" PointX="5.375" PointY="32.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_GameResultMatgoUser" Width="1.5" PointX="7.375" PointY="32.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_PlayerGameInfo" Width="1.5" PointX="9.375" PointY="32.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_PlayerGameItem" Width="1.5" PointX="11.375" PointY="32.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_PlayerInfo" Width="1.5" PointX="32.375" PointY="14.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_FriendList" Width="1.5" PointX="16.375" PointY="32.75" />
+        <EntityTypeShape EntityType="VongGameDB.FriendDaySnapshot" Width="1.5" PointX="32.375" PointY="21.75" />
+        <EntityTypeShape EntityType="VongGameDB.LogDetail" Width="1.5" PointX="32.375" PointY="26.75" />
+        <EntityTypeShape EntityType="VongGameDB.V_LogDetail" Width="1.5" PointX="32.375" PointY="30.75" />
+        <EntityTypeShape EntityType="VongGameDB.EventJackpotHunter" Width="1.5" PointX="33.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="inBox">
+    <div style="color:#eeeeee;font-size:12pt;">
+        @ViewBag.Nickname
+        <div>
+            <a href="/member/myinfo.html"><img src="/images/web/btn_myinfo.png" alt="" align="absmiddle" /></a>
+            <a href="/member/gold_account.html"><img src="/images/web/btn_bank.png" alt="" align="absmiddle" /></a>
+            <a href="/member/logout.html"><img src="/images/web/btn_logout.png" alt="" align="absmiddle" /></a>
+        </div>
+    </div>
+    <div style="height:16px;padding-top:3px;">전적 : <span class="orange_b"><%=FormatNumber(login_w_rec,0)%></span>/<span class="orange_b"><%=FormatNumber(login_l_rec,0)%></span></div>
+    <div style="height:16px;">@UserWeb.Properties.Settings.Default.GS_CASH_NAME : <span class="orange_b"><%=FormatNumber(login_nu_cash,0)%></span>개</div>
+    <div style="height:16px;">유료 : <span class="red_b"><%=funMoneyHangul(CDbl(login_nu_old))%></span></div>
+    <div style="height:16px;">무료 : <span class="blue_b"><%=FormatNumber(uf_ConvertMoney("real", login_nu_gold),0)%></span></div>
+</div>

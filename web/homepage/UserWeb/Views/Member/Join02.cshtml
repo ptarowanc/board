@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Join02";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // KCP 팝업 자체에서 윈도명을 auth_popup 으로 처리해서 팝업창 이름을 변경하면 곤란 -_-
+}
+
+<script type="text/javascript">
+
+    function transferKcpResult(value) {
+        $("#resultData").val(value);
+        $("#resultForm").submit();
+    }
+
+    // 인증창 호출 함수
+    function auth_type_check() {
+        var auth_form = document.form_auth;
+
+        if (auth_form.ordr_idxx.value == "") {
+            alert("요청번호는 필수 입니다.");
+            return;
+        }
+
+        var isSmartPhone = navigator.userAgent.indexOf("Android") > -1 || navigator.userAgent.indexOf("iPhone") > -1;
+
+        if (!isSmartPhone) // 스마트폰이 아닌경우
+        {
+            var return_gubun;
+            var width = 410;
+            var height = 500;
+
+            var leftpos = screen.width / 2 - (width / 2);
+            var toppos = screen.height / 2 - (height / 2);
+
+            var winopts = "width=" + width + ", height=" + height + ", toolbar=no,status=no,statusbar=no,menubar=no,scrollbars=no,resizable=no";
+            var position = ",left=" + leftpos + ", top=" + toppos;
+            var AUTH_POP = window.open("", "auth_popup", winopts + position)
+
+            auth_form.submit();
+
+        }
+        else {
+            alert("모바일에서는 본인인증을 진행할 수 없습니다.");
+        }
+
+        return;
+    }
+
+    // 페이지 표시되자마자 order-id 생성
+    window.onload = function () {
+        init_orderid();
+    }
+
+    // 요청번호 생성 ( up_hash 생성시 필요 )
+    function init_orderid() {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var date = today.getDate();
+        var time = today.getTime();
+
+        if (parseInt(month) < 10) {
+            month = "0" + month;
+        }
+
+        var vOrderID = year + "" + month + "" + date + "" + time;
+
+        document.form_auth.ordr_idxx.value = vOrderID;
+    }
+
+</script>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-md-12">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>회원가입</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap">
+                                <!-- 내용 시작 -->
+                                <div class="tit_box">
+                                    <h1 class="heading">본인인증</h1>
+                                </div>
+
+                                <form id="resultForm" method="post" action="@Url.Action("Join03")">
+                                    <input type="hidden" name="data" id="resultData" value="" />
+                                </form>
+
+                                <form name="form_auth" method="post" action="@Url.Action("CertProc")" target="auth_popup">
+                                    <div style="width:100%;text-align:center;margin:100px 0 100px 0">
+                                        <input type="button" class="btn btn-sea" value="인증요청" onclick="javascript: auth_type_check();" style="width:200px;height:100px;font-size:25px; padding: 15px 25px 15px 25px;">
+                                    </div>
+                                    <div style="text-align:left;">
+                                        <div style="padding-top:2px;">- @UserWeb.Properties.Settings.Default.GS_SITE_NAME 에서는 회원가입 및 서비스 이용을 위해 본인 확인을 진행합니다.</div>
+                                        <div style="padding-top:2px;">- 본인확인은 인증기관에서 제공하는 수단을 통해 진행합니다.</div>
+                                        <div style="padding-top:2px;">- 본인확인 시 제공되는 정보는 해당 인증기관에서 직접 수집하며, 본인확인 이외의 용도로 사용 또는 저장하지 않습니다.</div>
+                                        <div style="padding-top:2px;">- 인증팝업이 표시되지 않으시는 경우 브라우저의 팝업해제 옵션을 해제해 주시기 바랍니다.</div>
+                                    </div>
+
+                                    <input type="hidden" name="ordr_idxx" value="" />
+                                    <input type="hidden" name="req_tx" value="cert" />
+                                    <input type="hidden" name="cert_method" value="01" />
+                                    <input type="hidden" name="web_siteid" value="" />
+                                    <input type="hidden" name="site_cd" value="" />
+                                    <input type="hidden" name="Ret_URL" value="" />
+                                    <input type="hidden" name="cert_otp_use" value="Y" />
+                                    <input type="hidden" name="cert_enc_use" value="Y" />
+                                    <input type="hidden" name="cert_able_yn" value="Y" />
+                                    <input type="hidden" name="web_siteid_hashYN" value="" />
+
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- // content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->

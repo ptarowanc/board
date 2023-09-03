@@ -1,0 +1,191 @@
+﻿@model UserWeb.Models.CouponViewData
+@{
+    var oddeven = true;
+}
+<style>
+    body {
+        background: #000000;
+    }
+
+    p.txtCoupon {
+        font-size: 18px;
+        display: inline;
+    }
+
+    input.inCoupon {
+        font-size: 18px;
+        font-weight: bold;
+        height: 30px;
+        width: 250px;
+        text-align: center;
+        margin: 0 5px 0 15px;
+    }
+</style>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area" id="autoscroll">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>쿠폰</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+
+                            <div class="cont_wrap">
+
+                                <div class="tit_box">
+                                    <h1 class="heading">쿠폰</h1>
+                                </div>
+
+                                <div style="padding-bottom:5px; font-size:15px;">
+                                    <p class="txtCoupon">쿠폰 일련번호 (16자리) </p><input class="inCoupon" name="CouponString" id="CouponString" maxlength="19" />
+                                    <button type="button" class="btn btn-dark-blue" style="width:150px;height:30px;font-size:15px;font-weight:bold; padding: 5px 15px 5px 15px;" id="PerformCoupon">쿠폰 사용하기</button>
+                                </div>
+                                <br /><br />
+                                <div style="padding-bottom:5px;"><h2>쿠폰 사용 내역</h2></div>
+                                <form name="form_memo" method="post">
+                                    <table cellpadding="0" cellspacing="0" style="width:100%">
+                                        <tr>
+                                            <td height="40" width="100" class="board-title" align="center">사용 날짜</td>
+                                            <td height="40" width="*" class="board-title" align="center">일련번호</td>
+                                            <td height="40" width="*" class="board-title" align="center">금액</td>
+                                            <td height="40" width="105" class="board-title" align="center">비고</td>
+                                        </tr>
+                                        @if (Model.items.Count > 0)
+                                        {
+                                            foreach (var entry in Model.items)
+                                            {
+                                                var trbg = oddeven ? "#f9f9f9" : "#ffffff";
+                                                oddeven = !oddeven;
+                                                <text>
+                                                    <tr>
+                                                        <td height="30" bgcolor="@trbg" align="center">@(((DateTime)entry.UseDate).ToString("yyyy-MM-dd HH:mm"))</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.Serial</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.Pay.ToString("N0")</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">-</td>
+                                                    </tr>
+                                                </text>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="4" height="26" class="board-list" align="center">기록이 없습니다.</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                    <div id="paging_box">
+                                        @RenderPage("../common/pager.cshtml", new { StartPage = Model.startPage, currentPage = Model.pageNo, totalPages = Model.totalPages, fn = "uf_GoList" })
+                                    </div>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                    <!-- // content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+<form name="GoFrm" method="get">
+    <input type="hidden" name="n_no" value="" />
+    <input type="hidden" name="PageNo" value="@Model.pageNo" />
+    <input type="hidden" name="StartPage" value="@Model.startPage" />
+</form>
+<script type="text/javascript">
+
+    function uf_GoList(PageNo, StartPage) {
+        var frm = document.GoFrm;
+        frm.PageNo.value = PageNo;
+        frm.StartPage.value = StartPage;
+        frm.target = "_self";
+        frm.submit();
+    }
+//아이프레임 리사이즈
+    $(document).ready(function () {
+
+        //var offset = $("#autoscroll").offset();
+        //    $('html, body').animate({ scrollTop: offset.top }, 400);
+
+        $("#PerformCoupon").click(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "@Url.Action("PerformCoupon")",
+            data: {
+                "coupon": $("#CouponString").val()
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (obj) {
+                alert(obj.reason);
+                if (obj.result == "OK")
+                    location.reload();
+            }, error: function (x) {
+                alert("서버 오류로 요청을 처리하지 못했습니다.");
+            }
+        });
+    });
+
+    //parent.resize_frame('embeded-content');
+
+});
+    function autoHypen(str) {
+        str = str.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+        var tmp = '';
+        if (str.length < 5) {
+            return str;
+        } else if (str.length < 9) {
+            tmp += str.substr(0, 4);
+            tmp += '-';
+            tmp += str.substr(4);
+            return tmp;
+        } else if (str.length < 13) {
+            tmp += str.substr(0, 4);
+            tmp += '-';
+            tmp += str.substr(4, 4);
+            tmp += '-';
+            tmp += str.substr(8);
+            return tmp;
+        } else if (str.length < 17) {
+            tmp += str.substr(0, 4);
+            tmp += '-';
+            tmp += str.substr(4, 4);
+            tmp += '-';
+            tmp += str.substr(8, 4);
+            tmp += '-';
+            tmp += str.substr(12);
+            return tmp;
+        } else {
+            tmp += str.substr(0, 4);
+            tmp += '-';
+            tmp += str.substr(4, 4);
+            tmp += '-';
+            tmp += str.substr(8, 4);
+            tmp += '-';
+            tmp += str.substr(12);
+            return tmp;
+        }
+        return str;
+    }
+
+    var CouponString = document.getElementById('CouponString');
+    CouponString.onkeyup = function (event) {
+        event = event || window.event;
+        var _val = this.value.trim();
+        this.value = autoHypen(_val);
+    }
+</script>

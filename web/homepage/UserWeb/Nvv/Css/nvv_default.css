@@ -1,0 +1,898 @@
+﻿
+@font-face {
+    font-family: "NanumBarunGothicBold";
+    src: url("/fonts/NanumBarunGothicBold.woff");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family:NanumBarunGothicBold;
+    /*font-family: "돋움", dotum, "굴림", gulim, Verdana, Arial, Helvetica, sans-serif;*/
+}
+
+ul {
+    margin: 0;
+    padding: 0
+}
+
+a {
+    cursor: pointer
+}
+
+/* .mainBg {
+    background: url("/image/bg2.png") center;
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 100%;
+    height: 100%;
+} */
+/* Add a black background color to the top navigation */
+.topnav {
+    position: relative;
+    background: url("/image/ui_header_pannel.png") center;
+    overflow: hidden;
+}
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+        float: left;
+        color: #dedede;
+        text-align: center;
+        padding: 19px 19px;
+        text-decoration: none;
+        font-size: 23px;
+    }
+
+
+ 
+     .topnav-right {
+        float: right;
+        padding: 16px 16px;
+        margin-right: 10%;
+    } 
+
+    
+
+        /* Change the color of links on hover */
+        .topnav-right a:hover {
+            background-color: #dedede;
+            color: #414141;
+            transition: 1s;
+            border-radius:3px;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav a.active {
+            color: white;
+        }
+
+/* Centered section inside the top navigation */
+.topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Right-aligned section inside the top navigation */
+
+
+/* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+@media screen and (max-width: 1200px) {
+    .topnav a, .topnav-right {
+        float: none;
+        display: block;
+    }
+
+    .topnav-centered a {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+}
+
+.xjTopBg {
+    margin-top: 5px;
+    width: 1352px;
+    height: 130px;
+    background: url("/img/menu_bg.png") no-repeat center;
+    margin: 0 auto;
+}
+
+    .xjTopBg > ul {
+        width: 1352px;
+        margin: 0 auto;
+        height: 100px;
+    }
+
+        .xjTopBg > ul li {
+            float: left;
+            display: table;
+            height: 99px;
+            line-height: 99px;
+            margin-right: 90px;
+        }
+
+            .xjTopBg > ul li:nth-child(n+5) a img {
+                vertical-align: middle
+            }
+
+
+
+
+.xjMainBanner {
+    width: 1352px;
+    margin: 0 auto;
+    height: 430px;
+    background: url("/image/20220923/eventimg01.png") no-repeat center;
+    align-content: center;
+}
+
+
+.xjMainQuick {
+    margin: 0px;
+    width: 915px;
+    align-content: flex-start;
+    height: 500px;
+    vertical-align: text-bottom
+}
+
+.xjMainNotice {
+    margin-top: 5px;
+    width: 915px;
+    align-content: flex-start;
+    height: 230px;
+    vertical-align: text-bottom
+}
+
+.mainnoticekList li ul li:nth-child(1) {
+    font-weight: bold;
+    margin-top: 3px
+}
+
+.mainnoticekList li ul li:last-child {
+    margin-top: 35px;
+    margin-bottom: 0
+}
+
+
+.mainnoticekList {
+    width: 100%;
+    display: table;
+    padding-right: 6px;
+}
+
+    .mainnoticekList > li {
+        float: left;
+        width: 25%;
+        display: table
+    }
+
+    .mainnoticekList div img {
+        width: 300px;
+        height: 218px;
+    }
+
+.mainnoticekList {
+    padding-top: 5px;
+}
+
+
+
+
+
+.mainquickList li ul li:nth-child(1) {
+    font-weight: bold;
+    margin-top: 3px
+}
+
+.mainquickList li ul li:last-child {
+    margin-top: 35px;
+    margin-bottom: 0
+}
+
+
+.mainquickList {
+    width: 100%;
+    display: table;
+}
+
+    .mainquickList > li {
+        float: left;
+        width: 50%;
+        display: table
+    }
+
+    .mainquickList div img {
+        width: 452px;
+        height: 244px;
+        padding: 5px 5px 0px 5px;
+    }
+
+.mainquickList {
+    padding-top: 5px;
+}
+
+.xjMainLeftContent {
+    width: 800px;
+    margin: 0 auto;
+    display: table;
+}
+
+
+.xjMainEvent {
+    padding-top: 5px;
+    width: 915px;
+    align-content: flex-start;
+    height: 285px;
+    vertical-align: text-bottom
+}
+
+
+.xjTopBg > ul li:first-child {
+    width: 220px;
+    text-align: center
+}
+
+.xjMainContent {
+    width: 1352px;
+    margin: 0 auto;
+    display: table;
+    margin-top: 5px;
+}
+
+.xjMainLeftContent {
+    width: 680px;
+    display: table;
+    float: left
+}
+
+.GameBgP, .GameBgM, .GameBgB {
+    width: 250px;
+    height: 155px;
+    padding-top: 5px;
+}
+
+.GameBgB {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+    .GameBgP img, .GameBgM img, .GameBgB img {
+        margin-bottom: 5px;
+        cursor: pointer
+    }
+
+.GameFather {
+    width: 100%;
+    height: 150px;
+}
+
+.xhBanner {
+    width: 100%;
+    float: left;
+    height: 200px;
+}
+
+.scrollimg {
+    width: 515px;
+    height: 200px;
+    overflow: hidden;
+    float: left
+}
+
+    .scrollimg li {
+        width: 515px;
+        height: 200px;
+        float: left;
+    }
+
+.quickContainer {
+    width: 100%;
+    float: left;
+    height: 250px;
+    margin-top: 13px;
+}
+
+    .quickContainer a:nth-child(2) {
+        margin: 0 10px
+    }
+
+    .quickContainer a {
+        float: left
+    }
+
+.mainItemBg {
+    width: 681px;
+    align-content: flex-start;
+    margin-top: 5px;
+    height: 185px;
+    background: url("/img/mainItem_bg.png") no-repeat center;
+    vertical-align: text-bottom
+}
+
+.mainItemTitle {
+    width: 681px;
+    height: 39px;
+    line-height: 39px;
+    padding-right: 10px;
+}
+
+.mainitemList li ul li:nth-child(1) {
+    font-weight: bold;
+    margin-top: 3px
+}
+
+.mainitemList li ul li:last-child {
+    margin-top: 35px;
+    margin-bottom: 0
+}
+
+    .mainitemList li ul li:last-child img {
+        cursor: pointer
+    }
+
+.mainitemList {
+    width: 100%;
+    display: table
+}
+
+    .mainitemList > li {
+        float: left;
+        width: 25%;
+        display: table
+    }
+
+    .mainitemList div img {
+        width: 79px;
+        height: 116px;
+    }
+
+.mainitemList {
+    padding-top: 5px;
+}
+
+.xjMainRightContent {
+    margin-top: 10 px;
+    /* padding-top: 66px; */
+    width: 430px;
+}
+
+.downimg {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.downimg img {
+    position: relative;
+    cursor: pointer;
+}
+
+.downimg_middle img {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.loginhd {
+    margin-top: 10px;
+}
+
+
+.loginBeforeBg {
+}
+
+.LoginBeforeInput {
+    width: 220px;
+    display: table;
+    float: left;
+    margin-top: 10px;
+}
+
+.LoginID {
+    color: black;
+    width: 267px;
+    height: 45px;
+    background: url("/image/pannel_id.png") no-repeat 0 0px;
+    font-size: 14pt;
+    border: 0px;
+    background-color: transparent;
+    padding-left: 3px;
+    margin-bottom: 2px;
+}
+.LoginPWD {
+    color: black;
+    width: 267px;
+    height: 45px;
+    background: url("/image/pannel_id.png") no-repeat 0 0px;
+    font-size: 14pt;
+    border: 0px;
+    background-color: transparent;
+    padding-left: 3px;
+    margin-bottom: 2px;
+}
+
+    .LoginBeforeInput .coke {
+        width: 120px;
+        height: 30px;
+        margin-top: 3px;
+        float: left
+    }
+
+.loginBtn {
+    margin-top: 10px;
+    margin-left: 20px;
+    cursor: pointer
+}
+
+.loginBeforeBottomImg {
+    margin-top: 5px;
+}
+
+    .loginBeforeBottomImg img {
+        cursor: pointer
+    }
+
+        .loginBeforeBottomImg img:nth-child(1) {
+            margin-right: 10px;
+        }
+
+.mainGameInfo {
+    margin-top: 30px;
+    background: url("/image/ui_pannel_gameguide.png") no-repeat;
+}
+    .mainGameInfo div {
+        width: 389px;
+        height: 174px;
+        padding-left: 13px;
+        padding-right: 13px;
+        padding-top: 100px;
+        font-family:NanumBarunGothicBold;
+        font-size:20px;
+        color:dimgrey;
+    }
+.mainNoticeListBg {
+    width: 389px;
+    height: 174px;
+    background: url("/image/ui_pannel_noti.png");
+    margin-top: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-top: 50px;
+    background-repeat: no-repeat;
+}
+
+    .mainNoticeListBg ul li {
+        margin-bottom: 3px;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+
+
+
+
+        .mainNoticeListBg ul li a {
+            font-family: NanumBarunGothicBold;
+            font-size: 14px;
+            color: dimgrey;
+        }
+
+    .mainNoticeListBg ul {
+        width: 284px;
+        height: 135px;
+    }
+
+.mainNoticeListBtn {
+    margin-top: 13px
+}
+
+    .mainNoticeListBtn img {
+        cursor: pointer
+    }
+
+.ServiceImg {
+    width: 389px;
+    height: 171px;
+    margin-top: 13px;
+    background: url("/image/ui_pannel_customer.png") no-repeat;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-top: 50px;
+}
+    .ServiceImg div {
+        padding-left: 125px;
+        padding-top: 20px;
+        font-family: NanumBarunGothicBold;
+        font-size: 17px;
+        color: sandybrown;
+    }
+
+
+    .ServiceImg img {
+        cursor: pointer
+    }
+
+
+.loginAfterBg {
+    width: 390PX;
+    height: 150PX;
+    border-radius: 25px;
+    background: #333;
+    margin-bottom: 3px;
+}
+
+    .loginAfterBg img {
+        cursor: pointer
+    }
+
+.loginAfterInfo {
+    position: absolute;
+    width: 350px;
+    display: table;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-family: NanumBarunGothicBold;
+    font-size: 18px;
+    color: dimgrey;
+}
+
+    .loginAfterInfo div:nth-child(1) {
+        padding-top: 10px;
+        height: 35px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+        .loginAfterInfo div:nth-child(1) span:nth-child(1) {
+            color: #ffffff;
+        }
+
+    .loginAfterInfo div:nth-child(2) {
+        height: 55px;
+        padding-top: 10px;
+        padding-left: 10px;
+        font-weight: bold;
+        color: #B4B4B4;
+    }
+
+        .loginAfterInfo div:nth-child(2) li span:nth-child(2) {
+            margin-left: 10px;
+            color: #ffffff;
+        }
+
+        .loginAfterInfo div:nth-child(2) li {
+            height: 15px;
+            line-height: 10px;
+            color: #B4B4B4;
+        }
+
+.loginAfterBtn {
+    padding-top: 10px;
+    height: 25px;
+}
+.cashpurchasebnt {
+    position: absolute;
+    top: 48px;
+    right: 0px;
+}
+
+.loginAfterBtn img:nth-child(1) {
+    margin-bottom: 5px
+}
+.logoutbnt {
+    padding-top: 10px;
+}
+
+
+.subContent {
+    width: 1100px;
+    display: table;
+    margin: 0 auto;
+}
+
+.sunContentLeft {
+    width: 250px;
+    float: left
+}
+
+.subLoginAfter {
+    width: 250px;
+    height: 190px;
+    float: left;
+    font-family: NanumBarunGothicBold;
+    font-size: 20px;
+    color: dimgrey;
+}
+
+    .subLoginAfter span {
+        display: -moz-inline-box;
+        display: inline-block;
+    }
+
+    .subLoginAfter #subLoginBoxNick {
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+        .subLoginAfter #subLoginBoxNick span:nth-child(1) {
+            font-weight: bold;
+            font-size: 20px;
+            color: #ffffff;
+            padding-top: 10px;
+            padding-right: 2px;
+        }
+
+    .subLoginAfter #subLoginBoxInfo {
+        margin-top: 30px;
+        margin-left: 6px;
+        padding-top: 10px;
+        padding-left: 3px;
+        width: 238px;
+        height: 84px;
+        font-weight: bold;
+    }
+
+        .subLoginAfter #subLoginBoxInfo ul li:nth-child(2) {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .subLoginAfter #subLoginBoxInfo ul li:nth-child(3) {
+            padding-top: 12px;
+        }
+
+.subLoginAfterBottomBtn {
+    text-align: center;
+    width: 100%;
+    float: left;
+    margin-top: 14px;
+}
+
+    .subLoginAfterBottomBtn div {
+        float: left;
+        width: 50%;
+        text-align: center
+    }
+
+        .subLoginAfterBottomBtn div img {
+            cursor: pointer
+        }
+
+.subNoticeList {
+    width: 250px;
+    height: 210px;
+    background: url("/img/sub/sub_notice_bg.png");
+    margin-top: 10px;
+    float: left;
+}
+
+.subBanner {
+    margin-top: 10px;
+    float: left
+}
+
+.subNoticeList ul {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 50px;
+    height: 153px;
+    width: 250px;
+}
+
+    .subNoticeList ul li {
+        padding: 0 10px;
+        font-size: 12px;
+        margin-bottom: 3px;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+        .subNoticeList ul li a {
+            cursor: pointer;
+            color: #333
+        }
+
+.subNoticeListBtn {
+    width: 100%;
+    height: 72px;
+    line-height: 62px;
+}
+
+    .subNoticeListBtn img {
+        cursor: pointer
+    }
+
+.sunContentRight {
+    width: 800px;
+    display: table
+}
+
+.subRightTitle {
+    margin-top: 30px;
+}
+
+.guideTopNav {
+    width: 100%;
+    height: 43px;
+    float: left;
+    margin-top: 20px;
+}
+
+    .guideTopNav li {
+        float: left
+    }
+
+.guideBtn {
+    text-align: center
+}
+
+.modalBg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.4;
+    z-index: 500
+}
+
+.subLoginBefore {
+    width: 250px;
+    height: 190px;
+    background: url("/img/sub/sub_login_bg1.png");
+}
+
+    .subLoginBefore .subLoginBeforeInput {
+        width: 140px;
+        display: table;
+        float: left;
+        margin-top: 35px;
+        margin-left: 10px;
+    }
+
+        .subLoginBefore .subLoginBeforeInput input {
+            color: #ffffff;
+            width: 140px;
+            height: 35px;
+            background: url("/img/login_form.png") no-repeat 0 0px;
+            font-size: 12pt;
+            border: 0px;
+            background-color: transparent;
+            padding-left: 3px;
+            margin-bottom: 3px;
+        }
+
+        .subLoginBefore .subLoginBeforeInput .subLoginCode input {
+            width: 85px;
+            height: 30px;
+        }
+
+    .subLoginBefore .loginBtn {
+        margin-top: 35px;
+        margin-left: 10px;
+        cursor: pointer
+    }
+
+    .subLoginBefore .loginBeforeBottomImg {
+        width: 100%;
+        padding-left: 10px;
+        margin-top: 3px;
+        float: left;
+        
+    }
+
+        .subLoginBefore .loginBeforeBottomImg img {
+            width:140px;
+            cursor: pointer
+        }
+
+.guideBtn img {
+    cursor: pointer
+}
+
+.serviceWriteTable textarea {
+    border: 1px solid #ccc
+}
+
+.serviceWriteTable input[type=radio] {
+    position: relative;
+    top: -4px;
+}
+
+/*
+input[type=text],input[type=password],select{
+	border: 1px solid #ccc
+}
+*/
+
+.cashTable input, .cashTable select {
+    border: 1px solid #ccc
+}
+
+.serviceListTable a {
+    color: #333
+}
+
+
+
+.cashTable td:nth-child(2) input {
+    padding-left: 5px;
+    float: left
+}
+
+.cashTable td:nth-child(2) select {
+    float: left;
+    margin-right: 4px;
+}
+
+.cashTable td:nth-child(2) span {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.subLoginBefore .loginBtn {
+    margin-top: 19px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.mainitemList ul li {
+    font-size: 10px;
+    color: #ffffff;
+    padding-left: 5px;
+    margin-bottom: 10px
+}
+
+.gameNav {
+    cursor: pointer
+}
+
+.subLoginBefore .loginBeforeBottomImg {
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+.memberJoinClauseInput span {
+    font-size: 12px;
+}
+
+.memberJoinClauseInput input {
+    vertical-align: middle;
+    position: relative;
+    top: -3px;
+    margin-right: 3px;
+}
+
+.myBankMainNav {
+    margin-top: 10PX
+}
+
+.noticeListContent table td:nth-child(2) {
+    text-align: left;
+    padding-left: 10px;
+}
+
+
+
+
+/* down-apk */
+
+.main_name_apk a{
+    background-color:#e9e9e9;
+    border-radius: 5px;
+    padding:10px 15px;
+}
+
+.main_name_apk .mobile_matgo{}
+.main_name_apk .mobile_baduki{}

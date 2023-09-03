@@ -1,0 +1,145 @@
+﻿@model UserWeb.Models.ExchangeViewData
+@{
+    var oddeven = true;
+}
+<style>
+    body {
+        background: #000000;
+    }
+
+    p.txtExchange {
+        font-size: 18px;
+        display: inline;
+    }
+
+    input.inExchange {
+        font-size: 18px;
+        font-weight: bold;
+        height: 23px;
+        width: 150px;
+        text-align: center;
+        margin: 0 5px 0 15px;
+    }
+</style>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area" id="autoscroll">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>마일리지</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+
+                            <div class="cont_wrap">
+
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">마일리지</h1>
+                                </div>
+
+                                <div style="padding-bottom:5px; font-size:15px;">
+                                    <p class="txtExchange" style="color:#dedede;">보유 마일리지 : @Model.availPoint.ToString("N0") </p><input type="number" class="inExchange" name="ExchangePoint" id="ExchangePoint" style="text-indent:2px; outline:none;" />
+                                    <button type="button" class="btn btn-dark-blue" style="width:150px;font-size:15px;font-weight:bold; padding: 5px 15px 5px 15px;" id="PerformExchange">게임머니로 교환</button>
+                                </div>
+                                <br /><br />
+                                <div style="padding-bottom:5px; color:#dedede;"><h2>마일리지 교환 내역</h2></div>
+                                <form name="form_memo" method="post">
+                                    <table cellpadding="0" cellspacing="0" style="width:100%;">
+                                        <tr>
+                                            <td height="40" width="100" class="board-title" align="center">처리 날짜</td>
+                                            <td height="40" width="*" class="board-title" align="center">금액</td>
+                                            <td height="40" width="105" class="board-title" align="center">비고</td>
+                                        </tr>
+                                        @if (Model.items.Count > 0)
+                                        {
+                                            foreach (var entry in Model.items)
+                                            {
+                                                var trbg = oddeven ? "#f9f9f9" : "#ffffff";
+                                                oddeven = !oddeven;
+                                                <text>
+                                                    <tr>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.Date.ToString("yyyy-MM-dd HH:mm")</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.ExchangeMileage.ToString("N0")</td>
+                                                        <td height="30" bgcolor="@trbg" align="left">-</td>
+                                                    </tr>
+                                                </text>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="4" height="26" class="board-list" align="center">기록이 없습니다.</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                    <div id="paging_box">
+                                        @RenderPage("../common/pager.cshtml", new { StartPage = Model.startPage, currentPage = Model.pageNo, totalPages = Model.totalPages, fn = "uf_GoList" })
+                                    </div>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                    <!-- // content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+<form name="GoFrm" method="get">
+    <input type="hidden" name="n_no" value="" />
+    <input type="hidden" name="PageNo" value="@Model.pageNo" />
+    <input type="hidden" name="StartPage" value="@Model.startPage" />
+</form>
+<script type="text/javascript">
+
+    function uf_GoList(PageNo, StartPage) {
+        var frm = document.GoFrm;
+        frm.PageNo.value = PageNo;
+        frm.StartPage.value = StartPage;
+        frm.target = "_self";
+        frm.submit();
+    }
+//아이프레임 리사이즈
+    $(document).ready(function () {
+
+        var offset = $("#autoscroll").offset();
+            $('html, body').animate({ scrollTop: offset.top }, 400);
+
+    $("#PerformExchange").click(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "@Url.Action("PerformExchange")",
+            data: {
+                "mileage": $("#ExchangePoint").val()
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (obj) {
+                alert(obj.reason);
+                if (obj.result == "OK")
+                    location.reload();
+            }, error: function (x) {
+                alert("서버 오류로 요청을 처리하지 못했습니다.");
+            }
+        });
+    });
+
+    //parent.resize_frame('embeded-content');
+
+});
+
+</script>

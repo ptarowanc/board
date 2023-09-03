@@ -1,0 +1,142 @@
+﻿@model UserWeb.Models.NoticeViewListData
+@{
+    ViewBag.Title = "NoticeList";
+    Layout = "~/Views/Shared/_PopupLayout.cshtml";
+}
+<style type="text/css">
+    <!--
+    body {
+        margin: 0;
+        font-size: .7em;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        background: #666;
+    }
+
+    h1 {
+        font-size: 2.4em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h2 {
+        font-size: 1.7em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin: 10px 0 0 0;
+        color: #000;
+    }
+
+    #header {
+        width: 96%;
+        height: 50px;
+        margin: 0 0 0 0;
+        padding: 0 2% 0 2%;
+        font-family: "trebuchet MS", Verdana, sans-serif;
+        color: #FFF;
+        background: linear-gradient( to bottom, #000, #666);
+    }
+
+    #content {
+        position: relative;
+        padding: 5px;
+    }
+
+    .content-container {
+        background: #eee;
+        width: 96%;
+        padding: 10px 10px 20px 10px;
+        position: relative;
+        text-align: center;
+        height: 510px;
+    }
+    -->
+</style>
+<div id="header"><div style="padding-top:11px;"><h2>공지사항</h2></div></div>
+<div id="content">
+    <div class="content-container">
+        <div style="text-align:left;color:#333;font-size:9pt;">
+            <table cellpadding="0" cellspacing="0" width="580">
+                <tr>
+                    <td height="40" width="45" class="board-title" align="center">번호</td>
+                    <td height="40" width="*" class="board-title" align="center">제 목</td>
+                    <td height="40" width="105" class="board-title" align="center">등록일</td>
+                </tr>
+                @if (Model.webNoticeList.Count() > 0)
+                {
+                    bool odd_even = false;
+                    foreach (var entry in Model.webNoticeList)
+                    {
+                        odd_even = !odd_even;
+                        var trbg = odd_even ? "/images/board/list_bg1.gif" : "/images/board/list_bg2.gif";
+                        var isNew = (DateTime.Now - entry.createdOn).TotalHours < 24;
+                        <text>
+                        <tr>
+                            <td height="26" background="@trbg" align="center">@entry.id</td>
+                            <td height="26" background="@trbg" align="left">
+                                &nbsp;
+                                <a href="#" onclick="uf_GoView(@entry.id);">@entry.title.Trim()</a>
+                                @if (isNew)
+                                {
+                                    <text>
+                                    &nbsp;<img src="/images/board/ico_new.gif" alt="" align="absmiddle" />
+                                    </text>
+                                }                                
+                            </td>
+                            <td height="26" background="@trbg" align="center">@entry.createdOn.ToString("yyyy-MM-dd")</td>
+                        </tr>
+                        </text>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" height="26" class="board-list" align="center">등록된 게시물이 없습니다.</td>
+                    </tr>
+                }
+
+            </table>
+            <div id="paging_box"  style="text-align:center;">
+                <!--<%Call uf_FrontPaging(TotalRecord,PageSize,PageSet,StartPage,PageNo,"uf_GoList")%>-->
+                @RenderPage("../common/pager.cshtml", new { StartPage = Model.startPage, currentPage = Model.pageNo, totalPages = Model.totalPages, fn = "uf_GoList" })
+            </div>
+        </div>
+    </div>
+</div>
+<form name="GoFrm" method="get">
+    <input type="hidden" name="n_no" value="" />
+    <input type="hidden" name="PageNo" value="@Model.pageNo" />
+    <input type="hidden" name="StartPage" value="@Model.startPage" />
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+//새로고침
+function uf_Reload(){
+	var frm=document.form_search;
+    frm.action ="NoticeList";
+	frm.target="_self";
+	frm.submit();
+}
+//페이징
+function uf_GoList(PageNo,StartPage){
+	var frm=document.GoFrm;
+	frm.PageNo.value=PageNo;
+	frm.StartPage.value=StartPage;
+	frm.action="NoticeList";
+	frm.target="_self";
+	frm.submit();
+}
+//내용보기
+function uf_GoView(no){
+	var frm=document.GoFrm;
+	frm.n_no.value=no;
+	frm.action="noticeView";
+	frm.target="_self";
+	frm.submit();
+}
+//]]>
+</script>

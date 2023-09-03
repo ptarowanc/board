@@ -1,0 +1,39 @@
+﻿@model Tuple<string, string> 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>본인 인증 실패</title>
+
+    <script>
+        function goBack() {
+            location.href = "/MobileWebView/RegisterForm";
+        }
+        function goClose() {
+            location.href = "uniwebview://close";
+        }
+    </script>
+</head>
+<body>
+    <div class="container " style="width:100%;text-align:center;">
+        <!-- 내용 시작 -->
+        <div style="margin:50px 0 0 0;font-size:30px;">
+            <h1 class="heading" id="info">회원가입 실패</h1>
+        </div>
+
+        <div style="margin:100px 0 100px 0;font-size:25px;">
+            <span id="FailMassage">@Model.Item2</span>
+        </div>
+        <button onclick="goBack()" class="btn btn-dark" style="display:inline-block;width:80px;height:40px;font-size:13px; padding: 5px 10px 5px 10px; margin-top:15px; display:inline-block;">다시인증</button>
+
+        <button onclick="goClose()" class="btn btn-dark" style="display:inline-block;width:80px;height:40px;font-size:13px; padding: 5px 10px 5px 10px; margin-top:15px; display:inline-block;">닫기</button>
+
+        <!-- // 내용 끝  -->
+    </div>
+</body>
+</html>

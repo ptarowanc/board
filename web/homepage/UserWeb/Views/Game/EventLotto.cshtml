@@ -1,0 +1,390 @@
+﻿@model UserWeb.Models.EventLottoData
+@{
+    var oddeven = true;
+}
+
+<script type="text/javascript">
+
+    $("#menu2").addClass("active");
+    $("#menu1").removeClass("active");
+    $("#menu3").removeClass("active");
+    $("#menu4").removeClass("active");
+    $("#menu5").removeClass("active");
+
+
+</script>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="content">
+                    <!-- title -->
+                    <section style="background: #fafafa;">
+                        <div class="breadcrumbs">
+                            <ul class="breadcrumb">
+                                <li><a href="/">Home</a></li>
+                                <li>이벤트</li>
+                            </ul>
+                        </div>
+                        <!-- // title -->
+                        <div class="cont_wrap" align="center" style="text-align:center;">
+                            <!-- 내용 시작 -->
+                            @if (@Model.LottoResult == null)
+                            {
+                            }
+                            else
+                            {
+                                <div class="sub_menu_title"><h2 style="font-size:30px;">응모이벤트 @Model.LottoResult.EventNumber 회차 당첨결과</h2></div>
+                                <br>
+                                <br>
+                                <!--
+                                @Html.Raw(@Model.LottoResult.VideoEmbed)
+                                    -->
+                                <br>
+                                <br>
+                                <br>
+                                <h2 style="font-size:25px;">당첨 번호</h2>
+                                <br>
+                                <img src="/images/event/lotto/number/ball_@(Model.LottoResult.Number1).png" alt="" />
+                                <img src="/images/event/lotto/number/ball_@(Model.LottoResult.Number2).png" alt="" />
+                                <img src="/images/event/lotto/number/ball_@(Model.LottoResult.Number3).png" alt="" />
+                                <img src="/images/event/lotto/number/ball_@(Model.LottoResult.Number4).png" alt="" />
+                                <img src="/images/event/lotto/number/ball_@(Model.LottoResult.Number5).png" alt="" />
+                                <img src="/images/event/lotto/number/ball_@(Model.LottoResult.Number6).png" alt="" />
+                                <img src="/images/event/lotto/number/ball_@(Model.LottoResult.Number7).png" alt="" />
+                                <br>
+                                <br>
+                                <br>
+                                <div style="padding:5px 0 5px 0; font-size:15px;display:inline-table">
+                                    <table class="tb_list" style="width:100%;" bgcolor="#dddddd">
+                                        <tr bgcolor="white">
+                                            <th bgcolor="#dddddd" height="26">총 당첨금액</th>
+                                            <th bgcolor="#dddddd" height="26">당첨자 수</th>
+                                            <th bgcolor="#dddddd" height="26">당첨자 지급금액</th>
+                                        </tr>
+                                        <tr bgcolor="white">
+                                            <td height="22">@(((long)Model.LottoResult.Reward).ToString("N0"))</td>
+                                            <td height="22">@Model.LottoResult.Winners</td>
+                                            <td height="22">@(((long)(Model.LottoResult.Reward / @Model.LottoResult.Winners)).ToString("N0"))</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            }
+
+                            <br>
+                            <br>
+                            <br>
+                            <!-- // 응모  -->
+                            @if (Model.UserData && Model.Lotto != null)
+                            {
+                                <text>
+                                    <div style="font-size:15px;display:inline-table;">
+                                        <div class="sub_menu_title"><h2 style="font-size:30px;">부적이벤트 @Model.Lotto.EventNumber 회차 응모</h2></div>
+                                        <br>
+                                        <form name="form_enternumber" method="post">
+                                            <table id="numberTable" class="tb_enter" style="width:100%;" bgcolor="#dddddd" align="center">
+                                                <tr bgcolor="white">
+                                                    <th bgcolor="#f2f2f2" height="26" width="50%">보유중인 부적 : @Model.UserLottoCount 장</th>
+                                                    <th bgcolor="#f2f2f2" height="26" width="50%"><div id="ViewTimer"></div></th>
+                                                </tr>
+                                                <tr bgcolor="white">
+                                                    <td height="22" colspan="2" id="first">
+                                                        <br />
+                                                        <button type="button" class="enterevent" onclick="GetLotto();">자동</button>
+                                                        <input type="text" name="enternumber" id="number0" class="enternumber inputNumber" maxlength="2" value="" required />
+                                                        <input type="text" name="enternumber" id="number1" class="enternumber inputNumber" maxlength="2" value="" required />
+                                                        <input type="text" name="enternumber" id="number2" class="enternumber inputNumber" maxlength="2" value="" required />
+                                                        <input type="text" name="enternumber" id="number3" class="enternumber inputNumber" maxlength="2" value="" required />
+                                                        <input type="text" name="enternumber" id="number4" class="enternumber inputNumber" maxlength="2" value="" required />
+                                                        <input type="text" name="enternumber" id="number5" class="enternumber inputNumber" maxlength="2" value="" required />
+                                                        <button class="enterevent" type="button" id="enter">응모하기</button>
+                                                        <br />
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                    </div>
+
+                                    <div style="padding:10px 0 10px 0;display:inline-table;">
+                                        <form name="form_memo" method="post">
+                                            <table cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td height="40" width="120" class="board-title" align="center">날짜</td>
+                                                    <td height="40" width="100" class="board-title" align="center">회차</td>
+                                                    <td height="40" width="*" class="board-title" align="center">응모번호</td>
+                                                    <td height="40" width="120" class="board-title" align="center">결과</td>
+                                                </tr>
+                                                @if (Model.UserLottoEnterList != null && Model.UserLottoEnterList.Count > 0)
+                                                {
+                                                    foreach (var entry in Model.UserLottoEnterList)
+                                                    {
+                                                        var trbg = oddeven ? "#f9f9f9" : "#ffffff";
+                                                        oddeven = !oddeven;
+                                                        var enterResult = "";
+                                                        if (entry.Result == 0)
+                                                        {
+                                                            enterResult = "-";
+                                                        }
+                                                        else if (entry.Result == 1)
+                                                        {
+                                                            enterResult = "꽝";
+                                                        }
+                                                        else if (entry.Result == 2)
+                                                        {
+                                                            enterResult = "당첨!";
+                                                        }
+                                                        else
+                                                        {
+                                                            enterResult = "-";
+                                                        }
+                                                        <text>
+                                                            <tr>
+                                                                <td height="30" bgcolor="@trbg" align="center">@entry.Date.ToString("yyyy-MM-dd HH:mm")</td>
+                                                                <td height="30" bgcolor="@trbg" align="center">@entry.EventNumber</td>
+                                                                <td height="30" bgcolor="@trbg" align="center">@entry.Number1.ToString()-@entry.Number2.ToString()-@entry.Number3.ToString()-@entry.Number4.ToString()-@entry.Number5.ToString()-@entry.Number6.ToString()</td>
+                                                                <td height="30" bgcolor="@trbg" align="center">@enterResult</td>
+                                                            </tr>
+                                                        </text>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td colspan="4" height="26" class="board-list" align="center">응모 내역이 없습니다.</td>
+                                                    </tr>
+                                                }
+                                            </table>
+                                            <div id="paging_box">
+                                                @RenderPage("../common/pager.cshtml", new { StartPage = Model.startPage, currentPage = Model.pageNo, totalPages = Model.totalPages, fn = "uf_GoList" })
+                                            </div>
+                                        </form>
+                                    </div>
+                                </text>
+                            }
+                            else if (@Model.Lotto == null)
+                            {
+                                <div class="sub_menu_title"><h2 style="font-size:30px;">진행중인 이벤트가 없습니다.</h2></div>
+                            }
+                            else
+                            {
+                                <div class="sub_menu_title"><h2 style="font-size:30px;">이벤트에 응모하려면 로그인하세요.</h2></div>
+                            }
+
+                            <!-- // 내용 끝  -->
+
+                        </div>
+                    </section>
+                </div>
+                <!-- // content -->
+                <!-- right_area -->
+                <!--@RenderPage("../common/RightGame.cshtml")-->
+                <!-- // right_area -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="GoFrm" method="get">
+    <input type="hidden" name="n_no" value="" />
+    <input type="hidden" name="PageNo" value="@Model.pageNo" />
+    <input type="hidden" name="StartPage" value="@Model.startPage" />
+</form>
+<!-- // body_area -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        @if(Model.pageNo > 1)
+        {
+            <text>
+        var offset = $("#paging_box").offset();
+            $('html, body').animate({ scrollTop: offset.top }, 400);
+            </text>
+        }
+    });
+
+    function uf_GoList(PageNo, StartPage) {
+        var frm = document.GoFrm;
+        frm.PageNo.value = PageNo;
+        frm.StartPage.value = StartPage;
+        frm.target = "_self";
+        frm.submit();
+    }
+
+    var SetTime = 0;
+
+    @if (@Model.Lotto != null)
+    {
+        <Text>
+        SetTime = @((int)Model.Lotto.DateEnd.Subtract(DateTime.Now).TotalSeconds);
+        </text>
+    }
+
+        function msg_time() {
+        if (SetTime < 0) {
+
+            document.all.ViewTimer.innerHTML = "<font color='red'>응모 시간이 마감되었습니다.</font>";
+            clearInterval(tid);
+        }
+        else {
+            endday = Math.floor(SetTime / 60 / 60 / 24);
+            endhour = Math.floor(SetTime / 60 / 60) % 24;
+            endminute = Math.floor(SetTime / 60) % 60;
+            endseconds = SetTime % 60;
+            if (endday > 0) {
+                endday = endday + "일 ";
+            } else {
+                endday = "";
+            }
+            if (endday > 0 || endhour > 0) {
+                endhour = endhour + "시 ";
+            } else {
+                endhour = "";
+            }
+            if (endday > 0 || endhour > 0 || endminute > 0) {
+                endminute = endminute + "분 ";
+            } else {
+                endminute = "";
+            }
+            endtime = endday + endhour + endminute + endseconds + "초";
+            var msg = "응모기한 : <font color='red'>" + endtime + "</font>";
+            document.all.ViewTimer.innerHTML = msg;
+            SetTime--;
+        }
+    }
+
+        window.onload = function TimerStart() {
+            if (SetTime < 0) {
+
+                document.all.ViewTimer.innerHTML = "<font color='red'>응모 시간이 마감되었습니다.</font>";
+            }
+            else {
+                endday = Math.floor(SetTime / 60 / 60 / 24);
+                endhour = Math.floor(SetTime / 60 / 60) % 24;
+                endminute = Math.floor(SetTime / 60) % 60;
+                endseconds = SetTime % 60;
+                if (endday > 0) {
+                    endday = endday + "일 ";
+                } else {
+                    endday = "";
+                }
+                if (endday > 0 || endhour > 0) {
+                    endhour = endhour + "시 ";
+                } else {
+                    endhour = "";
+                }
+                if (endday > 0 || endhour > 0 || endminute > 0) {
+                    endminute = endminute + "분 ";
+                } else {
+                    endminute = "";
+                }
+                endtime = endday + endhour + endminute + endseconds + "초";
+                var msg = "응모기한 : <font color='red'>" + endtime + "</font>";
+                document.all.ViewTimer.innerHTML = msg;
+
+                tid = setInterval('msg_time()', 1000)
+            }
+        };
+
+    $('#numberTable').find('tr').each(function (index) {
+                        var objId = $(this);
+        $(objId).find(".enternumber").blur(function () {
+                            var id = eval($(objId).find(this).attr('id').replace('number', ''));
+                            var check = false;
+                            var obj = $(objId).find(this);
+
+                            if (obj.val() == "") {
+                                return;
+                            } else if (isNaN($(objId).find(this).val())) {
+                                alert("숫자만 입력 가능합니다.");
+                                obj.val("");
+                                obj.focus();
+                                return;
+                            } else if (obj.val() < 1 || obj.val() > 45) {
+                                alert("숫자는 1 ~ 45 사이의 숫자만 입력 가능합니다.");
+                                obj.val("");
+                                obj.focus();
+                                return;
+                            } else {
+                $(objId).find('.enternumber').each(function (index) {
+                                    if (id != index && obj.val() == $(objId).find(this).val()) {
+                                        check = true;
+                                        return false;
+                                    }
+                                });
+                                if (check) {
+                                    alert("중복된 값은 입력하실 수 없습니다.");
+                                    obj.val("");
+                                    obj.focus();
+                                    return;
+                                }
+                            }
+                        });
+
+        $(objId).find(".enternumber").keyup(function (e) {
+                            if ($(this).val().length == 2) {
+                                var id = eval($(this).attr('id').replace('number', '')) + 1;
+                                if (id != 6) {
+                    $(objId).find("#number" + id).focus();
+                                } else {
+                    $(objId).find("#first").focus();
+                                }
+                            }
+                        });
+
+    });
+
+    $("#enter").click(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "@Url.Action("EventLottoEnter")",
+            data: {
+                "number0": $("#number0").val()
+                ,"number1": $("#number1").val()
+                ,"number2": $("#number2").val()
+                ,"number3": $("#number3").val()
+                ,"number4": $("#number4").val()
+                ,"number5": $("#number5").val()
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (obj) {
+                alert(obj.reason);
+                if (obj.result == "OK")
+                    location.reload();
+            }, error: function (x) {
+                alert("서버 오류로 요청을 처리하지 못했습니다.\n고객센터로 문의해주십시오.");
+            }
+        });
+    });
+
+    function GetLotto() {
+        var lotto = new Array(6);
+        var count = 0;
+        var mFlag = true;
+        while (count < 6) {
+            var number;
+            number = parseInt(Math.random() * 45) + 1
+            for (var i = 0; i < count; i++)
+                if (lotto[i] == number) mFlag = false;
+            if (mFlag) {
+                lotto[count] = number;
+                count++;
+            }
+            mFlag = true;
+        }
+
+        // 추첨된 로또번호 출력
+        lotto.sort(function (a, b) {return a - b;});
+        document.getElementById("number0").value = lotto[0];
+        document.getElementById("number1").value = lotto[1];
+        document.getElementById("number2").value = lotto[2];
+        document.getElementById("number3").value = lotto[3];
+        document.getElementById("number4").value = lotto[4];
+        document.getElementById("number5").value = lotto[5];
+    }
+
+
+</script>

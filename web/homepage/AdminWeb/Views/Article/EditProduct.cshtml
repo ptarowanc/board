@@ -1,0 +1,117 @@
+﻿@model DBLIB.ProductList
+@{
+    Layout = null;
+
+    // 에디터  --> http://gijgo.com/LiveEdit/Index/bootstrap-4-wysiwyg.html?component=editor
+}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>상품</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/jquery.form.min.js"></script>
+
+    <style>
+        .container {
+            max-width: 98%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <form id="WriteForm" action="/Article/UpdateProduct" method="post" enctype="multipart/form-data">
+            <div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">유형</label>
+                    <div class="col-sm-10">
+                        <select name="ptype" id="ptype" class="form-control">
+                            <!--<option value="charge">충전</option>-->
+                            <option value="evt">이벤트</option>
+                            <option value="avatar">아바타</option>
+                            <option value="card">화투패(맞고)</option>
+                            <option value="card2">카드(바둑이)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">상품명</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pname" autocomplete="off" class="form-control" placeholder="상품명" value="@Model.pname" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">이미지</label>
+                    <div class="col-sm-10">
+                       @(Model.img)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">새 이미지</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="img" class="form-control-file" value="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">설정값</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="value1" autocomplete="off" class="form-control" placeholder="(아바타 일경우 맞고성우 = 0:홍길동, 1:어우동)" value="@Model.value1" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">상품 식별자</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="string1" autocomplete="off" class="form-control" placeholder="상품 식별자" value="@Model.string1" />
+                    </div>
+                </div>
+
+                <div class="row" style="border-width : 2px; margin-top : 6px;">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button class="btn btn-primary" type="submit">수정</button>&nbsp;
+                    <button class="btn btn-secondary" id="CloseButton" type="button">닫기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#WriteForm").ajaxForm({
+                dataType: "json",
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        if (opener != null) {
+                            opener.location.reload();
+                            window.close();
+                        } else {
+                            window.close();
+                        }
+                    } else {
+                        alert(obj.reason);
+                    }
+                },
+                error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+            
+            $("#CloseButton").click(function () {
+                window.close();
+            });
+
+            $("#ptype").val("@Model.ptype");
+        });
+    </script>
+</body>
+</html>

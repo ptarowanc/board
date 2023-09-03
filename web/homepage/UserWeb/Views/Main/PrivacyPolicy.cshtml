@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "PrivacyPolicy";
+    Layout = "~/Views/Shared/_PopupLayout.cshtml";
+}
+
+<style type="text/css">
+    <!--
+    body {
+        margin: 0;
+        font-size: .7em;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        background: #666;
+    }
+
+    h1 {
+        font-size: 2.4em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h2 {
+        font-size: 1.7em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin: 10px 0 0 0;
+        color: #000;
+    }
+
+    #header {
+        width: 96%;
+        height: 50px;
+        margin: 0 0 0 0;
+        padding: 0 2% 0 2%;
+        font-family: "trebuchet MS", Verdana, sans-serif;
+        color: #FFF;
+        background: linear-gradient( to bottom, #000, #666);
+    }
+
+    #content {
+        position: relative;
+        padding: 5px;
+    }
+
+    .content-container {
+        background: #eee;
+        width: 96%;
+        padding: 10px 10px 20px 10px;
+        position: relative;
+        text-align: center;
+    }
+    -->
+</style>
+<div id="header"><div style="padding-top:11px;"><h2>개인정보취급방침</h2></div></div>
+<div id="content">
+    <div class="content-container">
+        <div style="text-align:left;color:#333;font-size:9pt;">
+            @RenderPage("PrivacyText.cshtml")
+        </div>
+    </div>
+</div>

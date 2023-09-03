@@ -1,0 +1,146 @@
+﻿@model UserWeb.Models.QnaPagingData
+<!-- body_area -->
+<style>
+    body {
+        background: #000000;
+    }
+</style>
+
+@if (User.Identity.IsAuthenticated == false)
+{
+    <script type="text/javascript">
+        alert("로그인 후 이용할 수 있습니다.");
+        history.back()
+    </script>
+}
+
+<script type="text/javascript">
+
+    $("#menu5").addClass("active");
+    $("#menu1").removeClass("active");
+    $("#menu2").removeClass("active");
+    $("#menu3").removeClass("active");
+    $("#menu4").removeClass("active");
+
+</script>
+
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>1:1문의</li>
+                                </ul>
+                            </div>
+
+                            <!-- title -->
+
+                            <div class="cont_wrap">
+                                <!-- 내용 시작 -->
+
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">1:1문의</h1>
+                                </div>
+
+                                <div align="center">
+                                    <table cellpadding="0" cellspacing="0" width="100%" align="center" style="text-align">
+                                        <tr>
+                                            <td height="40" width="40" class="board-title" align="center">번호</td>
+                                            <td height="40" width="*" class="board-title" align="center">제목</td>
+                                            <td height="40" width="100" class="board-title" align="center">상태</td>
+                                            <td height="40" width="105" class="board-title" align="center">등록일</td>
+                                        </tr>
+
+                                        @{
+                                            if (Model.List.Count() > 0)
+                                            {
+                                                bool oddeven = true;
+                                                foreach (var line in Model.List)
+                                                {
+                                                    var trbg = oddeven ? "#f9f9f9" : "#ffffff";
+                                                    var answer = line.answer != null ? "답변완료" : "대기중";
+
+                                                    <text>
+                                                        <tr>
+                                                            <td height="30" bgcolor="@trbg" align="center">@line.id</td>
+                                                            <td height="30" bgcolor="@trbg" align="left">
+                                                                &nbsp;
+                                                                <a href="#" onclick="uf_GoView(@line.id);">@line.title</a>
+                                                            </td>
+                                                            <td height="30" bgcolor="@trbg" align="center">@answer</td>
+                                                            <td height="30" bgcolor="@trbg" align="center">@line.CreatedOn.ToString("yyyy-MM-dd")</td>
+                                                        </tr>
+                                                    </text>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td colspan="4" height="26" class="board-list" align="center">등록된 목록이 없습니다.</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </table>
+                                </div>
+                                <div id="paging_box" style="text-align:center;">
+                                    @RenderPage("../common/pager.cshtml", new { StartPage = Model.StartPage, currentPage = Model.PageNo, totalPages = Model.TotalPages, fn = "uf_GoList" })
+                                </div>
+                                <div style="text-align:center;margin-top:15px;"><a href="/member/qnaWrite" class="btn btn-sea" style="max-width:120px;font-size:15px; padding: 5px 15px 5px 15px;">문의 등록</a></div>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+
+                </div>
+            </div>
+            <!-- // content -->
+        </div>
+    </div>
+</div>
+
+<!-- // body_area -->
+
+<form name="GoFrm" method="post">
+    <input type="hidden" name="n_no" value="" />
+    <input type="hidden" name="PageNo" value="@Model.PageNo" />
+    <input type="hidden" name="StartPage" value="@Model.StartPage" />
+</form>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //새로고침
+    function uf_Reload() {
+        var frm = document.form_search;
+        frm.action = "qna";
+        frm.target = "_self";
+        frm.submit();
+    }
+    //페이징
+    function uf_GoList(PageNo, StartPage) {
+        var frm = document.GoFrm;
+        frm.PageNo.value = PageNo;
+        frm.StartPage.value = StartPage;
+        frm.action = "qna";
+        frm.target = "_self";
+        frm.submit();
+    }
+    //내용보기
+    function uf_GoView(no) {
+        var frm = document.GoFrm;
+        frm.n_no.value = no;
+        frm.action = "QnaVIew";
+        frm.target = "_self";
+        frm.submit();
+    }
+//]]>
+</script>

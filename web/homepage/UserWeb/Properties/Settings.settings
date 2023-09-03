@@ -1,0 +1,81 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UserWeb.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PAGING_SIZE" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="DOWNLOAD_URL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/Download/InstallerLink</Value>
+    </Setting>
+    <Setting Name="KCP_CERT_URL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://cert.kcp.co.kr/kcp_cert/cert_view.jsp</Value>
+    </Setting>
+    <Setting Name="API_BADUGI_VERSION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.0.1</Value>
+    </Setting>
+    <Setting Name="DOWNLOAD_URL2" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/Download/InstallerLink2</Value>
+    </Setting>
+    <Setting Name="GS_SITE_DOMAIN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://jpot.kr</Value>
+    </Setting>
+    <Setting Name="GS_CORP_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">엠G엔터</Value>
+    </Setting>
+    <Setting Name="GS_COMPANY_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">jpotgames@gmail.com</Value>
+    </Setting>
+    <Setting Name="KCP_SITE_CODE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ACJ4A</Value>
+    </Setting>
+    <Setting Name="KCP_WEBSITE_ID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">J21052706858</Value>
+    </Setting>
+    <Setting Name="KCP_ENC_KEY" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0553d4f334fb6bf626ea4c783d346b696b435449574b873cb94927fe0f34a53d</Value>
+    </Setting>
+    <Setting Name="GS_MONEY_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">냥</Value>
+    </Setting>
+    <Setting Name="GS_MONEY2_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">냥</Value>
+    </Setting>
+    <Setting Name="API_MATGO_VERSION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.0.1</Value>
+    </Setting>
+    <Setting Name="DOWNLOAD_MATGOAPK_FILENAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">jpotgamematgo.apk</Value>
+    </Setting>
+    <Setting Name="DOWNLOAD_BADUGIAPK_FILENAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">jpotgamebadugi.apk</Value>
+    </Setting>
+    <Setting Name="MARKET_ID_BADUGI" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">com.jpotgame.jpotbadugi</Value>
+    </Setting>
+    <Setting Name="MARKET_ID_MATGO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">com.jpotgame.jpotmatgo</Value>
+    </Setting>
+    <Setting Name="CSS_VER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2107191</Value>
+    </Setting>
+    <Setting Name="JS_VER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2107191</Value>
+    </Setting>
+    <Setting Name="GS_CASH_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">머니</Value>
+    </Setting>
+    <Setting Name="GS_SITE_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">JPOT게임</Value>
+    </Setting>
+    <Setting Name="DOWNLOAD_INSTALL_FILENAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">JpotGame.exe</Value>
+    </Setting>
+    <Setting Name="URI_LOCATION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">JpotGame</Value>
+    </Setting>
+    <Setting Name="DOWNLOAD_INSTALL2_FILENAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">JpotGame.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,182 @@
+﻿<style>
+    body {
+        background: #1c1c1c;
+    }
+    .cont_wrap{
+        border-radius:6px;
+        background-color:#dedede;
+    }
+    
+    .heading{
+        color:#414141;
+    }
+
+    .form_myinfo{
+        width:100%;
+        padding:10px 0;
+    }
+</style>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>내정보</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap">
+
+                                <div class="tit_box">
+                                    <h1 class="heading">내정보</h1>
+                                </div>
+
+                                <!-- 내용 시작 -->
+                                <div style="width:100%;text-align:center;font-weight:bold;display:none;">
+                                    [3명이상판수]
+                                    <%
+                                    If IsArray(arrEvt) Then
+                                    rs_sum_count=0
+                                    rs_sum_money=0
+                                    For i=0 to Ubound(arrEvt,2)
+                                    rs_money 	 = arrEvt(0,i)
+                                    rs_count 	 = arrEvt(1,i)
+                                    rs_upmoney = arrEvt(2,i)
+
+                                    rs_sum_count=rs_sum_count+rs_count
+                                    rs_sum_money=CDbl(rs_sum_money)+CDbl(rs_upmoney)
+
+                                    If i>0 Then Response.Write ", " End If
+                                    %>
+                                    <%=FormatNumber(rs_money,0)%>원:<%=FormatNumber(rs_count,0)%>판
+                                    <%
+                                    Next
+                                    Else
+                                    %>
+                                    게임내역이 없습니다.
+                                    <%
+                                    End If
+                                    %>
+                                </div>
+
+                                <!-- <div style="width:100%;font-weight:bold;text-align:left;font-size:14px;"><b>금일 100~500방 베팅금액 : <%=FormatNumber(CDbl(event_batting_money)/1000000,0)%>원</b></div>-->
+
+                                <form name="form_myinfo" method="post" onsubmit="return uf_MyinfoSubmit();" style="text-align:center; padding:10px 0;">
+                                    <table class="tb_list">
+                                        <tr>
+                                            <th height="25">아이디</th>
+                                            <td class="lt"><b>@ViewBag.Id</b></td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">닉네임</th>
+                                            <td class="lt">
+                                                <b>@ViewBag.Name</b>&nbsp;
+                                                <a href="#" class="btn btn-sunflower" style="width:80px;height:17px;font-size:10px; color:#9142af; padding: 2px 1px 2px 1px;" onclick="uf_NickNameChange();return false;">닉네임변경</a>
+                                                <!-- * 이벤트 기간중에는 닉네임 변경을 하지 않는것이 도움됩니다.<br/>-->
+                                                <!--
+                                <%If uf_NickNameCheckTime=True Then%>
+                                    <a href="#" onclick="uf_NickNameChange();return false;"><img src="/images/btn_nick_change.gif" alt="" /></a>
+                                <%Else%>
+                                    <a href="#" onclick="alert('닉네임변경이 불가한 시간입니다');return false;"><img src="/images/btn_nick_change.gif" alt="" /></a>
+                                <%End If%>
+                                (매주 수요일 10:00~11:00 사이, 월 2회까지 닉네임 변경가능)
+                                -->
+                                                <!--(<%=weekday(date)%>)-->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">현재비밀번호</th>
+                                            <td class="lt">
+                                                <input type="password" name="m_pwd_org" size="20" value="" maxlength="12" style="border:none; outline:none;" />
+                                                <span style="color:#666666;">본인확인을 위해 현재 로그인 비밀번호를 입력하세요</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">휴대폰번호</th>
+                                            <td class="lt">
+                                                @ViewBag.Phone
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">비밀번호 변경</th>
+                                            <td class="lt">
+                                                <input type="password" name="m_pwd_new1" size="20" value="" maxlength="12" style="border:none; outline:none;" />
+                                                <span style="color:#666666;">변경시에만 입력. (영문,숫자 6~20자)</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">비밀번호 변경 확인</th>
+                                            <td class="lt">
+                                                <input type="password" name="m_pwd_new2" size="20" value="" maxlength="12" style="border:none; outline:none;" />
+                                                <span style="color:#666666;">위와 동일하게 입력</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <div style="width:100%;text-align:center;">
+                                        <button type="submit" align="absmiddle" class="btn btn-dark-blue" style="width:150px;height:30px;font-size:15px; padding: 5px 15px 5px 15px;">정보 수정</button>
+                                    </div>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+
+<script type="text/javascript" src="/include/js/common.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    //정보수정서밋.
+
+    function uf_MyinfoSubmit() {
+        var frm = document.form_myinfo;
+        frm.action = "MyInfoProc";
+        frm.target = "HiddenFrame";
+        if (frm.m_pwd_org.value == "") { alert('현재 로그인 비밀번호를 입력하세요!'); frm.m_pwd_org.focus(); return false; }
+        if ((frm.m_pwd_new1.value != "") || (frm.m_pwd_new2.value != "")) {
+            if (validPWD(frm.m_pwd_new1.value) != 1) { frm.m_pwd_new1.focus(); return false; }
+            if (validPWD(frm.m_pwd_new2.value) != 1) { frm.m_pwd_new2.focus(); return false; }
+            if (frm.m_pwd_new1.value != frm.m_pwd_new2.value) { alert('신규 비번입력값이 서로 다릅니다!'); frm.m_pwd_new1.focus(); return false; }
+        }
+
+        frm.submit();
+    }
+
+    //닉네임변경
+    function uf_NickNameChange() {
+        pop_win("nick_change", "NickChange", 0, 0, 420, 200, 0, 0, 0, 0, 0);
+    }
+    //휴대폰인증
+    function uf_HpCheck() {
+        var frm = document.form_myinfo;
+        var phone_no1 = frm.phone_no1.value;
+        var phone_no2 = frm.phone_no2.value;
+        var phone_no3 = frm.phone_no3.value;
+        if (phone_no1.length < 3) { alert("휴대폰번호를 입력하세요"); frm.m_phone1.value = ""; frm.m_phone1.focus(); return; }
+        if (phone_no2.length < 3) { alert("휴대폰번호를 입력하세요"); frm.m_phone2.value = ""; frm.m_phone2.focus(); return; }
+        if (phone_no3.length < 4) { alert("휴대폰번호를 입력하세요"); frm.m_phone3.value = ""; frm.m_phone3.focus(); return; }
+        var hpcheck = pop_win("hpcheck", "", 0, 0, 350, 200, 0, 0, 0, 0, 0);
+        frm.action = "hpcheck.asp";
+        frm.target = "hpcheck";
+        frm.submit();
+    }
+//]]>
+</script>

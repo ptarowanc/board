@@ -1,0 +1,696 @@
+﻿
+
+
+@model UserWeb.Models.MainViewModel
+
+
+<script type="text/javascript">
+
+    function onlinegame(type) {
+
+        @if (Model.IsLogon == true)
+        {
+            <text>
+        var scheme = 'game://_' + getCookie('session_01') + '_' + getCookie('session_02') + '_' + type
+
+        var iframe = document.createElement('IFRAME'),
+            start;
+
+        iframe.style.display = 'none';
+        iframe.src = scheme;
+        document.body.appendChild(iframe);
+
+        start = +new Date();
+        setTimeout(function () {
+            var now = +new Date();
+            if (now - start < 2000) {
+                fnOpenModal("게임이 실행되지 않을 경우<br><br>게임을 다운로드후 설치하세요.");
+            }
+        }, 500);
+
+            </text>
+        }
+        else
+        {
+            <text>
+            fnOpenModal("로그인 후 시도하시기 바랍니다.");
+            </text>
+        }
+    }
+    function onlinegame2(type) {
+
+        @if (Model.IsLogon == true)
+        {
+            <text>
+        var scheme = '@UserWeb.Properties.Settings.Default.URI_LOCATION://_' + getCookie('session_01') + '_' + getCookie('session_02') + '_' + type
+
+        var iframe = document.createElement('IFRAME'),
+            start;
+
+        iframe.style.display = 'none';
+        iframe.src = scheme;
+        document.body.appendChild(iframe);
+
+        start = +new Date();
+        setTimeout(function () {
+            var now = +new Date();
+            if (now - start < 2000) {
+                fnOpenModal("게임이 실행되지 않을 경우<br><br>게임다운로드를 하십시오.");
+            }
+        }, 500);
+
+            </text>
+        }
+        else
+        {
+            <text>
+            fnOpenModal("로그인 후 시도하시기 바랍니다.");
+            </text>
+        }
+    }
+    function uf_BuyAvatar(no,item,price) {
+
+        @if (Model.IsLogon == true)
+        {
+            <text>
+            if (!confirm(' 상품 [ ' + item + ' ] \n ' + price + ' 캐쉬 \n 구매하려면 확인을 누르세요.'))
+            {
+                return false;
+            }
+
+            var frm = document.form_buy;
+            frm.action = "/Main/AvatarBuyProc";
+            frm.no.value = no;
+            frm.target = "HiddenFrame";
+            frm.submit();
+            </text>
+        }
+        else
+        {
+            <text>
+        fnOpenModal("로그인 후 구매할 수 있습니다.");
+            </text>
+        }
+    }
+    function fnLoginOk() {
+        $.ajax({
+            url: "/Main/PerformLogin",
+            data: {
+                "m_id": $("#LoginID").val(),
+                "m_pw": $("#LoginPWD").val(),
+                "m_save": ($("#SaveIDCheck").is(":checked") ? "Y" : "N"),
+                "ReturnURL": $("#ReturnURL").val()
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (res) {
+                if (res.result == "OK") {
+                    location.href = res.data;
+                    return;
+                }
+                // 로그인 실패
+                alert(res.reason);
+
+            }, error: function (x) {
+                alert("서버 오류로 요청을 처리하지 못했습니다.");
+                return;
+            }
+        });
+    }
+    function fnLoginBoxEnter() {
+        if (event.keyCode == 13) {
+            event.returnValue = false;
+            event.cancel = true;
+
+            if (document.getElementById("cpatchaTextBox").value != code) {
+
+                alert("보안코드를 입력하세요.")
+                createCaptcha();
+                return;
+            }
+
+            fnLoginOk();
+        }
+    }
+    $(document).ready(function () {
+        $("#TryLoginImage").click(function (e) {
+
+            if (document.getElementById("cpatchaTextBox").value != code) {
+
+                alert("보안코드를 입력하세요.")
+                createCaptcha();
+                return;
+            }
+
+            e.preventDefault();
+            fnLoginOk();
+        });
+
+@if ( !String.IsNullOrEmpty(Model.popupNotice)){
+
+    <text>
+        jquery_layerpop("popup_notice", "center");
+        if (getCookie('hide_popup') != '') {
+            $('#popup_notice').hide();
+        }
+        else {
+            $('#popup_notice').show();
+        }
+        function closepopup() {
+            var chk = uf_getCheckedVal('hidePopup');
+            if (chk == "Y") {
+                setCookie('hide_popup', 'yes', 1);
+            }
+            $('#popup_notice').hide();
+            $('#popup_notice').html('');
+        }
+    </text>
+
+}
+    });
+
+
+
+
+    var code;
+    function createCaptcha() {
+        //clear the contents of captcha div first
+        document.getElementById('captcha').innerHTML = "";
+        var charsArray =
+            "0123456789";
+        var lengthOtp = 4;
+        var captcha = [];
+        for (var i = 0; i < lengthOtp; i++) {
+            //below code will not allow Repetition of Characters
+            var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+            if (captcha.indexOf(charsArray[index]) == -1)
+                captcha.push(charsArray[index]);
+            else i--;
+        }
+        var canv = document.getElementById("captcha");
+
+        canv.className = "captcha"
+        canv.width = 50;
+        canv.height = 35;
+        var ctx = canv.getContext("2d");
+        ctx.font = "15px Georgia";
+        ctx.strokeText(captcha.join(""), 10, 20);
+        //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+        code = captcha.join("");
+
+
+    }
+
+
+    function validateCaptcha() {
+        event.preventDefault();
+        if (document.getElementById("cpatchaTextBox").value == code) {
+            alert("Valid Captcha")
+        } else {
+            alert("Invalid Captcha. try Again");
+            createCaptcha();
+        }
+    }
+
+
+    window.addEventListener("load", function () {
+        createCaptcha()
+    });
+
+    setTimeout(function () {
+        var jpotvideo = $(".jpotvideo");
+        jpotvideo[0].load();
+    }, 0);
+
+    setTimeout(function () {
+        var jpotvideo = $(".jpotvideo");
+        jpotvideo.show();
+        //jpotvideo[0].play();
+
+        if (jpotvideo.hasClass('is-playing')) {
+        } else {
+            jpotvideo.removeClass().addClass('is-playing');
+            jpotvideo[0].play();
+        }
+    }, 3000);
+</script>
+
+
+
+<style>
+    .cpatchaText {
+        color: #313233;
+        width: 60px;
+        height: 36px;
+        background-color: #ffffff;
+        font-size: 10pt;
+        border: 0px;
+        padding-left: 3px;
+        margin-top: 4px;
+        margin-left: 10px;
+    }
+
+    .captcha {
+        /*prevent interaction with the canvas*/
+        pointer-events: none;
+        background: url("/img/auto_bg.gif") no-repeat;
+        width: 40px;
+        height: 36px;
+        margin: 0px;
+        padding: 0px;
+        margin-top: 4px;
+        margin-left: 2px;
+        vertical-align: middle;
+    }
+
+    .myinfoButton {
+        -moz-box-shadow: 0px 10px 14px -7px #f29c93;
+        -webkit-box-shadow: 0px 10px 14px -7px #f29c93;
+        box-shadow: 0px 10px 14px -7px #f29c93;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100));
+        background: -moz-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+        background: -webkit-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+        background: -o-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+        background: -ms-linear-gradient(top, #fe1a00 5%, #ce0100 100%);
+        background: linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00', endColorstr='#ce0100',GradientType=0);
+        background-color: #fe1a00;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #d83526;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 6px 18px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #b23e35;
+    }
+
+        .myinfoButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00));
+            background: -moz-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+            background: -webkit-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+            background: -o-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+            background: -ms-linear-gradient(top, #ce0100 5%, #fe1a00 100%);
+            background: linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00',GradientType=0);
+            background-color: #ce0100;
+        }
+
+        .myinfoButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .funtionButton {
+        -moz-box-shadow: 0px 10px 14px -7px #97c4fe;
+        -webkit-box-shadow: 0px 10px 14px -7px #97c4fe;
+        box-shadow: 0px 10px 14px -7px #97c4fe;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0));
+        background: -moz-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+        background: -webkit-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+        background: -o-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+        background: -ms-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+        background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0',GradientType=0);
+        background-color: #3d94f6;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #337fed;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 6px 12px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #1570cd;
+    }
+
+        .funtionButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
+            background: -moz-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+            background: -webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+            background: -o-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+            background: -ms-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+            background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6',GradientType=0);
+            background-color: #1e62d0;
+        }
+
+        .funtionButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .friendlistButton {
+        -moz-box-shadow: 0px 10px 14px -7px #3e7327;
+        -webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+        box-shadow: 0px 10px 14px -7px #3e7327;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
+        background: -moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
+        background: -webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
+        background: -o-linear-gradient(top, #77b55a 5%, #72b352 100%);
+        background: -ms-linear-gradient(top, #77b55a 5%, #72b352 100%);
+        background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+        background-color: #77b55a;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #4b8f29;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 6px 12px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #5b8a3c;
+    }
+
+        .friendlistButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #72b352), color-stop(1, #77b55a));
+            background: -moz-linear-gradient(top, #72b352 5%, #77b55a 100%);
+            background: -webkit-linear-gradient(top, #72b352 5%, #77b55a 100%);
+            background: -o-linear-gradient(top, #72b352 5%, #77b55a 100%);
+            background: -ms-linear-gradient(top, #72b352 5%, #77b55a 100%);
+            background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+            background-color: #72b352;
+        }
+
+        .friendlistButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .logoutButton {
+        -moz-box-shadow: 0px 10px 14px -7px #7a8eb9;
+        -webkit-box-shadow: 0px 10px 14px -7px #7a8eb9;
+        box-shadow: 0px 10px 14px -7px #7a8eb9;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #637aad), color-stop(1, #5972a7));
+        background: -moz-linear-gradient(top, #637aad 5%, #5972a7 100%);
+        background: -webkit-linear-gradient(top, #637aad 5%, #5972a7 100%);
+        background: -o-linear-gradient(top, #637aad 5%, #5972a7 100%);
+        background: -ms-linear-gradient(top, #637aad 5%, #5972a7 100%);
+        background: linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#637aad', endColorstr='#5972a7',GradientType=0);
+        background-color: #637aad;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #314179;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 6px 12px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #7a8eb9;
+    }
+
+        .logoutButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5972a7), color-stop(1, #637aad));
+            background: -moz-linear-gradient(top, #5972a7 5%, #637aad 100%);
+            background: -webkit-linear-gradient(top, #5972a7 5%, #637aad 100%);
+            background: -o-linear-gradient(top, #5972a7 5%, #637aad 100%);
+            background: -ms-linear-gradient(top, #5972a7 5%, #637aad 100%);
+            background: linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5972a7', endColorstr='#637aad',GradientType=0);
+            background-color: #5972a7;
+        }
+
+        .logoutButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .playerInfo {
+        font-family: '맑은고딕','Malgun Gothic';
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+        .playerInfo ul li span {
+            font-family: '맑은고딕','Malgun Gothic';
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .playerInfo ul li {
+            margin-top: 3px;
+        }
+</style>
+
+<div class="xjMainBanner">
+    <video width="1045" height="286" autoplay="autoplay" loop class="jpotvideo" muted style="display: none">
+        <source src="/videos/jpot.mp4" type="video/mp4" />
+    </video>
+</div>
+
+
+<div class="xjMainContent">
+
+
+    <div class="xjMainLeftContent">
+        <div class="xjMainQuick">
+
+            <div class="text-right mainItemTitle">
+            </div>
+
+
+            <ul class="mainquickList">
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename03.png" onclick="onlinegame2('h')"></div>
+
+                </li>
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename01.png" onclick="onlinegame2('m')"></div>
+
+                </li>
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename02.png" onclick="onlinegame2('b')"></div>
+
+                </li>
+
+            </ul>
+            <ul class="mainquickList">
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename04.png" onclick="fnOpenModal('준비중입니다.')"></div>
+
+                </li>
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename05.png" onclick="fnOpenModal('준비중입니다.')"></div>
+
+                </li>
+
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename06.png" onclick="fnOpenModal('준비중입니다.')"></div>
+
+                </li>
+            </ul>
+        </div>
+
+        @*<div class="xjMainEvent">
+
+                <div class="pull-left"><a href="https://vongvong.co.kr/" rel="nofollow"> <img src="/img/event01.png"> </a></div>
+
+            </div>*@
+
+        <div class="xjMainNotice">
+
+            <ul class="mainnoticekList">
+                <li style="margin: 1px 1px 1px 5px ">
+                    <div class="pull-left"><img src="/img/main_notice1.png" onclick="fnOpenModal('준비중입니다.')"></div>
+                </li>
+                <li style="margin: 1px 1px 1px 1px ">
+                    <div class="pull-left"><img src="/img/main_notice2.png" onclick="fnOpenModal('준비중입니다.')"></div>
+                </li>
+                <li style="margin: 1px 1px 1px 1px ">
+                    <div class="pull-left"><img src="/img/main_notice3.png" onclick="fnOpenModal('준비중입니다.')"></div>
+                </li>
+                <li style="margin: 1px 0px 1px 1px ">
+                    <div class="pull-left"><img src="/img/main_notice4.png" onclick="fnOpenModal('준비중입니다.')"></div>
+                </li>
+            </ul>
+
+        </div>
+
+
+
+    </div>
+    <div class="xjMainRightContent  pull-right">
+        <form>
+
+            @if (Model.IsLogon == false)
+            {
+                <div>
+                    <div class="loginBeforeBg">
+
+                        <div class="downimg">
+                            <a class="button" href="@UserWeb.Properties.Settings.Default.DOWNLOAD_URL2" target="_blank"><img src="/img/download/down_b.png"></a>
+                        </div>
+                        <div class="LoginBeforeInput">
+                            <input type="text" id="LoginID" name="m_id" placeholder="아이디" onKeyPress="javascript:fnLoginBoxEnter();">
+                            <input type="password" id="LoginPWD" name="m_pw" placeholder="비밀번호" onKeyPress="javascript:fnLoginBoxEnter();">
+                        </div>
+                        <img class="loginBtn" id="TryLoginImage" src="/img/login_btn.png">
+                        <input type="text" class="cpatchaText" placeholder="숫자" id="cpatchaTextBox" onKeyPress="javascript:fnLoginBoxEnter();" />
+                        <canvas id="captcha">  </canvas>
+                        <div class="loginBeforeBottomImg">
+                            <img src="/img/login_join.png" onclick="window.location.href='/member/join01'">
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.IsLogon == true)
+            {
+
+                <div>
+                    <div class="loginAfterBg">
+
+                        <div class="downimg">
+                            <a class="button" href="@UserWeb.Properties.Settings.Default.DOWNLOAD_URL2" target="_blank">
+                                <img src="/img/download/down_b.png">
+                            </a>
+                        </div>
+                        <div class="loginAfterInfo pull-left">
+                            <div>
+                                <span class="pull-left playerInfo" style="padding-top: 3px;padding-left: 10px;">@ViewBag.Nickname (님)</span>
+                                <span class="pull-right logoutbnt" style="padding-top: 0px;">
+                                    <a href="/member/logout" class="logoutButton" style="margin-top: 0px;">로그아웃</a><br />
+                                    <a href="/member/MyInfo" class="myinfoButton" style="margin-top: 5px;">내정보 </a><br />
+                                    @*@if (ViewBag.PlayerInfo.HaveFriend != 0)
+                                        {
+                                            <a href="/member/FriendList" class="friendlistButton" style="margin-top: 5px;">친구목록</a>
+                                        }*@
+                                </span>
+                            </div>
+                            <div class="playerInfo">
+                                <ul>
+                                    <li>
+                                        <span>게임머니</span>
+                                        <span style="color: #E4940A;">@ViewBag.PlayerInfo.FreeMoney.ToString("N0")</span>
+                                        <span>@UserWeb.Properties.Settings.Default.GS_MONEY_NAME</span>
+                                    </li>
+                                    <li>
+                                        <span>금고머니</span>
+                                        <span style="color: #E4940A;">@ViewBag.PlayerInfo.SafeMoney.ToString("N0")</span>
+                                        <span>@UserWeb.Properties.Settings.Default.GS_MONEY2_NAME</span>
+                                    </li>
+
+                                    <li>
+                                        <span>마일리지</span>
+                                        <span style="color: #E4940A;">
+                                            @ViewBag.PlayerInfo.Mileage.ToString("N0")
+                                            @if (ViewBag.PlayerInfo.Type == 6)
+                                            {
+                                                @:(
+                                                @ViewBag.PlayerInfo.Mileage2.ToString("N0")
+                                                @:)
+                                            }
+                                        </span>
+                                        <span></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+
+
+        </form>
+
+        <div class="freeCashImg" style="cursor: pointer">
+            <img src="/img/banner02.png" onclick="window.location.href='/game/GameInfo'">
+        </div>
+        <div class="mainNoticeListBg">
+
+            <ul>
+                @foreach (DBLIB.WebNoticeList entry in Model.noticeList)
+                {
+                    <li><a href="#" onclick="OpenComMenu('/Customer/NoticeView?n_no=@entry.id', 630, 600);return false;">@entry.title</a></li>
+                }
+            </ul>
+        </div>
+        <div class="ServiceImg">
+            <img src="/img/quick03.png">
+        </div>
+    </div>
+</div>
+
+
+<form name="form_buy" method="post">
+    <input type="hidden" name="no" />
+</form>
+
+
+<div class="alertError xjmodal hidden">
+    <div class="noticeTitle">
+        <span class="pull-left"></span>
+        <button class="pull-right erroeClose">×</button>
+    </div>
+    <div class="text-center buysuccessContent"><span id="ajaxErrorInfo"></span></div>
+    <div class="text-center bugSuccessBtn">
+        <img class="btnmodalClose" src="/img/item/bt_ok.gif">
+    </div>
+    <div class="alertModalBottom"></div>
+</div>
+
+
+<div id="popup_notice">
+    <div id="content">
+        <div>
+            @Html.Raw(@Model.popupNotice)
+            <div style="width:1000px;padding-top:8px;text-align:center;  background: #ffffff;">
+                <input type="checkbox" name="hidePopup" id="hidePopup" value="Y" onclick="closepopup();" /> 24시간 동안 다시보지 않기
+                <a href="#" onclick="closepopup();"><img src="/images/web/btn_close.png" alt="" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+@if ( !String.IsNullOrEmpty(Model.popupNotice)){
+    <text>
+    jquery_layerpop("popup_notice", "center");
+    if (getCookie('hide_popup') != '')
+    {
+	    $('#popup_notice').hide();
+    }
+    else
+    {
+	    $('#popup_notice').show();
+    }
+    function closepopup()
+    {
+        var chk = uf_getCheckedVal('hidePopup');
+        if (chk == "Y")
+        {
+            setCookie('hide_popup', 'yes', 1);
+        }
+	    $('#popup_notice').hide();
+	    $('#popup_notice').html('');
+    }
+    </text>
+}
+</script>
+
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
+<!---->

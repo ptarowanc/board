@@ -1,0 +1,54 @@
+﻿@model Tuple<String, String, String>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>인증중</title>
+    <script type="text/javascript" src="~/Scripts/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+    <div>
+    </div>
+
+    <!--KCP--><p class="countdown"></p>
+    <iframe id="auth_popup" name="auth_popup" width="100%" height="700" frameborder="1" scrolling="auto"></iframe>
+    
+    <form id="form_auth" name="form_auth" method="post" target="auth_popup" action="@UserWeb.Properties.Settings.Default.KCP_CERT_URL">
+        <input type="hidden" name="req_tx" value="cert" />
+        <input type="hidden" name="cert_method" value="01" />
+        <input type="hidden" name="web_siteid" value="" />
+        <input type="hidden" name="site_cd" value="@UserWeb.Properties.Settings.Default.KCP_SITE_CODE" />
+        <input type="hidden" name="Ret_URL" value="@Model.Item1" />
+        <input type="hidden" name="cert_otp_use" value="Y" />
+        <input type="hidden" name="cert_enc_use" value="Y" />
+        <input type="hidden" name="cert_able_yn" value="" />
+        <input type="hidden" name="ordr_idxx" value="@Model.Item2" />
+        <input type="hidden" name="up_hash" value="@Model.Item3" />
+    </form>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //$("#form_auth").submit();
+
+        });
+
+        var count = 5;
+        var countdown = setInterval(function () {
+            $("p.countdown").html("<b>본인인증 후 회원가입할 수 있습니다.<b><p>잠시후 인증 창으로 이동합니다.</p>");
+            if (count == 0) {
+                clearInterval(countdown);
+                $("p.countdown").html("");
+                $("#form_auth").submit();
+            }
+            count--;
+        }, 1000);
+    </script>
+</body>
+</html>

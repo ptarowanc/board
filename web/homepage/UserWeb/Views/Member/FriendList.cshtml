@@ -1,0 +1,234 @@
+﻿
+@{
+    var oddeven = true;
+}
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="~/Nvv/Css/nvv_memberLIst.css">
+
+<style>
+    /* Tooltip container */
+
+        /* Tooltip text */
+    .sorting_1 .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+    .sorting_1:hover .tooltiptext {
+        visibility: visible;
+    }
+    .ViewDateC {
+        -moz-box-shadow: inset 0px 1px 0px 0px #fff6af;
+        -webkit-box-shadow: inset 0px 1px 0px 0px #fff6af;
+        box-shadow: inset 0px 1px 0px 0px #fff6af;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+        background: -moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+        background: -webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+        background: -o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+        background: -ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+        background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+        background-color: #ffec64;
+        border: 1px solid #ffaa22;
+        display: inline-block;
+        cursor: pointer;
+        color: #333333;
+        font-family: Arial;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 6px 12px;
+        text-decoration: none;
+    }
+
+        .ViewDateC:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
+            background: -moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: -webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: -o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: -ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+            background: linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
+            background-color: #ffab23;
+        }
+
+        .ViewDateC:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .ViewDate {
+        -moz-box-shadow: inset 0px 1px 0px 0px #a4e271;
+        -webkit-box-shadow: inset 0px 1px 0px 0px #a4e271;
+        box-shadow: inset 0px 1px 0px 0px #a4e271;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+        background: -moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+        background: -webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+        background: -o-linear-gradient(top, #89c403 5%, #77a809 100%);
+        background: -ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+        background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+        background-color: #89c403;
+        border: 1px solid #74b807;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 6px 12px;
+        text-decoration: none;
+    }
+
+        .ViewDate:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+            background: -moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+            background: -webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+            background: -o-linear-gradient(top, #77a809 5%, #89c403 100%);
+            background: -ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+            background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+            background-color: #77a809;
+        }
+
+        .ViewDate:active {
+            position: relative;
+            top: 1px;
+        }
+
+</style>
+
+<div style="text-align:center; width:1065px; min-height: 700px; background-color: #071F30; padding: 10px 10px 10px 10px; margin:0 auto;">
+
+    <div class="xjMainTitle">친구 목록</div>
+    <div class="xjMainButton"><a href="javascript:DayView(3);" class="days day3 ViewDate">3일전</a><a href="javascript:DayView(2);" class="days day2 ViewDate">2일전</a><a href="javascript:DayView(1);" class="days day1 ViewDate">1일전</a><a href="javascript:DayView(0);" class="days day0 ViewDateC">현 재</a></div>
+
+    <table id="DataTable" class="display" width="1045px">
+        <thead>
+            <tr>
+                <th>아이디</th>
+                <th>닉네임</th>
+                <th>맞고 승</th>
+                <th>맞고 패</th>
+                <th>맞고 베팅금액</th>
+                <th>바둑이 승</th>
+                <th>바둑이 패</th>
+                <th>바둑이 베팅금액</th>
+                <th>친구</th>
+                <th>보유머니</th>
+                <th>금고머니</th>
+                <th>플레이중</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    var ajaxday = 0;
+    $(document).ready(function () {
+        $("#DataTable").DataTable({
+            destroy: true,
+            info: false,
+            processing: true,
+            serverSide: false,
+            paging: false,
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Korean.json"
+            },
+            columns: [
+                { "data": "UserID" },
+                { "data": "NickName" },
+                { "data": "MatgoWin" },
+                { "data": "MatgoLose" },
+                { "data": "MatgoBetMoney" },
+                { "data": "BadugiWin" },
+                { "data": "BadugiLose" },
+                { "data": "BadugiBetMoney" },
+                { "data": "FriendName" },
+                { "data": "FreeMoney" },
+                { "data": "SafeMoney" },
+                { "data": "play", "render": function (data, type, row) {
+                        if (data == 1) {
+                            data = "접속중";
+                        }
+                    return data;
+                }}
+            ],
+            "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+                        return commaSeparateNumber(data);
+                    },
+                    "targets": [4, 7,9,10]
+                },
+                {
+                    "render": function (data, type, row) {
+                        return data + "<span class=\"tooltiptext\">" + row["FriendName"] + "</span>";
+                    },
+                    "targets": [0]
+                },
+                {
+                    "visible": false,
+                    "targets": [8]
+                },
+                {
+                    "orderable": false,
+                    "targets": [0,1,2,3,4,5,6,7,8,9]
+                }
+            ],
+            ajax: {
+                type: "POST",
+                //async: false,
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("FriendListData", "Member")",
+                dataType: "json",
+                data: function (d) {
+                    d.day = ajaxday;
+                    return JSON.stringify(d);
+                }
+             }
+         });
+    });
+
+    function DayView(day) {
+        $("#DataTable").DataTable().clear().draw();
+        ajaxday = day;
+        $(".days").removeClass("ViewDateC");
+        $(".days").removeClass("ViewDate");
+        $(".days").addClass("ViewDate");
+        if (day == 0) {
+            $(".day0").removeClass("ViewDate");
+            $(".day0").addClass("ViewDateC");
+        } else if (day == 1) {
+            $(".day1").removeClass("ViewDate");
+            $(".day1").addClass("ViewDateC");
+        } else if (day == 2) {
+            $(".day2").removeClass("ViewDate");
+            $(".day2").addClass("ViewDateC");
+        } else if (day == 3) {
+            $(".day3").removeClass("ViewDate");
+            $(".day3").addClass("ViewDateC");
+        }
+        $("#DataTable").DataTable().ajax.reload();
+    }
+
+    function commaSeparateNumber(val) {
+        while (/(\d+)(\d{3})/.test(val.toString())) {
+            val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+        }
+        return val;
+    }
+
+
+</script>

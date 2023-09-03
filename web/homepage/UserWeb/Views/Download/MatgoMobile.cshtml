@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>맞고 모바일 다운로드 페이지</title>
+    <script type="text/javascript" src="~/Scripts/jquery-3.0.0.min.js"></script>
+</head>
+<body align="center">
+    <p class="countdown"></p>
+
+    <script type="text/javascript">
+
+        var count = 5;
+        var countdown = setInterval(function () {
+            $("p.countdown").html("<b><font color='blue' size='66pt'>"
+                + count + "</font><b><p>초 후 다운로드 됩니다.</p>");
+            if (count == 0) {
+                clearInterval(countdown);
+                var aIframe = document.createElement("iframe");
+
+                aIframe.setAttribute("id", "none");
+                aIframe.setAttribute("name", "none");
+
+                aIframe.style.width = "0px";
+                aIframe.style.height = "0px";
+                aIframe.src = "/Download/MatgoMobileLink";
+
+                document.getElementsByTagName("BODY")[0].appendChild(aIframe);
+
+                //window.open('/Download/MatgoMobileLink', "_self");
+            }
+            count--;
+        }, 1000);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿<style>
+    body {
+        background-color: #1c1c1c;
+    }
+
+    .main_box{width:100%; height:300px;}
+
+</style>
+
+<div class="container">
+    <!-- body_area -->
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>회원탈퇴</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap">
+                                <!-- 내용 시작 -->
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">회원탈퇴</h1>
+                                </div>
+                                <form id="form_userout" method="post">
+                                    <table class="main_box">
+                                        <tr>
+                                            <td bgcolor="#efefef" valign="top" align="left" style="padding:10px; border-radius:5px;">
+                                                <div style="padding:0 0 5px 0;">비밀번호 : <input type="password" name="m_pwd" style="width:100px;height:20px;border:1px solid #cccccc; border-radius:3px; text-indent:5px; outline:none;" /></div>
+                                                <div style="padding:0 0 5px 0;">탈퇴사유 : <textarea id="QuitReason" name="reason" style="width:350px;height:160px;border:1px solid #cccccc; border-radius:3px; text-indent:5px; outline:none;"></textarea></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="50" style="color:#eee;">※ 탈퇴 후 다시 회원가입할 수 있지만, 사용했던 아이디와 닉네임은 사용할 수 없습니다.</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="30" align="center">
+                                                <button type="submit" class="btn btn-red" style="width:80px;font-size:15px; padding: 5px 15px 5px 15px;">탈퇴</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                </div>
+                <!-- // content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#form_userout").submit(function (e) {
+
+            e.preventDefault();
+
+            $.ajax({
+                url: "/member/PerformMemberOut",
+                data: {
+                    m_pwd: $("input[name='m_pwd']").val(),
+                    reason: $("#QuitReason").val()
+                },
+                type: "POST",
+                dataType: "json",
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        alert("탈퇴 처리되었습니다");
+                        location.href = "/";
+                    } else {
+                        alert(obj.reason);
+                        return false;
+                    }
+
+                }, error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+
+            return false;
+        });
+    });
+
+    function uf_Cancel() {
+        document.form_userout.reset();
+    }
+</script>

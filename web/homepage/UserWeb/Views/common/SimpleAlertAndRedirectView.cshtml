@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+        <script type="text/javascript">
+
+            alert("@ViewBag.message");
+            @if (string.IsNullOrEmpty(ViewBag.frame))
+            {
+                <text>
+                document.location.href = "@ViewBag.redirect";
+                </text>
+            }
+            else
+            {
+                <text>
+                @(ViewBag.frame).document.location.href = "@ViewBag.redirect";
+                </text>
+            }
+
+
+        </script>
+</body>
+</html>

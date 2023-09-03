@@ -1,0 +1,219 @@
+﻿@{
+    Layout = null;
+
+    // 에디터  --> http://gijgo.com/LiveEdit/Index/bootstrap-4-wysiwyg.html?component=editor
+}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>새 판매 상품</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/jquery.form.min.js"></script>
+
+    <style>
+        .container {
+            max-width: 98%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <form id="WriteForm" action="/Article/RegNewPurchase" method="post" enctype="multipart/form-data">
+            <div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">상품</label>
+                    <div class="col-sm-10">
+                        <select name="productid" id="productid" class="form-control">
+                            <option value="">선택해 주세요</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">판매 상품명</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pname" id="pname" autocomplete="off" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">이미지명</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="img" id="img" autocomplete="off" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">판매 식별자</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pid" id="pid" autocomplete="off" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <!--
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="col-form-label">미사용</label>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="text" name="paidstring1" autocomplete="off" class="form-control" placeholder="미사용" />
+        </div>
+        <div class="form-group col-md-5">
+            <input type="number" name="paidvalue1" autocomplete="off" class="form-control" placeholder="미사용" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="col-form-label">미사용</label>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="text" name="paidstring2" autocomplete="off" class="form-control" placeholder="미사용" />
+        </div>
+        <div class="form-group col-md-5">
+            <input type="number" name="paidvalue2" autocomplete="off" class="form-control" placeholder="미사용" />
+        </div>
+    </div>
+        -->
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label class="col-form-label">사용기간</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input type="text" name="paidstring3" autocomplete="off" class="form-control" placeholder="(예: 기간제 30일)" />
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input type="number" name="paidvalue3" autocomplete="off" class="form-control" placeholder="일수 (예: 30)" />
+                    </div>
+                </div>
+                <!--
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="col-form-label">미사용</label>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="text" name="paidstring4" autocomplete="off" class="form-control" placeholder="미사용" />
+        </div>
+        <div class="form-group col-md-5">
+            <input type="number" name="paidvalue4" autocomplete="off" class="form-control" placeholder="미사용" />
+        </div>
+    </div>
+        -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">구매유형</label>
+                    <div class="col-sm-10">
+                        <select name="ptype" class="form-control">
+                            <option value="gamemoney">게임머니</option>
+                            <option value="inapp">모바일</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">가격</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="price" autocomplete="off" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">표시순서</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="vieworder" autocomplete="off" class="form-control" placeholder="아바타=1,화투패=2" />
+                    </div>
+                </div>
+                <div class="form-check row">
+                    <input class="form-check-input" type="checkbox" name="sale" value="Y" id="sale" />
+                    <label class="form-check-label" for="sale">
+                        판매중으로 표시
+                    </label>
+                </div>
+                <div class="form-check row">
+                    <input class="form-check-input" type="checkbox" name="saleweb" value="Y" id="saleweb" />
+                    <label class="form-check-label" for="saleweb">
+                        웹에서 판매
+                    </label>
+                </div>
+
+                <div class="row" style="border-width : 2px; margin-top : 6px;">
+                    <button class="btn btn-primary" type="submit">등록</button>&nbsp;
+                    <button class="btn btn-secondary" id="CloseButton" type="button">닫기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#WriteForm").ajaxForm({
+                dataType: "json",
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        if (opener != null) {
+                            opener.location.reload();
+                            window.close();
+                        } else {
+                            window.close();
+                        }
+                    } else {
+                        alert(obj.reason);
+                    }
+                },
+                error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+
+            $("#CloseButton").click(function () {
+                window.close();
+            });
+
+            var defaultIDs = [];
+            var defaultIDsimg = [];
+
+            $("#productid").change(function () {
+                var selected = $("#productid option:selected").val();
+                var motherPid = defaultIDs[selected];
+                var img = defaultIDsimg[selected];
+
+                $("#pname").val("");
+                $("#pid").val(motherPid);
+                $("#img").val(img);
+                if (motherPid == "")
+                    alert("상품 정보에 입력된 식별자가 없습니다.\n직접 입력해주세요");
+            });
+
+            $.ajax({
+                url: "@Url.Action("ProductList")",
+                dataType: "json",
+                type: "post",
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        for (var i = 0; i < obj.data.length; i++) {
+                            var option = $("<option />");
+                            option.prop("value", obj.data[i].Item1);
+                            option.text(obj.data[i].Item2);
+
+                            defaultIDs[obj.data[i].Item1] = obj.data[i].Item3;
+                            defaultIDsimg[obj.data[i].Item1] = obj.data[i].Item3;
+                            $("#productid").append(option);
+                        }
+                    } else {
+                        alert("상품 목록을 불러올 수 없습니다");
+                    }                    
+                },
+                error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            })
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+.cashTopBg{
+	width: 800px;
+	height: 140px;
+	background: url(/img/cash/my_cash.jpg);
+	float: left;
+	margin-top: 50px;
+}
+.cashTopBg div{
+	height: 60px;
+	line-height: 60px;
+	text-align: right;
+	padding-right: 20px;
+}
+.cashTopBg div:nth-child(1){
+	width: 396px;
+	padding-left: 140px;
+	font-weight: bold
+}
+.cashTopBg div:nth-child(2){
+	width: 396px;
+	padding-left: 140px;
+	font-weight: bold
+}
+.cashBottomBg{
+	width: 800px;
+	height: 86px;
+	background: url(/img/cash/pay_cash1.png);
+	float: left;
+	margin-bottom: 20px;
+}
+
+.cashBottomBg>div{
+	height: 43px;
+	line-height: 43px;
+	padding-left: 130px;
+}
+.cashBottomBg>div input,.cashBottomBg>div select{
+	vertical-align: middle
+}
+.cashBottomBg>div input{
+	position: relative;
+	top: -4px;
+}
+.cashBottomBg>div span{
+	margin-left: 1px;
+	margin-right: 7px;
+}
+.cashBottomBg>div select{
+	height: 20px;
+	border: 1px solid #d0d0d0;
+	font-size: 12px;
+}
+.cashBtn{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.cashBtn img{
+	cursor: pointer
+}
+.cashTable{
+	margin-top: 20px;
+	width: 100%;
+	border-top: 2px solid #000
+}
+.cashTable td{
+	height: 43px;
+	font-size: 13px;
+}
+.cashTable td:nth-child(1){
+	background: #fbfbfb;
+	text-align: center;
+	font-weight: bold;
+	width: 120px;
+	color: #000
+}
+.cashTable tr{
+	border-bottom: 1px solid #ccc
+}
+.cashTable td:nth-child(1) span{
+	display: inline-block;
+	width: 100%;
+	border-right: 2px solid #ccc;
+	height: 20px;
+	line-height: 20px;
+}
+.cashTable td:nth-child(2){
+	padding-left: 5px;
+}
+.cashTable td:nth-child(2) input{
+	width: 172px;
+	height: 22px;
+	line-height: 22px;
+	vertical-align: middle
+}
+.cashTable td:nth-child(2) .inputshort{
+	width: 61px;
+	height: 22px;
+	line-height: 22px;
+}
+.cashTable td:nth-child(2) select{
+	width: 35px;
+	height: 22px;
+	line-height: 22px;
+	vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

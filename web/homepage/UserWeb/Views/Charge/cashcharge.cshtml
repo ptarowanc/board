@@ -1,0 +1,149 @@
+﻿
+@{
+    Layout = "~/Views//Shared/_PopupLayout.cshtml";
+}
+<style type="text/css">
+    
+    body {
+        margin: 0;
+        font-size: .7em;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        background: #666;
+    }
+
+    h1 {
+        font-size: 2.4em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h2 {
+        font-size: 1.7em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin: 10px 0 0 0;
+        color: #000;
+    }
+
+    #header {
+        width: 96%;
+        height: 50px;
+        margin: 0 0 0 0;
+        padding: 0 2% 0 2%;
+        font-family: "trebuchet MS", Verdana, sans-serif;
+        color: #FFF;
+        background: linear-gradient( to bottom, #000, #666);
+    }
+
+    #content {
+        position: relative;
+        padding: 5px;
+    }
+
+    .content-container {
+        background: #eee;
+        width: 96%;
+        padding: 10px 10px 20px 10px;
+        position: relative;
+        text-align: center;
+    }
+    
+</style>
+<form name="form1" method="post" onsubmit="return uf_Submit();">
+    <div id="header"><div style="padding-top:11px;"><h2>캐쉬충전</h2></div></div>
+    <div id="content">
+        <div class="content-container">
+            <div style="text-align:left;color:#333;font-size:9pt;">
+                <div style="padding:8px;">
+                    <table width="490">
+                        <tr>
+                            <td style="padding:0 0 5px 0"><b>@ViewBag.userName</b>님의 현재 @UserWeb.Properties.Settings.Default.GS_CASH_NAME : @ViewBag.userCash 개</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#EAEAEA">
+                                <div style="padding:5px;">
+                                    <div style="height:25px;padding:5px 0 0 0;"><b>1.충전방법</b></div>
+                                    <div style="padding:5px;background:#ffffff;">
+                                        <input type="radio" name="pg_method" value="Trans" id="Trans" />계좌이체&nbsp;&nbsp;
+                                        <input type="radio" name="pg_method" value="Culture" id="Culture" />문화상품권&nbsp;&nbsp;
+                                        <input type="radio" name="pg_method" value="Prepaidcard" id="Prepaidcard" onclick="uf_GoPayCard();" />선불카드결제&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="5"></td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#EAEAEA">
+                                <div style="padding:5px;">
+                                    <div style="height:25px;padding:5px 0 0 0;"><b>2.충전금액</b></div>
+                                    <div style="padding:5px;background:#ffffff;">
+                                        <table width="100%">
+                                            <tr>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount1" value="1" /> 1,000원</td>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount2" value="2" /> 2,000원</td>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount3" value="3" /> 3,000원</td>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount4" value="4" /> 5,000원</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount5" value="5" /> 10,000원</td>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount6" value="6" /> 20,000원</td>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount7" value="7" /> 30,000원</td>
+                                                <td width="25%" height="20"><input type="radio" name="n_cash_no" id="n_cash_amount8" value="8" /> 50,000원</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="5"></td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#EAEAEA">
+                                <div style="padding:5px;">
+                                    <div style="height:25px;padding:5px 0 0 0;"><b>3.이용약관</b></div>
+                                    <div id="join_agree_box" style="width:465px;height:80px;padding:5px;background:#ffffff;overflow-y:scroll; ">
+                                        <!--#include virtual="/common/term_text.html"-->
+                                        @RenderPage("../main/TermText.cshtml")
+                                    </div>
+                                    <div style="padding:5px 0 3px 0;">
+                                        <input type="checkbox" name="agree" value="Y" /> 이용약관에 동의합니다.
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="50" align="center" style="padding:5px 0 0 0;">
+                                <input type="image" src="/images/web/btn_pg_confirm.png" alt="" />
+                                <a href="#" onclick="window.close();"><img src="/images/web/btn_pg_cancel.png" alt="" /></a>
+                            </td>
+                        </tr>
+                        <tr>
+                    </table>
+                    <script type="text/javascript">
+function uf_Submit(){
+	var frm=document.form1;
+	frm.action="CashChargeProc";
+	//frm.target="HiddenFrame";
+	if(CheckRadio(frm.pg_method)==false){alert("결제방식을 선택하세요"); return false;}
+	if(CheckRadio(frm.n_cash_no)==false){alert("결제금액을 선택하세요."); return false;}
+	if(CheckRadio(frm.agree)==false){alert("이용약관에 동의하셔야 가입이 가능합니다"); return false;}
+}
+function uf_GoPayCard(){
+	var frm=document.form1;
+	frm.action="/charge/paycard/paycard_request.asp";
+	frm.target="_self";
+	frm.submit();
+}
+                    </script>
+
+                </div>
+            </div>
+        </div>
+</form>

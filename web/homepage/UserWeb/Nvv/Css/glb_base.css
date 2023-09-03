@@ -1,0 +1,272 @@
+@charset "euc-kr";
+/* CSS Document */
+* {
+	
+}
+
+.sxRow {
+	display:table;
+}
+.sxDpyNone {
+	display:none;
+}
+.sxFloatL {
+	float:left;
+}
+.sxFloatR {
+	float:right;
+}
+
+.sxLink {
+	cursor:pointer !important;
+}
+.sxCurDef{
+	cursor:default;
+}
+
+/* Margin Seting Str ============================================================== */
+.sxMag0PxAuto{
+  margin: 0 auto;
+}
+.sxMag5px{
+	margin:5px	!important;
+}
+.sxmMag10px{
+	margin:10px !important;
+}
+.sxMagT1_5px{
+	margin-top:1.5px !important;
+}
+.sxMagT5px {
+	margin-top:5px !important;
+}
+.sxMagT10px {
+	margin-top:10px !important;
+}
+.sxMagT15px {
+	margin-top:15px !important;
+}
+.sxMagT20px {
+	margin-top:20px !important;
+}
+.sxMagT25px {
+	margin-top:25px !important;
+}
+.sxMagT30px {
+	margin-top:30px !important;
+}
+.sxMagT50px {
+	margin-top:50px !important;
+}
+.sxMagT60px {
+	margin-top:60px !important;
+}
+.sxMagT80px {
+	margin-top:80px !important;
+}
+.sxMagT100px {
+	margin-top:100px !important;
+}
+.sxMagT110px {
+	margin-top:110px !important;
+}
+.sxMagB1px {
+	margin-bottom:1px !important;
+}
+.sxMagB2px {
+	margin-bottom:2px !important;
+}
+.sxMagB5px {
+	margin-bottom:5px !important;
+}
+.sxMagB10px {
+	margin-bottom:10px !important;
+}
+.sxMagB20px {
+	margin-bottom:20px !important;
+}
+.sxMagB30px {
+	margin-bottom:30px !important;
+}
+.sxMagB50px {
+	margin-bottom:50px !important;
+}
+.sxMagL3px{
+	margin-left:3px !important;
+}
+.sxMagL4px{
+	margin-left:4px !important;
+}
+.sxMagL10px{
+	margin-left:10px !important;
+}
+.sxMagL15px{
+	margin-left:15px !important;
+}
+.sxMagL20px{
+	margin-left:20px !important;
+}
+.sxMagL30px{
+	margin-left:30px !important;
+}
+.sxMagL40px{
+	margin-left:40px !important;
+}
+.sxMagL50px{
+	margin-left:50px !important;
+}
+.sxMagL75px{
+	margin-left:75px !important;
+}
+.sxMagL100px{
+	margin-left:100px !important;
+}
+.sxMagL170px{
+	margin-left:170px !important;
+}
+.sxMagR1px {
+	margin-right:1px !important;
+}
+.sxMagR3px {
+	margin-right:3px !important;
+}
+.sxMagR5px {
+	margin-right:5px !important;
+}
+.sxMagR10px {
+	margin-right:10px !important;
+}
+.sxMagR15px {
+	margin-right:15px !important;
+}
+.sxMagR20px {
+	margin-right:20px !important;
+}
+.sxMagR30px {
+	margin-right:30px !important;
+}
+.sxMagR50px {
+	margin-right:50px !important;
+}
+.sxMagR60px {
+	margin-right:60px !important;
+}
+.sxMagR70px {
+	margin-right:70px !important;
+}
+.sxMagR100px {
+	margin-right:100px !important;
+}
+.sxMagR130px {
+	margin-right:130px !important;
+}
+/* Margin Seting End ============================================================== */
+
+/* Padding Seting Str ============================================================= */
+.sxPad5px {
+	padding:5px !important;
+}
+.sxPad10px {
+	padding:10px !important;
+}
+.sxPad20px {
+	padding:20px !important;
+}
+.sxPadT5px {
+	padding-top:5px !important;
+}
+.sxPadT10px {
+	padding-top:10px !important;
+}
+.sxPadT20px {
+	padding-top:20px !important;
+}
+.sxPadT30px {
+	padding-top:30px !important;
+}
+.sxPadT50px {
+	padding-top:50px !important;
+}
+.sxPadT70px {
+	padding-top:70px !important;
+}
+.sxPadT100px {
+	padding-top:100px !important;
+}
+.sxPadB5px {
+	padding-bottom:5px !important;
+}
+.sxPadB10px {
+	padding-bottom:10px !important;
+}
+.sxPadB20px {
+	padding-bottom:20px !important;
+}
+.sxPadB30px {
+	padding-bottom:30px !important;
+}
+.sxPadB50px {
+	padding-bottom:50px !important;
+}
+.sxPadL5px {
+	padding-left:5px !important;
+}
+.sxPadL10px {
+	padding-left:10px !important;
+}
+.sxPadL20px {
+	padding-left:20px !important;
+}
+.sxPadL30px {
+	padding-left:30px !important;
+}
+.sxPadL35px {
+	padding-left:35px !important;
+}
+.sxPadL50px {
+	padding-left:50px !important;
+}
+.sxPadR5px {
+	padding-right:5px !important;
+}
+.sxPadR10px {
+	padding-right:10px !important;
+}
+.sxPadR20px {
+	padding-right:20px !important;
+}
+.sxPadR30px {
+	padding-right:30px !important;
+}
+.sxPadR50px {
+	padding-right: 50px !important;
+}
+/* Padding Seting End ============================================================= */
+
+/* text Seting Str ================================================================ */
+.sxTextL{
+  text-align: left;
+}
+.sxTextC{
+  text-align: center;
+}
+.sxTextR{
+  text-align: right;
+}
+.sxTextT{
+	vertical-align:top;
+}
+.sxTextM{
+	vertical-align:middle;
+}
+.sxTextB{
+	vertical-align:bottom;
+}
+.sxTextFs0px{
+	font-size:0px;
+}
+.sxTextB {
+	font-weight: bold
+}
+/* text Seting End ================================================================ */
+

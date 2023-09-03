@@ -1,0 +1,203 @@
+.xjPage{
+	margin-top: 10px;
+}
+.xjPage img{
+	cursor: pointer
+}
+.servicelistBtn img{
+	cursor: pointer;
+	margin-top: 10px
+}
+.serviceListTable{
+	width: 100%;
+	font-size: 12px;
+}
+.serviceListTable td,.serviceListTable th{
+	text-align: center;
+	height: 35px;
+}
+.serviceListTable{
+	border-top: 2px solid #000;
+	margin-top: 10px;
+	border-bottom: 1px solid #ccc
+}
+.serviceListTable th{
+	background: #f0f0f0;
+	border-bottom: 1px solid #ccc
+}
+.serviceListTable tbody{
+	border-top: 2px solid #e1edf5
+}
+.serviceListTable tr{
+	border-bottom: 1px solid #ccc
+}
+a:hover{
+	text-decoration: none;
+}
+.serviceViewBg{
+	width: 800px;
+	float: left;
+	height: 522px;
+	background: url(/img/service/service_view_bg.jpg);
+	font-size: 12px;
+}
+.serviceViewTitle{
+	height: 38px;
+	line-height: 38px;
+	margin-top: 40px;
+	padding: 0 15px;
+}
+.subSeiviceViewContent{
+	width:750px;
+	float: right;
+	height: 218px;
+	padding-left: 10px;
+	padding-top: 7px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	overflow-y: auto;
+	word-wrap: break-word;
+	word-break: normal;
+	border: none;
+	resize: none;
+	margin-top: 2px
+}
+.subSeiviceViewContent:focus{
+	outline: none
+}
+.serviceViewSubTitle{
+	margin-top: 10px;
+}
+.serviceWriteTable{
+	width: 100%;
+	border-top: 2px solid #000;
+	margin-top: 30px;
+	font-size: 12px;
+}
+.serviceWriteTable th{
+	color: #000;
+	font-weight: bold;
+	background: #f0f0f0;
+	height: 35px;
+	line-height: 35px;
+	padding-left: 15px;
+}
+.serviceWriteTable tr td:nth-child(1){
+	text-align: center;
+	vertical-align: middle;
+	width: 95px;
+	font-weight: bold;
+	color: #000
+}
+.serviceWriteTable tr td{
+	background: #fff!important;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.serviceWriteTable{
+	border-collapse:separate;
+  border-spacing:1px;
+	background: #ccc
+}
+.serviceWriteTable input[type=radio]{
+	margin-left: 3px;
+	vertical-align: middle;
+	position: relative;
+	top: -3px;
+	margin-right: 2px;
+}
+.serviceWriteTable div span{
+	font-size: 12px;
+	display: inline-block;
+	width: 75px;
+}
+.serviceWriteTable input[type=text]{
+	margin-left: 3px;
+	padding-left: 5px;
+	width: 680px;
+	border: 1px solid #ccc
+}
+.serviceWriteTable textarea{
+	width: 680px;
+	height: 162px;
+	resize: none;
+	margin-left: 3px;
+	padding: 5px;
+	overflow-y: auto
+}
+.subDownloadTopBg{
+	width: 800px;
+	height: 150px;
+	margin: 0 auto;
+	background: url(/img/download/down_bg.png);
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding-left: 25px;
+	padding-top: 110px;
+}
+.subDownloadTopBg img{
+	cursor: pointer
+}
+.subDownloadTopBg img:nth-child(2){
+	margin-left: 5px;
+	padding-right: 5px;
+}
+
+.downloadBottomBg{
+	width: 800px;
+	height: 536px;
+	margin-top: 30px;
+	background: url(/img/download/down_bg2.png);
+	padding-top: 220px;
+}
+.downloadBottomBg img{
+	cursor: pointer
+}
+.downloadBottomBg ul {
+	margin-left: 150px;
+}
+.downloadBottomBg li:nth-child(n+2){
+	margin-top: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

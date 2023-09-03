@@ -1,0 +1,37 @@
+/*
+
+=====================
+CLIENT SECTION
+=====================
+
+*/
+
+.table-client-dashboard {
+    th, td {vertical-align: middle !important;}
+    .btn {margin-bottom: 10px;}
+
+    @media (max-width: @screen-sm-max) {
+        td {font-size: @font-size-small;}
+    }
+}
+
+.applicant {.clearfix;
+            .image {float: right; width: 100px; margin-left: 20px;}
+            .text {float: left;}
+            .btn {margin-bottom: 5px; margin-right: 5px;}
+            .intro {float: left; font-size: @font-size-small; color: @gray-light; width: ~"calc(100% - 120px)";}
+}
+
+.job-add-form {
+    label {font-weight: bold;
+           .note {font-weight: normal;}
+    }
+}
+
+.navbar-nav > li > a.client-menu-toggle {padding-left: 50px;}
+.client-menu-image {position: absolute; background: #fff; width: 40px; padding: 5px; top: 25px; left: 0; border-radius: 50%; }
+
+@media (max-width: @grid-float-breakpoint-max) {
+    .navbar-nav > li > a.client-menu-toggle {padding-left: 60px;}
+    .client-menu-image {top: 0; left: 10px;}
+}

@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Join01";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<script type="text/javascript" src="/common/js/jquery.form.js"></script>
+<link rel="stylesheet" href="/common/css/common.css">
+<link rel="stylesheet" href="/common/css/main.css">
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-md-12">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>회원가입</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap">
+                                <div class="tit_box">
+                                    <h1 class="heading">회원가입</h1>
+                                </div>
+                                <!-- 내용 시작 -->
+                                <div class="origin">
+                                    <div class="header">
+                                        <h2>약관동의</h2>
+                                        <div class="txt_top">
+                                            <div class="ig_chk" id="chkall"><p class="f14">@UserWeb.Properties.Settings.Default.GS_CORP_NAME 이용약관 및 개인정보취급방침에 모두 동의합니다.</p></div>
+                                        </div>
+                                    </div>
+                                    <div class="bar_line01"></div>
+                                    <div>
+                                        <div class="agree">
+                                            <div class="ag_bx ag1">
+                                                <div class="ig_chk" id="chk1"><p class="f16">이용약관 동의 <em class="on">(필수)</em></p></div>
+                                                <div class="ag_txt">
+                                                    @RenderPage("../Main/TermText.cshtml")
+                                                </div>
+                                            </div>
+                                            <div class="ag_bx ag2">
+                                                <div class="ig_chk" id="chk2"><p class="f16">개인정보 수집 및 이용 동의 <em class="on">(필수)</em></p></div>
+                                                <div class="ag_txt">
+                                                    @RenderPage("../Main/PrivacyText.cshtml")
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bx_btn">
+                                            <ul class="type2">
+                                                <li class="lt"><button class="btn bt_01" onclick="GoSubmit();"><span>동의</span></button></li>
+                                                <li class="rt"><button class="btn bt_02" onclick=""><span>취소</span></button>	</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // content -->
+    </div>
+</div>
+<!-- // body_area -->
+
+<form name="form_agree" method="post">
+    <input type="hidden" name="agreement" value="Y" />
+</form>
+<script type="text/javascript">
+    //인증서밋
+    function GoSubmit() {
+        var frm = document.form_agree;
+        frm.action = "join02";
+        frm.submit();
+    }
+</script>

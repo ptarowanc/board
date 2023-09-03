@@ -1,0 +1,34 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@UserWeb.Properties.Settings.Default.GS_SITE_NAME</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="No-Cache" />
+    <meta http-equiv="Pragma" content="No-Cache" />
+    <meta name="keywords" content="@UserWeb.Properties.Settings.Default.GS_SITE_NAME,카드,바둑이,맞고,포커,화투,홀덤,텍사스홀덤" />
+    <meta name="description" content="@UserWeb.Properties.Settings.Default.GS_SITE_NAME,카드,바둑이,맞고,포커,화투,홀덤,텍사스홀덤" />
+    <script type="text/javascript" src="/common/js/jquery.min.js?ver=@UserWeb.Properties.Settings.Default.CSS_VER"></script>
+    <script type="text/javascript" src="/common/js/ui.js?ver=@UserWeb.Properties.Settings.Default.CSS_VER"></script>
+    <script type="text/javascript" src="/common/js/jquery.cookie.js?ver=@UserWeb.Properties.Settings.Default.CSS_VER"></script>
+    <script type="text/javascript" src="/include/js/common.js?ver=@UserWeb.Properties.Settings.Default.CSS_VER"></script>
+    <link rel="stylesheet" href="/common/css/common.css?ver=@UserWeb.Properties.Settings.Default.CSS_VER">
+    <link rel="stylesheet" href="/common/css/main.css?ver=@UserWeb.Properties.Settings.Default.CSS_VER">
+</head>
+<body>
+
+@RenderBody()
+
+<script type="text/javascript">
+$(document).ready(function(){
+	// 자동 완성 체크
+	$("form").attr("autocomplete","off");
+	$("input").attr("autocomplete","off");
+});
+</script>
+</body>
+</html>

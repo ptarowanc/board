@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Views/Shared/_PopupLayout.cshtml";
+}
+<style type="text/css">
+    <!--
+    body {
+        margin: 0;
+        font-size: .7em;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        background: #666;
+    }
+
+    h1 {
+        font-size: 2.4em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h2 {
+        font-size: 1.7em;
+        margin: 0;
+        color: #FFF;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin: 10px 0 0 0;
+        color: #000;
+    }
+
+    #header {
+        width: 96%;
+        height: 50px;
+        margin: 0 0 0 0;
+        padding: 0 2% 0 2%;
+        font-family: "trebuchet MS", Verdana, sans-serif;
+        color: #FFF;
+        background: linear-gradient( to bottom, #000, #666);
+    }
+
+    #content {
+        position: relative;
+        padding: 5px;
+    }
+
+    .content-container {
+        background: #eee;
+        width: 96%;
+        padding: 10px 10px 20px 10px;
+        position: relative;
+        text-align: center;
+        min-height: 510px;
+    }
+    -->
+</style>
+<link type="text/css" href="/include/css/board_style.css" rel="stylesheet" />
+<div id="header"><div style="padding-top:11px;"><h2>공지사항</h2></div></div>
+<div id="content">
+    <div class="content-container">
+        <div style="text-align:left;color:#333;font-size:9pt;">
+            <table width="580" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="4" height="2" bgcolor="#94ccf4"></td>
+                </tr>
+                <tr>
+                    <td height="35" width="80" bgcolor="#fff" align="left">
+                        &nbsp;&nbsp;
+                        ＊ 작성자
+                    </td>
+                    <td height="35" colspan="3" bgcolor="#fff" align="left">
+                        [관리자] (@ViewBag.rs_d_insert)
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" width="80" bgcolor="#fff" align="left">
+                        &nbsp;&nbsp;
+                        ＊ 제 목
+                    </td>
+                    <td height="35" colspan="3" bgcolor="#fff" align="left">
+                        @ViewBag.rs_v_title
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" background="" align="left" valign="top" style="height:300px;">
+                        <div style="padding:10px 10px 20px 10px;">
+                            @Html.Raw(@ViewBag.rs_v_contents)
+                        </div>
+
+                        <div align="center">
+                            <a href="#" onclick="uf_GoList();;" class="btn btn-concrete" style="width:80px;height:20px;font-size:15px; padding: 5px 15px 5px 15px;">글목록</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+<form name="GoFrm" method="get">
+    <input type="hidden" name="n_no" value="@ViewBag.n_no" />
+    <input type="hidden" name="PageNo" value="@ViewBag.PageNo" />
+    <input type="hidden" name="StartPage" value="@ViewBag.StartPage" />
+    <input type="hidden" name="PageSize" value="@ViewBag.PageSize" />
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+//새로고침
+function uf_Reload(){
+	var frm = document.GoFrm;
+	frm.action = "NoticeView";
+	frm.target = "_self";
+	frm.submit();
+}
+//페이징
+function uf_GoList(){
+	var frm = document.GoFrm;
+	frm.action = "NoticeList";
+	frm.target = "_self";
+	frm.submit();
+}
+//]]>
+</script>

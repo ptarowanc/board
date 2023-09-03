@@ -1,0 +1,15 @@
+﻿@model UserWeb.Models.MainViewModel
+
+@{
+    Layout = null;
+//    공지
+}
+<ul>
+    @foreach (var entry in Model.noticeList)
+    {
+        var displayDate = entry.lastmodifiedOn.HasValue ? entry.lastmodifiedOn.Value : entry.createdOn;
+        <text>
+        <li><a href="#" onclick="OpenComMenu('/customer/NoticeView?n_no=@entry.id', 620, 600);return false;"><span>@entry.title</span> <em>@displayDate.ToString("yyyy-MM-dd")</em></a></li>
+        </text>
+    }
+</ul>

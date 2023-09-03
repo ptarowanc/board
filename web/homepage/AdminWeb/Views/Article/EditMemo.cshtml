@@ -1,0 +1,111 @@
+﻿@model DBLIB.PlayerAdminMemo
+@{
+    Layout = null;
+
+    // 에디터  --> http://gijgo.com/LiveEdit/Index/bootstrap-4-wysiwyg.html?component=editor
+}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>상품</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/jquery.form.min.js"></script>
+
+    <style>
+        .container {
+            max-width: 98%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <form id="WriteForm" action="/Article/UpdateMemo" method="post" enctype="multipart/form-data">
+            <div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">회원 계정</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="userId" autocomplete="off" class="form-control" value="@Model.Player.NickName (@Model.Player.UserID)" disabled/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">쪽지 내용</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="message" autocomplete="off" class="form-control" placeholder="내용(100자 이내)" maxlength="100" value="@Model.message"/>
+                    </div>
+                </div>
+
+                <div class="row" style="border-width : 2px; margin-top : 6px;">
+                    <input type="hidden" name="id" value="@Model.id" />
+                    <button class="btn btn-primary" type="submit">수정</button>&nbsp;
+                    <button class="btn btn-danger" type="button" id="RemoveButton">삭제</button>&nbsp;
+                    <button class="btn btn-secondary" id="CloseButton" type="button">닫기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#WriteForm").ajaxForm({
+                dataType: "json",
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        if (opener != null) {
+                            opener.location.reload();
+                            window.close();
+                        } else {
+                            window.close();
+                        }
+                    } else {
+                        alert(obj.reason);
+                    }
+                },
+                error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+            
+            $("#CloseButton").click(function () {
+                window.close();
+            });
+
+            $("#RemoveButton").click(function (e) {
+                e.preventDefault();
+
+                if (!confirm("삭제 하시겠습니까?"))
+                    return;
+
+                $.ajax({
+                    url: "/Memo/DeleteMemo",
+                    data: { "id" : @Model.id },
+                    dataType: "json",
+                    type: "post",
+                    success: function (obj) {
+                        if (obj.result == "OK") {
+                            alert("삭제 되었습니다.");
+                            opener.location.reload();
+                            $("#CloseButton").trigger("click");
+                        } else {
+                            alert("오류로 삭제할 수 없습니다");
+                        }
+                    }, error: function () {
+                        alert("서버 오류로 요청을 처리하지 못했습니다.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "IsLogin";
+}
+
+@if (ViewBag.IsLogon)
+{
+    <div style="padding-top:8px;">
+        <img src="/images/web/btn_cash.png" alt="" style="cursor:pointer;" onclick="uf_CommonUrl(2, 'cashcharge');return false;" />&nbsp;
+        <!--img src="/images/web/btn_free.png" alt="" style="cursor:pointer;" onclick="uf_CommonUrl(3, 'freecharge');return false;" /-->
+    </div>
+}
+else
+{
+    <p class="txtId">
+        ID저장 <input type="checkbox" class="check_box" name="idsave" id="SaveIDCheck" value="Y">
+        보안접속 <input type="checkbox" class="check_box">
+        카드보안 <img src="/images/main/card_on.png" alt="on" /><!--img src="/images/main/card_off.png" alt="off" /-->
+    </p>
+}

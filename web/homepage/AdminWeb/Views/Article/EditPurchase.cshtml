@@ -1,0 +1,230 @@
+﻿@model DBLIB.PurchaseList
+
+@{
+    Layout = null;
+
+    // 에디터  --> http://gijgo.com/LiveEdit/Index/bootstrap-4-wysiwyg.html?component=editor
+}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>판매 상품</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/jquery.form.min.js"></script>
+
+    <style>
+        .container {
+            max-width: 98%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <form id="WriteForm" action="/Article/UpdatePurchase" method="post">            
+            <div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">상품</label>
+                    <div class="col-sm-10">
+                        <select name="productid" id="productid" class="form-control">
+                            <option value="">선택해 주세요</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">판매 상품명</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pname" id="pname" autocomplete="off" class="form-control" placeholder="상품명" value="@Model.pname" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">이미지명</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="img" id="img" autocomplete="off" class="form-control" placeholder="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">판매 식별자</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pid" id="pid" autocomplete="off" class="form-control" placeholder="상품 식별자" value="@Model.pid" />
+                    </div>
+                </div>
+                <!--
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="col-form-label">필드1</label>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="text" name="paidstring1" autocomplete="off" class="form-control" placeholder="표시 가격1(표시 수량1)" value="@Model.paidstring1" />
+        </div>
+        <div class="form-group col-md-5">
+            <input type="number" name="paidvalue1" autocomplete="off" class="form-control" placeholder="내부 가격1" value="@Model.paidvalue1" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="col-form-label">필드2</label>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="text" name="paidstring2" autocomplete="off" class="form-control" placeholder="표시 가격2(표시 수량2)" value="@Model.paidstring2" />
+        </div>
+        <div class="form-group col-md-5">
+            <input type="number" name="paidvalue2" autocomplete="off" class="form-control" placeholder="내부 가격2" value="@Model.paidvalue2" />
+        </div>
+    </div>
+                    -->
+
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label class="col-form-label">사용기간</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input type="text" name="paidstring3" autocomplete="off" class="form-control" placeholder="(예: 기간제 30일)" value="@Model.paidstring3" />
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input type="number" name="paidvalue3" autocomplete="off" class="form-control" placeholder="일수 (예: 30)" value="@Model.paidvalue3" />
+                    </div>
+                </div>
+                <!--
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="col-form-label">필드4</label>
+        </div>
+        <div class="form-group col-md-5">
+            <input type="text" name="paidstring4" autocomplete="off" class="form-control" placeholder="표시 가격4(표시 수량4)" value="@Model.paidstring4" />
+        </div>
+        <div class="form-group col-md-5">
+            <input type="number" name="paidvalue4" autocomplete="off" class="form-control" placeholder="내부 가격4" value="@Model.paidvalue4" />
+        </div>
+    </div>
+        -->
+
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">구매유형</label>
+                    <div class="col-sm-10">
+                        <select id="ptype" name="ptype" class="form-control">
+                            <option value="inapp">모바일</option>
+                            <option value="cash">캐쉬</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">가격</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="price" autocomplete="off" class="form-control" placeholder="가격" value="@Model.price" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">표시순서</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="vieworder" autocomplete="off" class="form-control" placeholder="아바타=1,화투패=2" />
+                    </div>
+                </div>
+                <div class="form-check row">
+                    <input class="form-check-input" type="checkbox" name="sale" value="Y" id="sale" />
+                    <label class="form-check-label" for="sale">
+                        판매중으로 표시
+                    </label>
+                </div>
+                <div class="form-check row">
+                    <input class="form-check-input" type="checkbox" name="saleweb" value="Y" id="saleweb" />
+                    <label class="form-check-label" for="saleweb">
+                        웹에서 판매
+                    </label>
+                </div>
+
+                <div class="row" style="border-width : 2px; margin-top : 6px;">
+                    <button class="btn btn-primary" type="submit">변경</button>&nbsp;
+                    <button class="btn btn-secondary" id="CloseButton" type="button">닫기</button>
+                </div>
+            </div>
+            <input type="hidden" name="id" value="@Model.id" />
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#WriteForm").ajaxForm({
+                dataType: "json",
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        if (opener != null) {
+                            opener.location.reload();
+                            window.close();
+                        } else {
+                            window.close();
+                        }
+                    } else {
+                        alert(obj.reason);
+                    }
+                },
+                error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+
+            $("#CloseButton").click(function () {
+                window.close();
+            });
+
+            var defaultIDs = [];
+            var defaultIDsimg = [];
+
+            $("#productid").change(function () {
+                var selected = $("#productid option:selected").val();
+                var motherPid = defaultIDs[selected];
+                var img = defaultIDsimg[selected];
+
+                $("#pname").val("");
+                $("#pid").val(motherPid);
+                $("#img").val(img);
+                if (motherPid == "")
+                    alert("상품 정보에 입력된 식별자가 없습니다.\n직접 입력해주세요");
+            });
+
+            $.ajax({
+                url: "@Url.Action("ProductList")",
+                dataType: "json",
+                type: "post",
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        for (var i = 0; i < obj.data.length; i++) {
+                            var option = $("<option />");
+                            option.prop("value", obj.data[i].Item1);
+                            option.prop("selected", (obj.data[i].Item1 == @Model.productid) ? "selected" : "");
+                            option.text(obj.data[i].Item2);
+
+                            defaultIDs[obj.data[i].Item1] = obj.data[i].Item3;
+                            defaultIDsimg[obj.data[i].Item1] = obj.data[i].Item3;
+                            $("#productid").append(option);
+                        }
+                    } else {
+                        alert("상품 목록을 불러올 수 없습니다");
+                    }
+                },
+                error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+
+            $("#ptype").val("@Model.purchase_kind");
+            $("#sale").prop("checked", @(Model.sale ? "true" : "false") );
+            $("#saleweb").prop("checked", @(Model.saleweb ? "true" : "false") );
+
+        });
+    </script>
+</body>
+</html>

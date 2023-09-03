@@ -1,0 +1,354 @@
+﻿@model UserWeb.Models.AvatarShopModel
+@{
+    ViewBag.Title = "Avatar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int labelPrice = 0, index = 0, col = 0;
+    bool label = false;
+}
+
+<script type="text/javascript">
+
+    $("#menu3").addClass("active");
+    $("#menu1").removeClass("active");
+    $("#menu2").removeClass("active");
+    $("#menu4").removeClass("active");
+    $("#menu5").removeClass("active");
+
+
+</script>
+
+<link href="~/common/css/main.css" rel="stylesheet" />
+<style>
+    .cashIcon {
+        background-color: #ff6a00;
+        color: #fff;
+        padding: 2px 4px 1px 4px;
+        border-radius: 50%;
+    }
+
+    .userCash {
+        float: right;
+        font-size: 25px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .sub_menu_title {
+        display: inline-block;
+    }
+
+        .sub_menu_title .price {
+            font-size: 23px;
+            font-weight: bold;
+            display: inline;
+            margin-left: 10px;
+        }
+
+        .sub_menu_title .money {
+            font-size: 15px;
+            display: inline;
+            margin-left: 20px;
+        }
+
+    button.cashCharge {
+        background: #ff006e;
+        color: #fff;
+        border: none;
+        position: relative;
+        height: 27px;
+        font-size: 18px;
+        padding: 0 0px;
+        cursor: pointer;
+        transition: 800ms ease all;
+        outline: none;
+        padding: 0px 20px 0px 20px;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+        button.cashCharge:hover {
+            background: #fff;
+            color: #ff006e;
+        }
+
+        button.cashCharge:before, button.cashCharge:after {
+            background: #ff006e;
+        }
+
+
+    ul.tabs {
+        margin: 0;
+        padding: 0;
+        float: left;
+        list-style: none;
+        height: 32px;
+        border-bottom: 1px solid #666;
+        width: 100%;
+        font-size: 25px;
+        background-color: #fff;
+    }
+
+        ul.tabs li {
+            text-align: center;
+            cursor: pointer;
+            width: 82px;
+            height: 31px;
+            line-height: 31px;
+            border: 1px solid #666;
+            font-weight: bold;
+            background: #fafafa;
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+        }
+
+            ul.tabs li.active {
+                background: #FFFFFF;
+                border-bottom: 1px solid #FFFFFF;
+            }
+
+    .tab_container {
+        border: 1px solid #666;
+        border-top: none;
+        clear: both;
+        float: left;
+        width: 100%;
+        background: #FFFFFF;
+    }
+
+    .tab_content {
+        padding: 5px;
+        font-size: 12px;
+        display: none;
+    }
+
+    .tab_container .tab_content ul {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+        .tab_container .tab_content ul li {
+            padding: 5px;
+            list-style: none;
+        }
+
+    #container {
+        width: 249px;
+        margin: 0 auto;
+    }
+</style>
+
+
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="content">
+                    <!-- title -->
+                    <section style="background: #fafafa;">
+                        <div class="breadcrumbs">
+                            <ul class="breadcrumb">
+                                <li><a href="/">Home</a></li>
+                                <li>아바타샵</li>
+                            </ul>
+                        </div>
+
+                        <!-- // title -->
+                        <div class="cont_wrap" align="center" style="text-align:center;">
+                            <div class="category">
+
+                                <ul class="tabs">
+                                    <li class="active" rel="tab1">아바타</li>
+                                    <li rel="tab2">화투패</li>
+                                </ul>
+                            </div>
+
+                            <!-- 내용 시작 -->
+                            <div class="tab_container">
+                                <div id="tab1" class="tab_content">
+
+                                    @while (index < Model.webShopItemListAvata.Count())
+                                    {
+                                        col = 0;
+                                        if (Model.webShopItemListAvata[index].price != labelPrice)
+                                        {
+                                            label = true;
+                                            labelPrice = (int)Model.webShopItemListAvata[index].price;
+
+                                            <text>
+
+                                                <div align="center">
+                                                    <table width="100%">
+                                                        <div class="sub_menu_title"> <div class="price">@labelPrice.ToString("N0") @UserWeb.Properties.Settings.Default.GS_MONEY_NAME</div> <div class="money"><!--무료머니 @Model.webShopItemListAvata[index].paidstring1 &nbsp;&nbsp; 유료머니 @Model.webShopItemListAvata[index].paidstring2--> </div></div>
+                                            </text>
+                                        }
+                                        else
+                                        {
+                                            label = false;
+                                        }
+
+
+                                        for (; index < Model.webShopItemListAvata.Count(); index++)
+                                        {
+                                            if (col == 0)
+                                            {
+                                                @:<tr>
+                                                }
+                                                if (Model.webShopItemListAvata[index].price != labelPrice)
+                                                {
+                                                    break;
+                                                }
+                                                <text>
+                                                    <td width="20%" align="center">
+                                                        <div style="padding-top:3px;"><a href="#" onclick="uf_BuyAvatar(@(Model.webShopItemListAvata[index].id),'@(Model.webShopItemListAvata[index].pname)',@(Model.webShopItemListAvata[index].price));return false;"><img src="/images/@(Model.webShopItemListAvata[index].ptype)/@(Model.webShopItemListAvata[index].img).png" alt="" style="border:1px solid #cecece;" /></a></div>
+                                                        <div style="padding-top:3px;">@(Model.webShopItemListAvata[index].pname)</div>
+                                                        <div style="padding-top:3px;"><b class="cashIcon">G</b> @(Model.webShopItemListAvata[index].price)</div>
+                                                        <div style="padding-top:3px;margin-bottom:20px;"><a href="#" class="btn btn-dark-blue" style="width:50px;height:17px;font-size:13px; padding: 2px 5px 2px 5px;" onclick="uf_BuyAvatar(@(Model.webShopItemListAvata[index].id),'@(Model.webShopItemListAvata[index].pname)',@(Model.webShopItemListAvata[index].price));return false;">구매</a></div>
+                                                    </td>
+                                                </text>
+                                                col++;
+                                                if (col >= 4)
+                                                {
+                                                @:</tr>
+                                                col = 0;
+                                            }
+                                        }
+
+                                        if (label)
+                                        {
+                                        @:</table>
+                                    @:</div>
+                                }
+
+                            }
+
+                                </div>
+                                <!-- #tab1 -->
+                                <div id="tab2" class="tab_content">
+                                    @{
+                                        index = 0;
+                                        label = false;
+                                    }
+                                    @while (index < Model.webShopItemListCard.Count())
+                                    {
+                                        col = 0;
+                                        if (Model.webShopItemListCard[index].price != labelPrice)
+                                        {
+                                            label = true;
+                                            labelPrice = (int)Model.webShopItemListCard[index].price;
+
+                                            <text>
+                                                <div align="center" style="margin-bottom:20px;">
+                                                    <table width="100%">
+                                                        <div class="sub_menu_title"> <div class="price">@labelPrice.ToString("N0") @UserWeb.Properties.Settings.Default.GS_MONEY_NAME</div> <div class="money"><!--무료머니 @Model.webShopItemListCard[index].paidstring1 &nbsp;&nbsp; 유료머니 @Model.webShopItemListCard[index].paidstring2--> </div></div>
+                                            </text>
+                                        }
+                                        else
+                                        {
+                                            label = false;
+                                        }
+
+
+                                        for (; index < Model.webShopItemListCard.Count(); index++)
+                                        {
+                                            if (col == 0)
+                                            {
+                                                @:<tr>
+                                                }
+                                                if (Model.webShopItemListCard[index].price != labelPrice)
+                                                {
+                                                    break;
+                                                }
+                                                <text>
+                                                    <td width="20%" align="center">
+                                                        <div style="padding-top:3px;"><a href="#" onclick="uf_BuyAvatar(@(Model.webShopItemListCard[index].id),'@(Model.webShopItemListCard[index].pname)',@(Model.webShopItemListCard[index].price));return false;"><img src="/images/@(Model.webShopItemListCard[index].ptype)/@(Model.webShopItemListCard[index].img).png" alt="" style="border:1px solid #cecece;" /></a></div>
+                                                        <div style="padding-top:3px;">@(Model.webShopItemListCard[index].pname)</div>
+                                                        <div style="padding-top:3px;"><b class="cashIcon">G</b> @(Model.webShopItemListCard[index].price)</div>
+                                                        <div style="padding-top:3px;margin-bottom:20px;"><a href="#" class="btn btn-dark-blue" style="width:50px;height:17px;font-size:13px; padding: 2px 5px 2px 5px;" onclick="uf_BuyAvatar(@(Model.webShopItemListCard[index].id),'@(Model.webShopItemListCard[index].pname)',@(Model.webShopItemListCard[index].price));return false;">구매</a></div>
+                                                    </td>
+                                                </text>
+                                                col++;
+                                                if (col >= 4)
+                                                {
+                                                @:</tr>
+                                                col = 0;
+                                            }
+                                        }
+
+                                        if (label)
+                                        {
+                                        @:</table>
+                                    @:</div>
+                                }
+
+                            }
+
+                                </div>
+                                <!-- #tab2 -->
+                            </div>
+                            <!-- .tab_container -->
+                            <!-- // 내용 끝  -->
+                        </div>
+
+
+
+                    </section>
+
+                </div>
+                <!-- // content -->
+                <!-- right_area -->
+                <!--@RenderPage("../common/RightGame.cshtml")-->
+                <!-- // right_area -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+<form name="form_buy" method="post">
+    <input type="hidden" name="no" />
+</form>
+<script type="text/javascript">
+    function uf_BuyAvatar(no,item,price) {
+
+        @if (Model.Login == true)
+        {
+            <text>
+        if (!confirm(' 상품 [ ' + item + ' ] \n 캐쉬 ' + price + ' @UserWeb.Properties.Settings.Default.GS_MONEY_NAME \n 구매하려면 확인을 누르세요.'))
+            {
+                return false;
+            }
+
+            var frm = document.form_buy;
+            frm.action = "AvatarBuyProc";
+            frm.no.value = no;
+            frm.target = "HiddenFrame";
+            frm.submit();
+            </text>
+        }
+        else
+        {
+            <text>
+            alert("로그인 후 구매할 수 있습니다.");
+            </text>
+        }
+    }
+    $(function () {
+
+        $(".tab_content").hide();
+        $(".tab_content:first").show();
+
+        $("ul.tabs li").click(function () {
+            $("ul.tabs li").removeClass("active").css("color", "#333");
+            //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+            $(this).addClass("active").css("color", "darkred");
+            $(".tab_content").hide()
+            var activeTab = $(this).attr("rel");
+            $("#" + activeTab).fadeIn()
+        });
+    });
+</script>

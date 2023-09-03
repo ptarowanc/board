@@ -1,0 +1,45 @@
+﻿@model DBLIB.Model.GameRankEntry[]
+@{
+    Layout = null;
+}
+
+<style>
+    .rank {
+        background-color: #dddddd;
+        font-family: arial;
+        font-size: 12px;
+        color: #666;
+        text-decoration: none;
+        position: relative;
+        margin:0 13px 0 13px;
+    }
+
+    .rank1 {
+        background-color: #ff6a00;
+        color: #ffffff;
+    }
+    .rank2 {
+        background-color: #ff6a00;
+        color: #ffffff;
+    }
+    .rank3 {
+        background-color: #ff6a00;
+        color: #ffffff;
+    }
+</style>
+
+<table width="100%" cellspacing="0">
+
+    @foreach (var entry in Model)
+    {
+        <text>
+            <tr>
+                <td align="center" width="40" height="20"><div class="rank rank@(entry.rank.ToString("D1"))">@(entry.rank.ToString("D1"))</div></td>
+                <td align="center" width="120" ><font color="#cccccc">@entry.nickname</font></td>
+                <td align="center" width="*" style="padding-right:15px;"><font color="#cccccc">@entry.betting.ToString("N0")</font></td>
+            </tr>
+        </text>
+    }
+
+
+</table>

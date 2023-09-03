@@ -1,0 +1,239 @@
+﻿<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="content">
+                    <!-- title -->
+                    <div class="tit_box">
+                        <h2>내 금고</h2>
+                        <p>
+                            <a href="/">Home</a> <em>&gt;</em> <a href="#">마이페이지</a> <em>&gt;</em> <span>내 금고</span>
+                        </p>
+                    </div>
+                    <!-- // title -->
+                    <div class="cont_wrap" style="height:700px;">
+                        <!-- 내용 시작 -->
+                        <!-- <div style="font-size:14px;font-weight:bold;padding:0 0 10px 0">보유송편수량 : <%=FormatNumber(login_heart,0)%>개</div> -->
+                        <div class="sub_menu_title"><h2>내 금고</h2></div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style="padding:5px 0 5px 0;text-align:left;"><h3>무료머니 금고이용</h3></div>
+                                    <form name="form1" method="post" onsubmit="return in_submit();">
+                                        <input type="hidden" name="act_mode" value="1" />
+                                        <table class="tb_list">
+                                            <tr>
+                                                <th>게임머니</th>
+                                                <td colspan="2" class="lt">&nbsp;<%=FormatNumber(uf_ConvertMoney("real", login_nu_gold),0)%></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="150">보관할 게임머니</th>
+                                                <td width="350" class="lt">&nbsp;<input type="text" name="ac_money" size="20" tabindex="1" <%=NUMBER_ONLY_SCRIPT%> value="0" /></td>
+                                                <td width="100" rowspan="2">&nbsp;<input type="submit" value="보관" class="buttons button_black" style="width:50px;height:50px;" tabindex="3" /></td>
+                                            </tr>
+                                            <tr>
+                                                <th>보관함 비밀번호</th>
+                                                <td class="lt">&nbsp;<input type="password" name="ac_passwd" size="20" tabindex="2" value="" /></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                    <br />
+                                    <form name="form2" method="post" onsubmit="return out_submit();">
+                                        <input type="hidden" name="act_mode" value="2" />
+                                        <table class="tb_list">
+                                            <tr>
+                                                <th>보관머니</th>
+                                                <td colspan="2" class="lt">&nbsp;<%=FormatNumber(uf_ConvertMoney("real", login_nu_safegold),0)%></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="150">찾을 머니</th>
+                                                <td width="350" class="lt">&nbsp;<input type="text" name="ac_money" size="20" tabindex="4" <%=NUMBER_ONLY_SCRIPT%> value="0" /></td>
+                                                <td width="100" rowspan="2">&nbsp;<input type="submit" value="찾기" class="buttons button_black" style="width:50px;height:50px;" tabindex="6" /></td>
+                                            </tr>
+                                            <tr>
+                                                <th>보관함 비밀번호</th>
+                                                <td class="lt">&nbsp;<input type="password" name="ac_passwd" size="20" tabindex="5" value="" /></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="padding:15px 0 5px 0;text-align:left;"><h3>유료머니 금고이용</h3></div>
+                                    <form name="form3" method="post" onsubmit="return in_old_submit();">
+                                        <input type="hidden" name="act_mode" value="3" />
+                                        <table class="tb_list">
+                                            <tr>
+                                                <th>게임머니</th>
+                                                <td colspan="2" class="lt">&nbsp;<%=FormatNumber(login_nu_old,0)%></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="150">보관할 게임머니</th>
+                                                <td width="350" class="lt">&nbsp;<input type="text" name="ac_money" size="20" tabindex="7" <%=NUMBER_ONLY_SCRIPT%>  value="0"/></td>
+                                                <td width="100" rowspan="2">&nbsp;<input type="submit" value="보관" class="buttons button_black" style="width:50px;height:50px;" tabindex="9" /></td>
+                                            </tr>
+                                            <tr>
+                                                <th>보관함 비밀번호</th>
+                                                <td class="lt">&nbsp;<input type="password" name="ac_passwd" value="" size="20" tabindex="8" /></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                    <br />
+                                    <form name="form4" method="post" onsubmit="return out_old_submit();">
+                                        <input type="hidden" name="act_mode" value="4" />
+                                        <table class="tb_list">
+                                            <tr>
+                                                <th>보관머니</th>
+                                                <td colspan="2" class="lt">&nbsp;<%=FormatNumber(login_nu_safeold,0)%></td>
+                                            </tr>
+                                            <tr>
+                                                <th width="150">찾을 머니</th>
+                                                <td width="350" class="lt">&nbsp;<input type="text" name="ac_money" size="20" tabindex="10" <%=NUMBER_ONLY_SCRIPT%> value="0" /></td>
+                                                <td width="100" rowspan="2">&nbsp;<input type="submit" value="찾기" class="buttons button_black" style="width:50px;height:50px;" tabindex="12" /></td>
+                                            </tr>
+                                            <tr>
+                                                <th>보관함 비밀번호</th>
+                                                <td class="lt">&nbsp;<input type="password" name="ac_passwd" value="" size="20" tabindex="11" /></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </td>
+                            </tr>
+                            <%If shop_memid="T" or login_saved_rate>0 or allin_point>0 Then%>
+                            <tr>
+                                <td>
+                                    <div style="padding:5px 0 5px 0;text-align:left;"><h3>포인트</h3></div>
+                                    <table class="tb_list">
+                                        <tr>
+                                            <th width="150">금일포인트</th>
+                                            <td width="450" style="text-align:left;">
+                                                <b><%=FormatNumber(uf_ConvertMoney("real", allin_money),0)%></b>
+                                                <%If CDbl(allin_money)>=10 Then%>
+                                                &nbsp;&nbsp;<a href="#" onclick="uf_RequestAllin();return false;"><img src="/images/web/btn_allin_req.png" alt="" /></a>
+                                                <%End If%>
+                                            </td>
+                                        </tr>
+                                        <%If shop_memid="T" Then%>
+                                        <tr>
+                                            <th>누적포인트</th>
+                                            <td style="text-align:left;"><%=FormatNumber(uf_ConvertMoney("real", n_mileage2),0)%></td>
+                                        </tr>
+                                        <%End If%>
+                                        <tr>
+                                            <th>올인포인트</th>
+                                            <td style="text-align:left;">
+                                                <%=FormatNumber(uf_ConvertMoney("real", allin_point),0)%>
+                                                &nbsp;&nbsp;<a href="#" onclick="uf_RequestPoint();return false;"><img src="/images/web/btn_allin_req.png" alt="" /></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <%End If%>
+                        </table>
+                        <br /><br />
+
+                        <!-- // 내용 끝  -->
+                    </div>
+                </div>
+                <!-- // content -->
+                <!-- right_area -->
+                <!--#include virtual="/common/right_mypage.html"-->
+                @RenderPage("../common/RightMyPage.cshtml")
+                <!-- // right_area -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    function in_submit() {
+        var chk = confirm("무료게임머니를 보관함으로 이동 하시겠습니까?");
+        if (chk == false) { return false; }
+        var frm = document.form1;
+        frm.target = "HiddenFrame";
+        frm.action = "gold_account_proc.asp";
+        if (frm.ac_money.value == "") {
+            alert("보관함에 보관할 무료머니를 입력하세요!");
+            frm.ac_money.focus();
+            return false;
+        }
+        if (frm.ac_passwd.value == "") {
+            alert("보관함 비밀번호를 입력하세요!");
+            frm.ac_passwd.focus();
+            return false;
+        }
+    }
+    function out_submit() {
+        var chk = confirm("보관함에서 무료머니를 찾으시겠습니까?");
+        if (chk == false) { return false; }
+        var frm = document.form2;
+        frm.target = "HiddenFrame";
+        frm.action = "gold_account_proc.asp";
+        if (frm.ac_money.value == "") {
+            alert("보관함에서 찾을 무료머니를 입력하세요!");
+            frm.ac_money.focus();
+            return false;
+        }
+        if (frm.ac_passwd.value == "") {
+            alert("보관함 비밀번호를 입력하세요!");
+            frm.ac_passwd.focus();
+            return false;
+        }
+    }
+    function in_old_submit() {
+        var chk = confirm("유료게임머니를 보관함으로 이동 하시겠습니까?");
+        if (chk == false) { return false; }
+        var frm = document.form3;
+        frm.target = "HiddenFrame";
+        frm.action = "gold_account_proc.asp";
+        if (frm.ac_money.value == "") {
+            alert("보관함에 보관할 유료머니를 입력하세요!");
+            frm.ac_money.focus();
+            return false;
+        }
+        if (frm.ac_passwd.value == "") {
+            alert("보관함 비밀번호를 입력하세요!");
+            frm.ac_passwd.focus();
+            return false;
+        }
+    }
+    function out_old_submit() {
+        var chk = confirm("보관함에서 유료머니를 찾으시겠습니까?");
+        if (chk == false) { return false; }
+        var frm = document.form4;
+        frm.target = "HiddenFrame";
+        frm.action = "gold_account_proc.asp";
+        if (frm.ac_money.value == "") {
+            alert("보관함에서 찾을 유료머니를 입력하세요!");
+            frm.ac_money.focus();
+            return false;
+        }
+        if (frm.ac_passwd.value == "") {
+            alert("보관함 비밀번호를 입력하세요!");
+            frm.ac_passwd.focus();
+            return false;
+        }
+    }
+    //올인지원금.
+    function uf_RequestAllin() {
+        var chk = confirm("올인지원금을 요청하시겠습니까?")
+        if (chk == true) {
+            document.getElementById('HiddenFrame').contentWindow.location = "/member/request_allin.asp";
+        }
+    }
+    //개인올인포인트 전환
+    function uf_RequestPoint() {
+        var chk = confirm("올인포인트를 요청하시겠습니까?")
+        if (chk == true) {
+            document.getElementById('HiddenFrame').contentWindow.location = "/member/request_point.asp";
+        }
+    }
+//]]>
+</script>

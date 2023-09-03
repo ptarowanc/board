@@ -1,0 +1,104 @@
+﻿
+
+<link rel="stylesheet" type="text/css" href="/Nvv/Css/nvv_guide.css">
+
+<!-- body_area -->
+<div class="xjGuide">
+
+    <div class="xjGuideBtn">
+
+        <ul class="mainGuideBtn">
+            <li rel="tab1">
+                <div class="pull-left"><button class="button-5" role="button"> KISS GAME 홀덤</button></div>
+            </li>
+            <li rel="tab2">
+                <div class="pull-left"><button class="button-5" role="button">KISS GAME 바둑이</button></div>
+            </li>
+            <li rel="tab3">
+                <div class="pull-left"><button class="button-5" role="button">KISS GAME 맞고</button></div>
+            </li>
+            @*<li rel="tab4">
+                <div class="pull-left"><img src="~/Img/guide/guide_btn04.jpg"></div>
+            </li>
+            <li rel="tab5">
+                <div class="pull-left"><img src="~/Img/guide/guide_btn05.jpg"></div>
+            </li>
+            <li rel="tab6">
+                <div class="pull-left"><img src="~/Img/guide/guide_btn06.jpg"></div>
+            </li>*@
+
+        </ul>
+
+        <div id="tab1" class="tab_content">
+            <div class="xjGuide_img">
+
+            </div>
+
+        </div>
+        <!-- #tab1 -->
+        <div id="tab2" class="tab_content">
+            <div class="xjGuide_img02">
+
+            </div>
+
+        </div>
+        <div id="tab3" class="tab_content">
+            <div class="xjGuide_img03">
+
+            </div>
+
+        </div>
+        @*<div id="tab4" class="tab_content">
+            <div class="xjGuide_text">
+                <img id="guide_text" src="/Img/guide/guide_text04.png">
+            </div>
+
+
+
+        </div>
+        <div id="tab5" class="tab_content">
+            <div class="xjGuide_img03">
+
+            </div>
+            <div class="xjGuide_text">
+                <img id="guide_text" src="/Img/guide/guide_text05.png">
+            </div>
+
+
+
+        </div>
+        <div id="tab6" class="tab_content">
+            <div class="xjGuide_text">
+                <img id="guide_text" src="/Img/guide/guide_text06.png">
+            </div>
+
+
+
+        </div>*@
+
+    </div>
+
+
+    </div>
+
+
+  
+<script type="text/javascript">
+        $(document).ready(function () {
+            $(".tab_content").hide();
+            $("#tab1").show();
+
+    });
+
+
+    $(function () {
+        $("ul.mainGuideBtn li").click(function () {
+            //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+            $(".tab_content").hide();
+            var activeTab = $(this).attr("rel");
+         //   alert(activeTab);
+            $("#" + activeTab).show();
+        });
+    });
+    </script>
+

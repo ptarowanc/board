@@ -1,0 +1,241 @@
+@charset "utf-8";
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  list-style: none;
+}
+a{
+  cursor:pointer
+}
+a:focus{
+  outline:none;
+}
+/*----- Noticelist Str -----*/
+.xjNoticeListContent{
+  width: 530px;
+	min-height:480px;
+	background:#fff;
+}
+.tableColor {
+	background: #58B1DB;
+	color: #fff;
+}
+.yuMybankTable {
+	width: 380px;
+	margin: 10px;
+}
+.yuMybankTable td {
+	height: 30px;
+	border: solid #79848b 1px;
+	text-align: center;
+}
+.yuInput {
+	font-size: 9pt;
+	color: #FF6699;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+}
+.xjNoticeList li:nth-child(n+2){
+	width:486px;
+	margin:0 auto;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px dashed #A6937C
+}
+.xjNoticeList li:nth-child(n+2)>span:nth-child(1) {
+	width: 10px;
+	text-align: center;
+}
+.xjNoticeList li:nth-child(n+2) span:nth-child(1) {
+	margin-left: 7px;
+	margin-right: 7px;
+}
+.xjNoticeList li a, .xjNoticeList li span {
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	float:left;
+}
+.xjNoticeList li a span {
+	display: inline-block;
+	width: 340px;
+	margin-left: 20px;
+	color: #2EBD9E;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.xjNoticeList li span:nth-child(3){
+  margin-left: 40px;
+}
+/*----- Noticelist End -----*/
+/*----- Notice VIEW Str -----*/
+.xjNoticeView{
+	width:530px;
+	margin:0 auto;
+  height: 325px;
+  background-size: 100% 100%;
+}
+.xjNoticeView td{
+	color:#666;
+	border:1px solid #ccc;
+	font-weight:bold;
+	padding:5px;
+}
+.xjNoticeView td span{
+	color:#2EBD9E;
+}
+.xjNoticeView td textarea{
+	color:#333;
+	background:none;
+	border:none;
+	width:100%;
+	height:230px;
+	resize:none
+}
+.xjTableH{
+	height:40px;
+}
+.xjNoticeView tr:nth-child(1) td:nth-child(1){
+	width:60px;
+}
+.xjNtcView{
+	vertical-align:top
+}
+#xjNtcViewConTainer{
+	min-height:480px;
+}
+/*----- Notice VIEW End -----*/
+/*----- Free recharge str -----*/
+.xjFreeCharge{
+  width: 470px;
+  height: 250px;
+  background:#F7F7F7 ;
+  margin: 0;
+}
+.xjFreeCharge li:nth-child(2) a:nth-child(1) img{
+  margin-top: 4px;
+  height: 32px;
+  width: 70px;
+}
+.xjFreeCharge li{
+  height: 80px;
+}
+.xjFreeCharge .xjFreeChargeContent{
+  height: 170px;
+  line-height: 170px;
+  font-size: 14px;
+}
+.xjFreeChargeBottom{
+  width: 470px;
+  height: 10px;
+  background:#E8EBFC ;
+}
+/*----- Free recharge end -----*/
+/*----- friend Select str  -----*/
+.xjFriendSelect{
+  height:30px;
+  width:470px;
+  line-height:30px;
+  background:#F7F7F7;
+  border-bottom:1px solid #05AB99;
+}
+.xjFriendSelect span{
+  margin-left:20px;
+  display:inline-block;
+}
+.xjFriendContent{
+  height:250px;
+  width:470px;
+}
+.xjFriendContent span{
+  display:block;
+  height:30px;
+  line-height:30px;
+  text-align:center;
+  background:#F7F7F7;
+  border-bottom:1px solid #05AB99;
+}
+.xjFriendBottom{
+  position:relative;
+  height:30px;
+  width:470px;
+  line-height:30px;
+}
+.xjFriendBottom img{
+  position:absolute;
+  bottom:0px;
+  right:15px;
+}
+/*----- friend Select end  -----*/
+/*----- query ID str -----*/
+.xjSearchInput{
+  height:100px;
+  width:470px;
+  line-height:100px;
+}
+.xjSearchInput input{
+  position:relative;
+  top:2px;
+}
+.xjSearchImg{
+  height:200px;
+  width:470px;
+}
+/*----- query ID end -----*/
+/*----- item shop str -----*/
+.xjItemBuy{
+  width:399px;
+  height:315px;
+  padding-top:10px;
+  background:#F8F5ED;
+}
+.xjItemBuy ul{
+  padding-top:40px;
+  width:377px;
+  height:220px;
+  margin-left:10px;
+  background:#ffffff;
+  border-bottom:1px solid #E8E2CE;
+  border-left:1px solid #E8E2CE;
+  border-right:1px solid #E8E2CE;
+}
+.xjItemBuy ul li{
+  margin-left:200px;
+  height:30px;
+  line-height:30px;
+  padding-top:30px;
+}
+.xjItemBuy ul li:last-child{
+  margin-left:40px;
+  margin-top:-130px;
+  padding:0;
+}
+/*----- item shop end -----*/
+/*----- item shop ok str -----*/
+.xjBuySuccess{
+  width:470px;
+  height:300px;
+  background:#F7F7F7;
+}
+.xjBuySuccessContent{
+  height:200px;
+  line-height:280px;
+}
+/*----- item shop ok end -----*/
+/*----- footer str -----*/
+.xjFooterTop{
+	width:1000px;
+	position:relative;
+}
+.xjReturnTop{
+	position:absolute;
+	right:0;
+	bottom:0;
+}
+/*----- footer end -----*/
+#xjNoticeListPopup,.xjNoticeViewPopup,.xjBottomPopup,#xjFreeCharge,.xjFriendPopup,.xjSearchId,.xjItemPopup,.sxclose,.xjBuySuccessBtn{
+  cursor:pointer
+}

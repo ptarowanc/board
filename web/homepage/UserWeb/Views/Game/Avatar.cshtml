@@ -1,0 +1,228 @@
+﻿@model UserWeb.Models.AvatarShopModel
+@{
+    ViewBag.Title = "Avatar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int index = 0, col = 0;
+}
+
+<link rel="stylesheet" type="text/css" href="~/Nvv/Css/nvv_avatar.css">
+
+<!-- body_area -->
+<div class="xjavatar">
+
+    <div class="xjmain_avatar">
+
+        <div class="cont_wrap" align="center" style="text-align:center;">
+            <div class="category">
+
+                <ul class="tabs">
+                    <li class="tab_avatar" rel="tab1">아바타</li>
+                    <li class="tab_card" rel="tab2">화투패</li>
+                </ul>
+            </div>
+            <!-- 내용 시작 -->
+            <div class="tab_container">
+                <div id="tab1" class="tab_content">
+                    <div align="center">
+                        <div class="sub_menu_title">
+                            @{ if (Model.Login == true)
+                                {
+                                    <div class="user-money-info">
+                                        <span class="pull-right cashpurchasebnt2"><img src="/images/web/btn_cash.png" onclick="window.location.href='/member/cash'"></span>
+                                        <ul>
+                                            <li>
+                                                <span>무료머니:</span>
+                                                <span style="color: #E4940A;margin-left:10px">@Model.GameMoney.ToString("N0")</span>
+                                                <span>@UserWeb.Properties.Settings.Default.GS_MONEY_NAME</span>
+                                            </li>
+                                            <li>
+                                                <span>게임머니:</span>
+                                                <span style="color: #E4940A;margin-left:10px">@Model.GameMoney2.ToString("N0")</span>
+                                                <span>@UserWeb.Properties.Settings.Default.GS_MONEY2_NAME</span>
+                                            </li>
+                                            <li>
+                                                <span>보유캐쉬:</span>
+                                                <span style="color: #E4940A;margin-left:10px">@Model.Cash.ToString("N0")</span>
+                                                <span>캐쉬</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <table style="width:100%">
+                            @{
+                                index = 0;
+                                col = 0;
+                            }
+                            @while (index < Model.webShopItemListAvata.Count())
+                            {
+                                if (col == 0)
+                                {
+                                    @:<tr>
+                                    }
+                                    <text>
+                                        <td width="20%" align="center">
+                                            <div style="padding-top:3px;"><a href="#" onclick="uf_BuyAvatar(@(Model.webShopItemListAvata[index].id),'@(Model.webShopItemListAvata[index].pname)',@(Model.webShopItemListAvata[index].price));return false;"><img src="/images/@(Model.webShopItemListAvata[index].ptype)/@(Model.webShopItemListAvata[index].img).png" alt="" style="border:1px solid #cecece;" /></a></div>
+                                            <div style="padding-top:3px;">@(Model.webShopItemListAvata[index].pname) (@(Model.webShopItemListAvata[index].paidvalue3)일)</div>
+                                            <div style="padding-top:3px;"> @(Model.webShopItemListAvata[index].paidstring1)</div>
+                                            <div style="padding-top:3px;"> @(Model.webShopItemListAvata[index].paidstring2)</div>
+                                            <div style="padding-top:3px;"><b class="cashIcon">C</b> @(Model.webShopItemListAvata[index].price.ToString("N0")) 캐쉬</div>
+                                            <div style="padding-top:3px;margin-bottom:20px;"><a href="#" class="btn btn-dark-blue" style="width:50px;height:17px;font-size:13px; padding: 2px 5px 2px 5px;" onclick="uf_BuyAvatar(@(Model.webShopItemListAvata[index].id),'@(Model.webShopItemListAvata[index].pname)',@(Model.webShopItemListAvata[index].price));return false;">구매</a></div>
+                                        </td>
+                                    </text>
+                                    col++;
+                                    if (col >= 4)
+                                    {
+                                    @:</tr>
+                                    col = 0;
+                                }
+                                ++index;
+                            }
+                        </table>
+                    </div>
+                </div>
+                <!-- #tab1 -->
+                <div id="tab2" class="tab_content">
+                    <div align="center">
+                        <div class="sub_menu_title">
+                            @{ if (Model.Login == true)
+                                {
+                                    <div class="user-money-info">
+                                        <span class="pull-right cashpurchasebnt2"><img src="/images/web/btn_cash.png" onclick="window.location.href='/member/cash'"></span>
+                                        <ul>
+                                           <li>
+                                                <span>무료머니:</span>
+                                                <span style="color: #E4940A;margin-left:10px">
+                                                    @Model.GameMoney.ToString("N0")
+                                                </span>
+                                                <span>
+                                                     @UserWeb.Properties.Settings.Default.GS_MONEY_NAME
+                                                </span>
+                                            </li>
+                                            <li>
+                                                 <span>게임머니:</span>
+                                                 <span style="color: #E4940A;margin-left:10px">
+                                                    @Model.GameMoney2.ToString("N0")
+                                                </span>
+                                                <span>
+                                                     @UserWeb.Properties.Settings.Default.GS_MONEY2_NAME
+                                                </span>
+                                            </li>
+                                            <li>
+                                                 <span>보유캐쉬:</span>
+                                                 <span style="color: #E4940A;margin-left:10px">
+                                                    @Model.Cash.ToString("N0")
+                                                </span>
+                                                <span>
+                                                     캐쉬
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <table style="width:100%">
+                            @{
+                                index = 0;
+                                col = 0;
+                            }
+                            @while (index < Model.webShopItemListCard.Count())
+                            {
+                                if (col == 0)
+                                {
+                                    @:<tr>
+                                    }
+                                    <text>
+                                        <td width="20%" align="center">
+                                            <div style="padding-top:3px;"><a href="#" onclick="uf_BuyAvatar(@(Model.webShopItemListCard[index].id),'@(Model.webShopItemListCard[index].pname)',@(Model.webShopItemListCard[index].price));return false;"><img src="/images/@(Model.webShopItemListCard[index].ptype)/@(Model.webShopItemListCard[index].img).png" alt="" style="border:1px solid #cecece;" /></a></div>
+                                            <div style="padding-top:3px;">@(Model.webShopItemListCard[index].pname) (@(Model.webShopItemListCard[index].paidvalue3)일)</div>
+                                            <div style="padding-top:3px;"> @(Model.webShopItemListCard[index].paidstring1)</div>
+                                            <div style="padding-top:3px;"> @(Model.webShopItemListCard[index].paidstring2)</div>
+                                            <div style="padding-top:3px;"><b class="cashIcon">C</b> @(Model.webShopItemListCard[index].price.ToString("N0")) 캐쉬</div>
+                                            <div style="padding-top:3px;margin-bottom:20px;"><a href="#" class="btn btn-dark-blue" style="width:50px;height:17px;font-size:13px; padding: 2px 5px 2px 5px;" onclick="uf_BuyAvatar(@(Model.webShopItemListCard[index].id),'@(Model.webShopItemListCard[index].pname)',@(Model.webShopItemListCard[index].price));return false;">구매</a></div>
+                                        </td>
+                                    </text>
+                                    col++;
+                                    if (col >= 4)
+                                    {
+                                    @:</tr>
+                                    col = 0;
+                                }
+                                ++index;
+                            }
+                        </table>
+                    </div>
+                </div>
+                <!-- #tab2 -->
+            </div>
+            <!-- .tab_container -->
+            <!-- // 내용 끝  -->
+        </div>
+    </div>
+
+
+</div>
+
+<form name="form_buy" method="post">
+    <input type="hidden" name="no" />
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".tab_content").hide();
+        @if(Model.View == 0)
+        {
+            <text>
+            $(".tab_avatar").addClass("active").css("color", "darkred");
+            $("#tab1").show();
+            </text>
+        }
+        else if(Model.View == 1)
+        {
+            <text>
+            $(".tab_card").addClass("active").css("color", "darkred");
+            $("#tab2").show();
+            </text>
+        }
+    });
+
+
+    function uf_BuyAvatar(no,item,price) {
+
+        @if (Model.Login == true)
+        {
+            <text>
+            if (!confirm(' 상품 [ ' + item + ' ] \n ' + price + ' 캐쉬 \n 구매하려면 확인을 누르세요.'))
+            {
+                return false;
+            }
+
+            var frm = document.form_buy;
+            frm.action = "AvatarBuyProc";
+            frm.no.value = no;
+            frm.target = "HiddenFrame";
+            frm.submit();
+            </text>
+        }
+        else
+        {
+            <text>
+            alert("로그인 후 구매할 수 있습니다.");
+            </text>
+        }
+    }
+    $(function () {
+
+
+        $("ul.tabs li").click(function () {
+            $("ul.tabs li").removeClass("active").css("color", "#333");
+            //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+            $(this).addClass("active").css("color", "darkred");
+            $(".tab_content").hide()
+            var activeTab = $(this).attr("rel");
+            $("#" + activeTab).fadeIn()
+        });
+    });
+</script>

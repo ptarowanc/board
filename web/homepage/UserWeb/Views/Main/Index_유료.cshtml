@@ -1,0 +1,455 @@
+﻿
+
+
+@model UserWeb.Models.MainViewModel
+
+
+<script type="text/javascript">
+
+
+    function startgame() {
+        location.href = "vongvonggame://";
+    }
+    function onlinegame() {
+        location.href = "vongvonggame:_" + getCookie('session_01') + "_" + getCookie('session_02');
+    }
+    function uf_BuyAvatar(no,item,price) {
+
+        @if (Model.IsLogon == true)
+        {
+            <text>
+            if (!confirm(' 상품 [ ' + item + ' ] \n ' + price + ' 캐쉬 \n 구매하려면 확인을 누르세요.'))
+            {
+                return false;
+            }
+
+            var frm = document.form_buy;
+            frm.action = "/Main/AvatarBuyProc";
+            frm.no.value = no;
+            frm.target = "HiddenFrame";
+            frm.submit();
+            </text>
+        }
+        else
+        {
+            <text>
+        fnOpenModal("로그인 후 구매할 수 있습니다.");
+            </text>
+        }
+    }
+    function fnLoginOk() {
+        $.ajax({
+            url: "/Main/PerformLogin",
+            data: {
+                "m_id": $("#LoginID").val(),
+                "m_pw": $("#LoginPWD").val(),
+                "m_save": ($("#SaveIDCheck").is(":checked") ? "Y" : "N"),
+                "ReturnURL": $("#ReturnURL").val()
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (res) {
+                if (res.result == "OK") {
+                    location.href = res.data;
+                    return;
+                }
+                // 로그인 실패
+                alert(res.reason);
+
+            }, error: function (x) {
+                alert("서버 오류로 요청을 처리하지 못했습니다.");
+                return;
+            }
+        });
+    }
+    function fnLoginBoxEnter() {
+        if (event.keyCode == 13) {
+            event.returnValue = false;
+            event.cancel = true;
+            fnLoginOk();
+        }
+    }
+    $(document).ready(function () {
+        $("#TryLoginImage").click(function (e) {
+
+            if (document.getElementById("cpatchaTextBox").value != code) {
+
+                alert("보안코드를 입력하세요.")
+                createCaptcha();
+                return;
+            }
+
+            e.preventDefault();
+            fnLoginOk();
+        });
+
+@if ( !String.IsNullOrEmpty(Model.popupNotice)){
+
+    <text>
+        jquery_layerpop("popup_notice", "center");
+        if (getCookie('hide_popup') != '') {
+            $('#popup_notice').hide();
+        }
+        else {
+            $('#popup_notice').show();
+        }
+        function closepopup() {
+            var chk = uf_getCheckedVal('hidePopup');
+            if (chk == "Y") {
+                setCookie('hide_popup', 'yes', 1);
+            }
+            $('#popup_notice').hide();
+            $('#popup_notice').html('');
+        }
+    </text>
+
+}
+    });
+
+
+
+
+    var code;
+    function createCaptcha() {
+        //clear the contents of captcha div first
+        document.getElementById('captcha').innerHTML = "";
+        var charsArray =
+            "0123456789";
+        var lengthOtp = 4;
+        var captcha = [];
+        for (var i = 0; i < lengthOtp; i++) {
+            //below code will not allow Repetition of Characters
+            var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+            if (captcha.indexOf(charsArray[index]) == -1)
+                captcha.push(charsArray[index]);
+            else i--;
+        }
+        var canv = document.getElementById("captcha");
+
+        canv.className = "captcha"
+        canv.width = 80;
+        canv.height = 45;
+        var ctx = canv.getContext("3d");
+        ctx.font = "18px Georgia";
+        ctx.strokeText(captcha.join(""), 10, 20);
+        //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+        code = captcha.join("");
+
+
+    }
+
+
+    function validateCaptcha() {
+        event.preventDefault();
+        if (document.getElementById("cpatchaTextBox").value == code) {
+            alert("Valid Captcha")
+        } else {
+            alert("Invalid Captcha. try Again");
+            createCaptcha();
+        }
+    }
+
+
+    window.addEventListener("load", function () {
+        createCaptcha()
+    });
+
+</script>
+
+
+
+<style>
+    .cpatchaText {
+        color: #313233;
+        width: 60px;
+        height: 36px;
+        background-color: #ffffff;
+        font-size: 18px;
+        border: 0px;
+        padding-left: 3px;
+        margin-top: 4px;
+        margin-left: 10px;
+    }
+
+    .captcha {
+        /*prevent interaction with the canvas*/
+        pointer-events: none;
+        background: url("/img/auto_bg.gif") no-repeat;
+        width: 60px;
+        height: 45px;
+        margin: 0px;
+        padding: 0px;
+        margin-top: 4px;
+        margin-left: 2px;
+        vertical-align: middle;
+        font-size:18px;
+    }
+</style>
+
+
+<div class="xjMainBanner">
+
+</div>
+
+
+<div class="xjMainContent">
+
+
+    <div class="xjMainLeftContent">
+        <div class="xjMainQuick">
+
+            <div class="text-right mainItemTitle">
+            </div>
+
+            <ul class="mainquickList">
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename01.png" onclick="onlinegame()"></div>
+
+                </li>
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename02.png" onclick="onlinegame()"></div>
+
+                </li>
+
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename03.png" onclick="fnOpenModal('준비중입니다.')"></div>
+
+                </li>
+            </ul>
+
+        </div>
+
+
+        <div class="xjMainQuick">
+
+            <div class="text-right mainItemTitle">
+            </div>
+
+            <ul class="mainquickList">
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename01.png" onclick="onlinegame()"></div>
+
+                </li>
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename02.png" onclick="onlinegame()"></div>
+
+                </li>
+
+                <li>
+                    <div class="pull-left"><img src="/img/Gamename03.png" onclick="fnOpenModal('준비중입니다.')"></div>
+
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="xjMainEvent">
+
+            <div class="pull-left"><img src="/img/event01.png"></div>
+
+        </div>
+
+        <div class="mainItemBg">
+            <div class="text-right mainItemTitle pull-right" onclick="window.location.href='/game/avatar'">
+            </div>
+
+            <ul class="mainitemList">
+                <li>
+                    <div class="pull-left"><img src="/img/main_item01.png"></div>
+                    <ul class="pull-left">
+                        <li>여몽</li>
+                        <li><img src="/img/item/money.png">1,000 캐쉬</li>
+                        <li>
+                            <img src="/img/bt_buy.png" onclick="uf_BuyAvatar(2,'여몽',1000)">
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="pull-left"><img src="/img/main_item02.png"></div>
+                    <ul class="pull-left">
+                        <li>원소</li>
+                        <li><img src="/img/item/money.png">5,000 캐쉬</li>
+                        <li>
+                            <img src="/img/bt_buy.png" onclick="uf_BuyAvatar(3,'원소',5000)">
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="pull-left"><img src="/img/main_item03.png"></div>
+                    <ul class="pull-left">
+                        <li>주유</li>
+                        <li><img src="/img/item/money.png">10,000 캐쉬</li>
+                        <li>
+                            <img src="/img/bt_buy.png" onclick="uf_BuyAvatar(7,'주유',10000)">
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="pull-left"><img src="/img/main_item04.png"></div>
+                    <ul class="pull-left">
+                        <li>초선</li>
+                        <li><img src="/img/item/money.png">10,000 캐쉬</li>
+                        <li>
+                            <img src="/img/bt_buy.png" onclick="uf_BuyAvatar(8,'초선',10000)">
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+
+        <div class="xjMainNotice">
+
+            <ul class="mainnoticekList">
+                <li>
+                    <div class="pull-left"><img src="/img/main_notice.png"></div>
+
+                </li>
+                <li>
+                    @if (Model.IsLogon == false)
+                    {
+                        <div class="pull-left"><img src="/img/main_cash.png" onclick="fnOpenModal('로그인 후 시도하시기 바랍니다.')"></div>
+                    }
+                    @if (Model.IsLogon == true)
+                    {
+                        <div class="pull-left"><img src="/img/main_cash.png" onclick="window.location.href='/meber/cash"></div>
+                    }
+                </li>
+
+
+            </ul>
+
+        </div>
+
+
+
+    </div>
+    <div class="xjMainRightContent  pull-right">
+        <div class="loginhd">
+            <img src="~/Img/Login_hd.jpg" />
+        </div>
+        <form>
+
+            @if (Model.IsLogon == false)
+            {
+                <div>
+                    <div class="loginBeforeBg">
+                        <div class="LoginBeforeInput">
+                            <input type="text" id="LoginID" name="m_id" placeholder="아이디" onKeyPress="javascript:fnLoginBoxEnter();">
+                            <input type="password" id="LoginPWD" name="m_pw" placeholder="비밀번호" onKeyPress="javascript:fnLoginBoxEnter();">
+                        </div>
+                        <img class="loginBtn" id="TryLoginImage" src="/img/login_btn.png">
+                        <input type="text" class="cpatchaText" placeholder="숫자" id="cpatchaTextBox" />
+                        <canvas id="captcha">  </canvas>
+                        <div class="loginBeforeBottomImg">
+                            <!--
+                        <img src="/img/login_search.png" class="loginSearch" onclick="javascript:fnSearchId()">
+                            -->
+                            <img src="/img/login_join.png" onclick="window.location.href='/member/join01'">
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.IsLogon == true)
+            {
+
+                <div>
+                    <div class="loginAfterBg">
+                        <div class="loginAfterInfo pull-left">
+                            <div>
+                                <span class="pull-left" style="padding-top: 3px;">@ViewBag.Nickname (님)</span>
+                                <span class="pull-right logoutbnt"><img src="/img/login_logout.png" onclick="window.location.href='/member/logout'"></span>
+                                <span class="pull-right cashpurchasebnt"><img src="/images/web/btn_cash.png" onclick="window.location.href='/member/cash'"></span>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <span>무료머니</span>
+                                        <span style="color: #E4940A;">@ViewBag.PlayerInfo.FreeMoney.ToString("N0")</span>
+                                        <span>@UserWeb.Properties.Settings.Default.GS_MONEY_NAME</span>
+                                    </li>
+                                    <li>
+                                        <span>게임머니</span>
+                                        <span style="color: #E4940A;">@ViewBag.PlayerInfo.PayMoney.ToString("N0")</span>
+                                        <span>@UserWeb.Properties.Settings.Default.GS_MONEY2_NAME</span>
+                                    </li>
+                                    <li>
+                                        <span>보유캐쉬</span>
+                                        <span style="color: #E4940A;">@ViewBag.PlayerInfo.Cash.ToString("N0")</span>
+                                        <span>캐쉬</span>
+                                    </li>
+                                    <li>
+                                        <div class="loginAfterBtn text-center">
+                                            <img src="/img/login_modify.png" onclick="window.location.href='/member/MyInfo'">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+
+
+        </form>
+
+
+        <div class="downimg_middle">
+            <a class="button" href="@UserWeb.Properties.Settings.Default.DOWNLOAD_URL" target="_blank">
+                <img src="/img/download/down_a.png">
+            </a>
+
+        </div>
+
+        <div class="downimg_middle">
+            <a class="button" href="@UserWeb.Properties.Settings.Default.DOWNLOAD_URL" target="_blank">
+                <img src="/img/download/down_a.png">
+            </a>
+
+        </div>
+
+        <div class="freeCashImg" style="cursor: pointer">
+            <img src="/img/banner02.png" onclick="window.location.href='/game/GameInfo'">
+        </div>
+        <div class="mainNoticeListBg">
+
+            <ul>
+                @foreach (DBLIB.WebNoticeList entry in Model.noticeList)
+                {
+                    <li><a href="#" onclick="OpenComMenu('/Customer/NoticeView?n_no=@entry.id', 620, 600);return false;">@entry.title</a></li>
+                }
+            </ul>
+        </div>
+        <div class="ServiceImg text-center">
+            <img src="/img/quick03.png">
+        </div>
+    </div>
+</div>
+
+
+<form name="form_buy" method="post">
+    <input type="hidden" name="no" />
+</form>
+
+
+<div class="alertError xjmodal hidden">
+    <div class="noticeTitle">
+        <span class="pull-left"></span>
+        <button class="pull-right erroeClose">×</button>
+    </div>
+    <div class="text-center buysuccessContent"><span id="ajaxErrorInfo"></span></div>
+    <div class="text-center bugSuccessBtn">
+        <img class="btnmodalClose" src="/img/item/bt_ok.gif">
+    </div>
+    <div class="alertModalBottom"></div>
+</div>
+
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
+<!---->

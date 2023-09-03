@@ -1,0 +1,155 @@
+﻿<style>
+    body {
+        background: #000000;
+    }
+</style>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>관리자쪽지</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap">
+                                <!-- 내용 시작 -->
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">1:1문의</h1>
+                                </div>
+                                <form id="form_write" name="form_write" method="post" action="PerformQnAWrite" style="width: 100%;">
+                                    <table class="tb_list" style="width: 100%;">
+                                        <tr>
+                                            <th width="80">제 목</th>
+                                            <td class="lt">
+                                                <input type="text" name="v_title" value="" style="width: 100%;border-radius:4px; text-indent:3px; outline:none;" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th width="80" >종 류</th>
+                                            <td class="lt">
+                                                <select name="questionType" title="문의종류를 선택하세요" style="width:80px;">
+                                                    @foreach (var entry in Model)
+                                                    {
+                                                        <option value="@entry.Key">@entry.Value</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th width="80">연락처</th>
+                                            <td class="lt">
+                                                <select id="v_Hphone1" name="v_Hphone1" title="핸드폰을 선택하세요">
+                                                    <option value="010">010</option>
+                                                    <option value="011">011</option>
+                                                    <option value="016">016</option>
+                                                    <option value="017">017</option>
+                                                    <option value="019">019</option>
+                                                </select> -
+                                                <input type="text" name="v_Hphone2" id="v_Hphone2" size="10" title="핸드폰을 입력하세요" maxlength="4" class="NumOnlyText" style="text-indent:1px; outline:none;"> -
+                                                <input type="text" name="v_Hphone3" id="v_Hphone3" size="10" title="핸드폰을 입력하세요" maxlength="4" class="NumOnlyText" style="text-indent:1px; outline:none;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th width="80">내 용</th>
+                                            <td class="lt">
+                                                <textarea name="v_content" id="v_content" rows="23" title="문의내용을 입력하세요." style="width: 100%;border:1px solid #dddddd; text-indent:3px; outline:none;"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <div style="max-width: 100%;text-align:center;">
+                                        <button type="submit" class="btn btn-sea" style="width:100px;font-size:15px; padding: 5px 15px 5px 15px;" id="SubmitQnA">확인</button>
+                                        <button type="button" onclick="uf_GoList();" class="btn btn-rouge" style="width:100px;font-size:15px; padding: 5px 15px 5px 15px;">취소</button>
+                                    </div>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                </div>
+                <!-- // content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+<form name="GoFrm" method="post">
+    <input type="hidden" name="n_no" value="" />
+    <input type="hidden" name="PageNo" value="<%=PageNo%>" />
+    <input type="hidden" name="StartPage" value="<%=StartPage%>" />
+    <input type="hidden" name="PageSize" value="<%=PageSize%>" />
+</form>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //목록으로
+    function uf_GoList() {
+        var frm = document.GoFrm;
+        frm.action = "qna";
+        frm.target = "_self";
+        frm.submit();
+    }
+    //글등록
+    $(document).ready(function () {
+
+        $("#SubmitQnA").click(function (e) {
+
+            e.preventDefault();
+
+            var frm = document.form_write;
+            frm.target = "HiddenFrame";
+            frm.action = "PerformQnAWrite";
+            if (frm.v_title.value == "") {
+                alert("제목을 입력하세요!");
+                frm.v_title.focus();
+                return false;
+            }
+            if (frm.v_Hphone2.value == "") {
+                alert("연락처를 입력하세요!");
+                frm.v_Hphone2.focus();
+                return false;
+            }
+            if (frm.v_Hphone3.value == "") {
+                alert("연락처를 입력하세요!");
+                frm.v_Hphone3.focus();
+                return false;
+            }
+            if (frm.v_content.value == "") {
+                alert("내용을 입력하세요!");
+                frm.v_content.focus();
+                return false;
+            }
+
+            // 서버에 전송
+            $("#form_write").ajaxSubmit({
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        alert("등록되었습니다");
+                        location.href = "/member/qna";
+                    } else
+                        alert("obj.reason");
+
+                }, error: function (err) {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+
+        });
+
+    });
+
+//]]>
+</script>

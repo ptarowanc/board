@@ -1,0 +1,24 @@
+
+
+
+
+.xjQna {
+    width: 1337px;
+    height: 854px;
+    margin: 0 auto;
+    display: table;
+    margin-top: 5px;
+    background: url("/image/img_customer.png") no-repeat center;
+}
+
+.xjmain_Qna {
+    width: 1337px;
+    height: 854px;
+    text-align:center;
+    padding-left: 500px;
+    padding-right: 13px;
+    padding-top: 500px;
+    font-family: NanumBarunGothicBold;
+    font-size: 60px;
+    color: #ea3c2a;
+}

@@ -1,0 +1,41 @@
+﻿@model UserWeb.Models.GameSelectionData
+@{
+    var rowNum = 1;
+}
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="content">
+                    <!-- title -->
+                    <div class="tit_box">
+                        <h3>맞고</h3>
+                        <p>
+                            <a href="/">Home</a> <em>&gt;</em> <a href="#">고스톱게임</a> <em>&gt;</em> <span>고스톱게임</span>
+                        </p>
+                    </div>
+                    <!-- // title -->
+
+                    <div class="cont_wrap">
+                        <!-- 내용 시작 -->
+                        <ul class="downLink">
+                            <li>
+                                <a class="button" href="@UserWeb.Properties.Settings.Default.DOWNLOAD_URL" target="_blank">▽ 게임 다운로드 ▽</a>
+                                <a class="button" href="/game/gamedownload" target="_self">☞ 설치 안내 ☜</a>
+                            </li>
+                        </ul>
+                        <img src="/images/web/game_info02.jpg" alt="" />
+                        <!-- // 내용 끝  -->
+                    </div>
+                </div>
+                <!-- // content -->
+                <!-- right_area -->
+                <!--@RenderPage("../common/RightGame.cshtml")-->
+                <!-- // right_area -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->

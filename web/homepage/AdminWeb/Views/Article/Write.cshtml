@@ -1,0 +1,185 @@
+﻿@{
+    Layout = null;
+
+    // 에디터  --> http://gijgo.com/LiveEdit/Index/bootstrap-4-wysiwyg.html?component=editor
+}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>공지 사항 쓰기</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/jquery.form.min.js"></script>
+    <style>
+        .container {
+            max-width: 98%;
+        }
+    </style>
+    <script type="text/javascript" src="~/Scripts/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        
+        <form id="WriteForm" action="/Article/WriteNotice" method="post">
+            <div>
+                <input type="hidden" name="editingArticleNo" value="@ViewBag.no" />
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">제목</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" />
+                    </div>
+                </div>
+
+                <div class="container" id="editor">
+                    <textarea name="ir1" id="ir1" rows="10" cols="100" style="width:100%; height:400px; display:none;"></textarea>
+                </div>
+                <input type="hidden" name="content" id="Xcontent" /> <!-- 업로드시 편집된 html 을 담을 input -->
+
+                <div class="form-check row">
+                    <input class="form-check-input" type="checkbox" name="SetVisible" value="Y" id="SetVisible" checked />
+                    <label class="form-check-label" for="SetVisible">
+                        공지 사항으로 노출
+                    </label>
+                </div>
+                <div class="form-check row">
+                    <input class="form-check-input" type="checkbox" name="SetPopup" value="Y" id="SetPopup" />
+                    <label class="form-check-label" for="SetPopup">
+                        팝업으로 노출
+                    </label>
+                </div>
+
+                <div class="row" style="border-width : 2px; margin-top : 6px;">
+                    <button class="btn btn-primary" type="submit">저장</button>&nbsp;
+                    @if (ViewBag.no > 0)
+                    {
+                        <text>
+                        <button class="btn btn-danger" type="button" id="RemoveButton">삭제</button>&nbsp;
+                        </text>
+                    }
+                    <button class="btn btn-secondary" id="CloseButton" type="button">닫기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        var oEditors = [];  // SmartEditor 인스턴스
+        var sLang = "ko_KR";	// 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
+        var editingNoticeNo = @ViewBag.no;
+
+        $(document).ready(function () {
+
+            $("#WriteForm").ajaxForm({
+                dataType: "json",
+                beforeSerialize: function () {
+                    var content = oEditors.getById["ir1"].getIR();
+                    console.log("content is " + content);
+                    $("#Xcontent").val(content);
+                },
+                success: function (obj) {
+                    if (obj.result == "OK") {
+                        if (opener != null) {
+                            opener.location.reload();
+                            window.close();
+                        } else {
+                            window.close();
+                        }
+                    } else {
+                        alert(obj.reason);
+                    }
+                },
+                error: function () {
+                    alert("서버 오류로 요청을 처리하지 못했습니다.");
+                }
+            });
+
+            $("#CloseButton").click(function () {
+                window.close();
+            });
+
+            $("#RemoveButton").click(function (e) {
+                e.preventDefault();
+
+                if (!confirm("삭제 하시겠습니까?"))
+                    return;
+
+                $.ajax({
+                    url: "/Notice/DeleteNotice",
+                    data: { "id" : @ViewBag.no },
+                    dataType: "json",
+                    type: "post",
+                    success: function (obj) {
+                        if (obj.result == "OK") {
+                            alert("삭제 되었습니다.");
+                            opener.location.reload();
+                            $("#CloseButton").trigger("click");
+                        } else {
+                            alert("오류로 삭제할 수 없습니다");
+                        }
+                    }, error: function () {
+                        alert("서버 오류로 요청을 처리하지 못했습니다.");
+                    }
+                });
+            });
+
+
+            nhn.husky.EZCreator.createInIFrame({
+                oAppRef: oEditors,
+                elPlaceHolder: "ir1",
+                sSkinURI: "/SmartEditor/SmartEditor2Skin.html",
+                htParams: {
+                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                    bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                    fOnBeforeUnload: function () {
+                        //alert("완료!");
+                    },
+                    I18N_LOCALE: sLang
+                }, //boolean
+                fOnAppLoad: function () {
+                    //예제 코드
+                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+
+                    if (editingNoticeNo > 0) {
+                        $.ajax({
+                            url: "/Article/LoadNotice",
+                            data: { id: editingNoticeNo, job : "load" },
+                            dataType: "json",
+                            type: "post",
+                            success: function (obj) {
+                                console.log(editingNoticeNo + " ==> " + obj);
+                                if (obj.result == "OK") {
+                                    $("#title").val(obj.data.title);
+                                    oEditors.getById["ir1"].exec("PASTE_HTML", [obj.data.content]);
+                                    $("#SetVisible").prop("checked", obj.data.isActive);
+                                    $("#SetPopup").prop("checked", obj.data.isPopup);
+                                } else {
+                                    alert("데이터를 불러 올 수 없습니다");
+                                }
+                            },
+                            error: function () {
+                                alert("서버 오류로 요청을 처리하지 못했습니다.");
+                            }
+                        })
+                    }
+
+                },
+                fCreator: "createSEditor2"
+            });
+            
+        });
+    </script>
+</body>
+</html>

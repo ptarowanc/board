@@ -1,0 +1,123 @@
+﻿@model UserWeb.Models.MyLogData
+@{
+    var oddeven = true;
+}
+<style>
+    body {
+        background: #000000;
+    }
+
+    p.txtCoupon {
+        font-size: 18px;
+        display: inline;
+    }
+
+    input.inCoupon {
+        font-size: 18px;
+        font-weight: bold;
+        height: 30px;
+        width: 180px;
+        text-align: center;
+        margin: 0 5px 0 15px;
+    }
+</style>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area" id="autoscroll">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>활동내역</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+
+                            <div class="cont_wrap">
+
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">게임 활동 내역</h1>
+                                </div>
+                                <form name="form_memo" method="post">
+                                    <table cellpadding="0" cellspacing="0" style="width:100%">
+                                        <tr>
+                                            <td height="40" width="100" class="board-title" align="center">날짜</td>
+                                            <td height="40" width="*" class="board-title" align="center">위치</td>
+                                            <td height="40" width="*" class="board-title" align="center">활동</td>
+                                            <td height="40" width="100" class="board-title" align="center">보유머니</td>
+                                            <td height="40" width="100" class="board-title" align="center">금고머니</td>
+                                            <td height="40" width="100" class="board-title" align="center">마일리지</td>
+                                        </tr>
+                                        @if (Model.items.Count > 0)
+                                        {
+                                            foreach (var entry in Model.items)
+                                            {
+                                                var trbg = oddeven ? "#f9f9f9" : "#ffffff";
+                                                oddeven = !oddeven;
+                                                <text>
+                                                    <tr>
+                                                        <td height="30" bgcolor="@trbg" align="center">@(((DateTime)entry.Time).ToString("yyyy-MM-dd HH:mm"))</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.Locate</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.LogType @entry.LogText</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.HaveMoney.ToString("N0")</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.SafeMoney.ToString("N0")</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.HavePoint.ToString("N0")</td>
+                                                    </tr>
+                                                </text>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="6" height="26" class="board-list" align="center">기록이 없습니다.</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                    <div id="paging_box">
+                                        @RenderPage("../common/pager.cshtml", new { StartPage = Model.startPage, currentPage = Model.pageNo, totalPages = Model.totalPages, fn = "uf_GoList" })
+                                    </div>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                    <!-- // content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+<form name="GoFrm" method="get">
+    <input type="hidden" name="n_no" value="" />
+    <input type="hidden" name="PageNo" value="@Model.pageNo" />
+    <input type="hidden" name="StartPage" value="@Model.startPage" />
+</form>
+<script type="text/javascript">
+
+    function uf_GoList(PageNo, StartPage) {
+        var frm = document.GoFrm;
+        frm.PageNo.value = PageNo;
+        frm.StartPage.value = StartPage;
+        frm.target = "_self";
+        frm.submit();
+    }
+//아이프레임 리사이즈
+    $(document).ready(function () {
+
+        //var offset = $("#autoscroll").offset();
+        //    $('html, body').animate({ scrollTop: offset.top }, 400);
+    });
+
+    //parent.resize_frame('embeded-content');
+    
+</script>

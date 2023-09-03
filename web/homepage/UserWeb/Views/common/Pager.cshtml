@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+
+    // startPage : 탭의 첫번째 페이지 번호
+    // currentPage : 현재 페이지 번호
+    // totalPages : 총 페이지 수
+    // fn : javascript 함수
+
+    var tabSize = 10;
+    var first = (Page.startPage <= 1) ? 1 : Page.startPage - 1;
+    var nextTabPageNo = Page.startPage + tabSize;
+
+    var showFirst = Page.startPage > 1;
+
+    var showPrev = Page.startPage - tabSize >= 1;
+    var prevPage = showPrev ? (Page.startPage - tabSize) : 0;
+
+    var showNext = Page.startPage + tabSize <= Page.totalPages;
+    var nextPage = showNext ? (Page.startPage + tabSize) : 0;
+
+    var showLast = Page.currentPage < Page.totalPages ;
+    var lastStartPage = Page.totalPages - (Page.totalPages % tabSize);
+
+    var count = 0;
+}
+
+@if (false && showFirst)
+{
+    <a href="javascript:@Page.fn (1,1);">[처음]</a>
+}
+@if (showPrev)
+{
+    <a href="javascript:@Page.fn ( @prevPage, @prevPage  );">[이전]</a>
+}
+@for (var i = Page.startPage; i <= Page.totalPages; i++)
+{
+    if (i != Page.currentPage)
+    {
+        <a href="javascript:@Page.fn (@i, @Page.startPage);">[@i] </a>
+    }
+    else
+    {
+        <span>@i </span>
+    }
+    count++;
+    if (count == 10)
+    {
+        break;
+    }
+}
+@if (showNext)
+{
+    <a href="javascript:@Page.fn (@nextPage, @nextPage) ">[다음]</a>
+}
+
+@if (false && showLast)
+{
+    <a href="javascript:@Page.fn (@Page.totalPages, @lastStartPage );">[마지막]</a>
+}

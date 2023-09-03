@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1F149B9A-2B68-45FD-944F-FE0ABA5D84C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DBLIB</RootNamespace>
+    <AssemblyName>DBLIB</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.6.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.6.2\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountTemp_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminBlockIP.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminBlockUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminCode.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLog.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Coupon.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_error.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventJackpotHunter.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventLotto.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventLottoBase.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventLottoEnter.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventLottoResult.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FriendDaySnapshot.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameBadugiMadeLimit.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameBadugiPush.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameBadugiPushBase.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameBadugiPushGame.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameBadugiPushUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameCurrentDummy.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameCurrentUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameDealFee.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameDefaultMileage.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameGiveMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameJackPotMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameJackPotSet.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameMatgoPush.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameMatgoPushBase.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameMatgoPushGame.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameMatgoPushUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameMoneyFlow.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameRoomList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameServerMessage.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogDetail.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogExchangeMileage.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogGameBadugi.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogGameMatgo.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogGamePlayer.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogGiftMemberPoint.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogJackPot.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogMemberDailyPoint.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogMemberDailyPoint2.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogMemberPoint.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogPlayerNicknameChange.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogPurchase.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogRechargeMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogUserLogin.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberGamePoint.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberGameRestrict.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GameRankEntry.cs" />
+    <Compile Include="Model\GameTypeEnum.cs" />
+    <Compile Include="Model\QnaForm.cs" />
+    <Compile Include="Model\StandardResult.cs" />
+    <Compile Include="Model\YoloException.cs" />
+    <Compile Include="PaymentType.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerAdminMemo.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerBadugi.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerBadugiMission.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerGameMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerItemList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerMatgo.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerMatgoMission.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerPassword.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerPayment.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerSafeBox.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseAndroid.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="qna.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="qna_articletype.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RankBadugiFreeMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RankMatgoFreeMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBadugiResult.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCurrentUsers.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportGameMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Room_BadugiResultPlayer_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Room_MatgoResultPlayer_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service\AdminUserService.cs" />
+    <Compile Include="Service\ChargeService.cs" />
+    <Compile Include="Service\Constant.cs" />
+    <Compile Include="Service\CryptoHelper.cs" />
+    <Compile Include="Service\EventService.cs" />
+    <Compile Include="Service\GameRankingService.cs" />
+    <Compile Include="Service\OrderDirectionEnum.cs" />
+    <Compile Include="Service\CouponService.cs" />
+    <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Service\MemoService.cs" />
+    <Compile Include="Service\QnaService.cs" />
+    <Compile Include="Service\UserService.cs" />
+    <Compile Include="Service\WebNoticeService.cs" />
+    <Compile Include="SimpleInjectorHelper.cs" />
+    <Compile Include="SP_ADMIN_PlayerSignUp_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PlayerEventLottoEnter_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PlayerGameData_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PlayerMyRoomAction_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PlayerRegisterCode_Result.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VongGameDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VongGameDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VongGameDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VongGameDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VongGameDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="V_AdminList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_AdminLog.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_BlockUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_CurrentRoom.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_CurrentUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_CurrentUserMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_FriendList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_GameResultBadugiUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_GameResultMatgoUser.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogCoupon.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogDetail.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogEventLotto.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogGameResult.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogJackPotReward.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogMileage.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogMileageMove.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogPurchase.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogRechargeMoney.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_LogUserLogin.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_MemberFriendList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_MemberUserList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_MobileShop.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Player.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_PlayerGameInfo.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_PlayerGameItem.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_PlayerInfo.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_PlayerItemList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_PurchaseAndroidMonth.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_UserList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_WEB_PlayerInfo.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_WEB_PlayerItemList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_WEB_RankingBadugiBetting.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_WEB_RankingMatgoBetting.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_WEB_ShopItem.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebNoticeList.cs">
+      <DependentUpon>VongGameDB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="VongGameDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VongGameDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="VongGameDB.edmx.diagram">
+      <DependentUpon>VongGameDB.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="VongGameDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VongGameDB.edmx</DependentUpon>
+      <LastGenOutput>VongGameDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="VongGameDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VongGameDB.edmx</DependentUpon>
+      <LastGenOutput>VongGameDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

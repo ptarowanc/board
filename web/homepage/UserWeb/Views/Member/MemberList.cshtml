@@ -1,0 +1,190 @@
+﻿
+@model UserWeb.Models.MemberListData
+@{
+    var oddeven = true;
+}
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="~/Nvv/Css/nvv_memberLIst.css">
+
+
+<div style="text-align:center; width:1065px; min-height: 700px; background-color: #071F30; padding: 10px 10px 10px 10px; margin:0 auto;">
+
+
+    <div class="xjMainCalendar">
+        <input type="text" class="selector" placeholder="날짜를 선택하세요." />
+        <a class="input-button" title="toggle" data-toggle><i class="icon-calendar"></i></a>
+    </div>
+
+    <div class="xjMainTitle">
+        친구 목록 <div id="totalBonus1"></div>
+    </div>
+
+    <table id="DataTable" class="display" width="1045px">
+        <thead>
+            <tr>
+                <th>아이디</th>
+                <th>닉네임</th>
+                <th>맞고 승</th>
+                <th>맞고 패</th>
+                <th>맞고 베팅금액</th>
+                <th>바둑이 승</th>
+                <th>바둑이 패</th>
+                <th>바둑이 베팅금액</th>
+                <th>보너스</th>
+            </tr>
+        </thead>
+    </table>
+
+    <div style="margin-top:100px;"></div>
+    <div class="xjMainTitle">
+        추천인 보너스 <div id="totalBonus2"></div>
+    </div>
+
+    <table id="DataTable2" class="display" width="1045px">
+        <thead>
+            <tr>
+                <th>추천인</th>
+                <th>보너스</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+
+    $(".selector").flatpickr({
+
+        dateFormat: "Y-m-d",
+
+        maxDate: "today",
+
+        @if (Model.date == null || Model.date == "")
+        {
+                                                <text>
+        defaultDate: "today",
+                                                </text>
+        }
+        else
+        {
+                                                <text>
+        defaultDate: "@Model.date",
+                                                </text>
+        }
+
+    minDate: new Date().fp_incr(-7),
+
+        onChange: function (selectedDates, dateStr, instance) {
+            var url = location.protocol + '//' + location.host + location.pathname;
+            if (url.indexOf('?') > -1) {
+                url += '&date=' + dateStr;
+            } else {
+                url += '?date=' + dateStr;
+            }
+            window.location.href = url;
+        }
+    });
+
+    $(document).ready(function () {
+        $("#DataTable").DataTable({
+            info: false,
+            processing: true,
+            serverSide: false,
+            paging: false,
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Korean.json"
+            },
+            columns: [
+                { "data": "UserID", "orderable": true },
+                { "data": "NickName", "orderable": true },
+                { "data": "MatgoWin", "orderable": true },
+                { "data": "MatgoLose", "orderable": true },
+                { "data": "MatgoBetMoney", "orderable": true },
+                { "data": "BadugiWin", "orderable": true },
+                { "data": "BadugiLose", "orderable": true },
+                { "data": "BadugiBetMoney", "orderable": true },
+                { "data": "point", "orderable": true }
+            ],
+            "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+                        return commaSeparateNumber(data);
+                    },
+                    "targets": [4,7,8]
+                },
+            ],
+            ajax: {
+                type: "POST",
+                //async: false,
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("MemberUserList", "Member", new { date = Model.date})",
+                dataType: "json"
+                //success: function (data) {
+                //    var t1 = 0;
+                //    $.each(data, function () {
+                //        $.each(this, function (k, v) {
+                //            t1 = v.point;
+                //        });
+                //    });
+                //    document.getElementById("totalBonus1").innerHTML = commaSeparateNumber(t1);
+                //    return data;
+                //}
+             }
+         });
+
+        $("#DataTable2").DataTable({
+            info: false,
+            processing: true,
+            serverSide: false,
+            paging: false,
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Korean.json"
+            },
+            columns: [
+                { "data": "Name", "orderable": true },
+                { "data": "Bonus", "orderable": true }
+            ],
+            "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+                        return commaSeparateNumber(data);
+                    },
+                    "targets": [1]
+                },
+            ],
+            ajax: {
+                type: "POST",
+                //async: false,
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("MemberBonusList", "Member", new { date = Model.date})",
+                dataType: "json"
+                //success: function (data, aJaxatus) {
+                //    //var t2 = 0;
+                //    //$.each(data, function () {
+                //    //    $.each(this, function (k, v) {
+                //    //        t2 = v.Bonus;
+                //    //    });
+                //    //});
+                //    //document.getElementById("totalBonus2").innerHTML = commaSeparateNumber(t2);
+                //    return data;
+                //}
+            },
+        });
+    });
+
+
+
+
+    function commaSeparateNumber(val) {
+        while (/(\d+)(\d{3})/.test(val.toString())) {
+            val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+        }
+        return val;
+    }
+
+
+</script>

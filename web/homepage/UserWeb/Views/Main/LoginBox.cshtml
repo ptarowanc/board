@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "LoginBox";
+}
+    <div id="navigation" class="collapse navbar-collapse navbar-right">
+        <ul class="nav navbar-nav" style="font-size: 20px">
+            <li id="menu1"><a href="/game/GameInfo">게임소개</a></li>
+            <!--
+    <li id="menu2"><a href="/game/EventLotto">이벤트 </a></li>
+        -->
+            <li id="menu2"><a href="/game/GameDownload">다운로드</a></li>
+            <li id="menu3"><a href="/game/Avatar">아바타샵</a></li>
+            <li id="menu4"><a href="/game/CustomerService">고객센터</a></li>
+            @if (ViewBag.IsLogon)
+            {
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle client-menu-toggle">
+                        <div style="font-size: 24px; color : khaki; font-style :oblique "> @ViewBag.Nickname<b class="caret"></b></div>
+                    </a>
+                    <ul style="padding: 0px 0px 0px 0;background:#808080; color : khaki" class="dropdown-menu">
+                        <li role="separator" class="divider"></li>
+                        <li>게임머니 : @ViewBag.PlayerInfo.FreeMoney.ToString("N0") @UserWeb.Properties.Settings.Default.GS_MONEY_NAME</li>
+                        <!--
+                <li>@UserWeb.Properties.Settings.Default.GS_CASH_NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @ViewBag.PlayerInfo.Cash.ToString("N0")</li>
+                <li>무료머니 : @ViewBag.PlayerInfo.FreeMoney.ToString("N0")</li>
+                <li>유료머니 : @ViewBag.PlayerInfo.PayMoney.ToString("N0")</li>
+                <li>적립금&nbsp;&nbsp;&nbsp;&nbsp;: @ViewBag.PlayerInfo.Mileage.ToString("N0")</li>
+                -->
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/member/MyRoom" style="color : white; "> <i class="fa fa-user-circle"></i>마이룸</a></li>
+                        <li><a href="/member/logout" style="color : white; "> <i class="fa fa-sign-out"></i>로그아웃</a></li>
+                    </ul>
+                </li>
+            }
+            @if (!ViewBag.IsLogon)
+            {
+                <!-- <a data - toggle="modal" data - target="#login-modal" class="btn navbar-btn btn-white"><i class="fa fa-sign-in"></i>로그인</a>-->
+                <li>
+                    <button type="button" class="bnt login" id="loginbtn" onclick="$('#login-modal').modal()" tabindex="4" style="border:0;">로그인</button>
+                </li>
+            }
+            <!--ViewBag.IsLogon-->
+            <li>
+                <button type="button" class="bnt gamestart" id="StartLauncher" onclick="alert('게임이 시작되지 않는다면\n게임을 다운로드하고 설치하십시오.'); onlinegame();" tabindex="4" style="border:0;">게임시작</button>
+            </li>
+
+        </ul>
+    </div>

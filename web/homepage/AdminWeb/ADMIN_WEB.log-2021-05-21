@@ -1,0 +1,31 @@
+15:39:05 [MvcApplication:Application_Start] :: 관리자 웹이 로드되고 있습니다
+15:39:05 [MvcApplication:Application_Start] :: 상품 이미지 경로 = D:\DevD\git\jjackpot server\Web\HomePage\UserWeb\images
+15:39:11 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:13 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:16 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:16 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:17 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:17 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:18 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:51 [MvcApplication:Application_Start] :: 관리자 웹이 로드되고 있습니다
+15:39:51 [MvcApplication:Application_Start] :: 상품 이미지 경로 = D:\DevD\git\jjackpot server\Web\HomePage\UserWeb\images
+15:39:57 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:39:59 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+15:40:01 [MainController:MemberList] :: 소트 = asc
+15:40:07 [MainController:MemberList] :: 소트 = asc
+15:40:10 [MainController:MemberList] :: 소트 = asc
+15:40:11 [MainController:MemberList] :: 소트 = asc
+15:40:11 [MainController:MemberList] :: 소트 = asc
+15:40:12 [MainController:MemberList] :: 소트 = asc
+15:40:15 [CouponController:CouponLog] :: 소트. firstSortColumn=AdminWeb.Models.DataTables.OrderEntry, firstSortColumnOrder=desc
+15:40:19 [NoticeController:NoticeList] :: 소트 = desc
+15:40:21 [QAController:QAList] :: 소트 = asc
+15:40:22 [NoticeController:NoticeList] :: 소트 = desc
+15:40:30 [WebNoticeService:DeleteWebNotice] :: 공지[1] 삭제 완료
+15:40:31 [NoticeController:NoticeList] :: 소트 = desc
+15:40:33 [MemoController:MemoList] :: 소트 = asc
+15:40:34 [CouponController:CouponList] :: 소트. firstSortColumn=AdminWeb.Models.DataTables.OrderEntry, firstSortColumnOrder=asc
+15:40:37 [MainController:MemberList] :: 소트 = asc
+15:44:04 [MvcApplication:Application_Start] :: 관리자 웹이 로드되고 있습니다
+15:44:04 [MvcApplication:Application_Start] :: 상품 이미지 경로 = D:\DevD\git\jjackpot server\Web\HomePage\UserWeb\images
+15:44:04 [LoginController:Logout] :: 관리자[admin] 로그아웃

@@ -1,0 +1,63 @@
+﻿@model Tuple<string, string>
+@{
+    ViewBag.Title = "Join02";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<script>
+    $(document).ready(function () {
+
+        var FailMassge = "@Model.Item2";
+        if ('@Model.Item1' == '9999') {
+            location.href = '/member/join02';
+        }
+
+        $("#info").html('회원가입 실패');
+        $("#FailMassage").html(FailMassge);
+
+    });
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-md-12">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>회원가입</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap">
+                                <!-- 내용 시작 -->
+                                <div class="tit_box">
+                                    <h1 class="heading" id="info"></h1>
+                                </div>
+
+                                <div style="width:100%;text-align:center;margin:100px 0 100px 0;font-size:25px;">
+                                    <span id="FailMassage"></span>
+                                </div>
+                                <button onclick="goBack()" class="btn btn-dark" style="width:150px;height:80px;font-size:25px; padding: 5px 10px 5px 10px; margin-top:15px; display:inline-block;">돌아가기</button>
+
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- // content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->

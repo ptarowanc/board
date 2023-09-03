@@ -1,0 +1,31 @@
+﻿@model string
+@{
+    Layout = null;
+
+    // KCP 에서 우리측으로 정상적으로 인증 받은 결과가 전달된 상황..
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>잠시만 기다려 주세요</title>
+    <script type="text/javascript" src="~/Scripts/jquery-3.0.0.min.js" ></script>
+</head>
+<body>
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            // 다음 단계로 넘어가도록
+            opener.transferKcpResult("@Model");
+
+            // 팝업 창 닫고
+            window.close();
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+﻿@model DBLIB.EventJackpotHunter
+@{
+    ViewBag.Title = "잭팟헌터 이벤트";
+    Layout = "";
+}
+<style>
+
+    table.tblcls {
+        font-family: Arial;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 1.7em;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    .tblcls thead th {
+        font-size: 20px;
+        padding: 6px 10px;
+        text-transform: uppercase;
+        color: #444;
+        font-weight: bold;
+        border-bottom: 5px solid #444;
+    }
+
+        .tblcls thead th:empty {
+            background: transparent;
+            border: none;
+        }
+
+    .tblcls thead :nth-child(2),
+    .tblcls tfoot :nth-child(2) {
+        background-color: #3E5F74;
+        color: #FFA477;
+    }
+
+    .tblcls tfoot :nth-child(2) {
+        -moz-border-radius: 0px 0px 0px 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .tblcls thead :nth-child(2) {
+        -moz-border-radius: 5px 0px 0px 0px;
+        -webkit-border-top-left-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .tblcls thead :nth-child(3),
+    .tblcls tfoot :nth-child(3) {
+        background-color: #6792AD;
+        color: #FFA477;
+    }
+
+    .tblcls thead :nth-child(4),
+    .tblcls tfoot :nth-child(4) {
+        background-color: #95B4C6;
+    }
+
+    .tblcls tfoot td {
+        font-size: 38px;
+        font-weight: bold;
+        padding: 15px 0px;
+        text-shadow: 1px 1px 1px #fff;
+    }
+
+    .tblcls tbody td {
+        width: 80px; height: 80px;
+        padding: 10px;
+        font-size: 30px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /*.tblcls tbody tr:nth-child(1) td {
+        text-align:center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .tblcls tbody tr:nth-child(2) td {
+        text-align: center;
+        font-size: 23px;
+        font-weight: bold;
+    }
+    .tblcls tbody tr:nth-child(3) td {
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+    }
+    .tblcls tbody tr:nth-child(4) td {
+        text-align: center;
+        font-size: 29px;
+        font-weight: bold;
+    }
+    .tblcls tbody tr:nth-child(5) td {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+    }*/
+
+    .tblcls tbody td:nth-child(even) {
+        background-color: #444;
+        color: #444;
+        border-bottom: 1px solid #444;
+        background: -webkit-gradient( linear, left bottom, left top, color-stop(0.39, rgb(149,180,198)), color-stop(0.7, rgb(224,224,224)) );
+        background: -moz-linear-gradient( center bottom, rgb(149,180,198) 39%, rgb(224,224,224) 70% );
+        text-shadow: 1px 1px 1px #fff;
+    }
+
+    .tblcls tbody td:nth-child(odd) {
+        background-color: #000059;
+        color: #f0f0f0;
+        border-bottom: 1px solid #444;
+        background: -webkit-gradient( linear, left bottom, left top, color-stop(0.39, rgb(44,67,82)), color-stop(0.7, rgb(62,95,116)) );
+        background: -moz-linear-gradient( center bottom, rgb(44,67,82) 39%, rgb(62,95,116) 50% );
+    }
+
+    .tblcls tbody td:nth-last-child(1) {
+        border-right: 1px solid #222;
+    }
+
+    .tblcls tbody th {
+       font-size: 25px;
+        color: #696969;
+        text-align: right;
+        padding: 0px 10px;
+        border-right: 1px solid #aaa;
+    }
+</style>
+
+<div class="tblcls" style="text-align:center; width:450px; min-height: 550px; padding: 10px 10px 10px 10px; margin:0 auto;">
+
+    <div class="xjMainTitle"></div>
+    <table id="DataTable" class="display" width="420px">
+        <tbody>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col" abbr="e1">맷돼지</th>
+                    <th scope="col" abbr="e2">말</th>
+                    <th scope="col" abbr="e3">용</th>
+                </tr>
+            </thead>
+                <tr>
+                    <th scope="row">100방</th>
+                    <td>@Model.e100_50</td>
+                    <td>@Model.e100_100</td>
+                    <td>@Model.e100_200</td>
+                </tr>
+                <tr>
+                    <th scope="row">500방</th>
+                    <td>@Model.e500_50</td>
+                    <td>@Model.e500_100</td>
+                    <td>@Model.e500_200</td>
+                </tr>
+                <tr>
+                    <th scope="row">1000방</th>
+                    <td>@Model.e1000_50</td>
+                    <td>@Model.e1000_100</td>
+                    <td>@Model.e1000_200</td>
+                </tr>
+                <tr>
+                    <th scope="row">2000방</th>
+                    <td>@Model.e2000_50</td>
+                    <td>@Model.e2000_100</td>
+                    <td>@Model.e2000_200</td>
+                </tr>
+                <tr>
+                    <th scope="row">5000방</th>
+                    <td>@Model.e5000_50</td>
+                    <td>@Model.e5000_100</td>
+                    <td>@Model.e5000_200</td>
+                </tr>
+        </tbody>
+    </table>
+    <p>
+        ※ 바둑이 게임에서 당첨된 장비잭팟의 시드머니, 동물에 따라 횟수가 올라갑니다.
+    </p>
+</div>
+</script>

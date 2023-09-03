@@ -1,0 +1,12 @@
+20:45:33 [MvcApplication:Application_Start] :: 관리자 웹이 로드되고 있습니다
+20:45:33 [MvcApplication:Application_Start] :: 상품 이미지 경로 = D:\DevD\git\jjackpot server\Web\HomePage\UserWeb\images
+20:45:40 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+20:45:41 [AdminUserService:Find] :: 계정[admin], 비밀번호 [B69E0E77712C495BFF03C2C72FAAB83B0BB20179]
+20:45:45 [MainController:MemberList] :: 소트 = asc
+20:45:47 [NoticeController:NoticeList] :: 소트 = desc
+20:46:55 [WebNoticeService:AddWebNotice] :: 공지 저장 완료
+20:46:55 [NoticeController:NoticeList] :: 소트 = desc
+20:47:24 [WebNoticeService:AddWebNotice] :: 공지 저장 완료
+20:47:24 [NoticeController:NoticeList] :: 소트 = desc
+20:47:30 [WebNoticeService:EditWebNotice] :: 공지 변경 완료
+20:47:30 [NoticeController:NoticeList] :: 소트 = desc

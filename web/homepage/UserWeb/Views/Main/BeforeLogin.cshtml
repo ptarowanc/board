@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+<form name="form_login" id="form_login" method="post" onsubmit="uf_LoginSubmit(this);">
+    <input type="hidden" name="return_url" value="/" />
+    <div class="inBox">
+        <p class="txtId">아이디&nbsp;<input type="text" id="LoginID" name="m_id" value="@ViewBag.idsave" tabindex="1" size="17"></p>
+        <p class="txtPw">비밀번호&nbsp;<input type="password" id="LoginPWD" name="m_pw" tabindex="2" size="16" ></p>
+    </div>
+    <p class="i_btn"><button type="button" tabindex="3" onclick="LoginSubmit();" style="border:0;">로그인</button></p>
+    <p class="i_link">
+        <a href="/member/join01">회원가입</a>
+        <a href="#" onclick="alert('고객센터로 문의바랍니다.');">비밀번호 찾기</a>
+    </p>
+</form>

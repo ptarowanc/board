@@ -1,0 +1,241 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@model UserWeb.Models.MainViewModel
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+    $('.grid').masonry({
+        itemSelector: '.grid-item',
+        columnWidth: 300,
+        resize: false
+    });
+</script>
+<div class="grid">
+    <!-- 메인배너 -->.
+    <div class="grid-item grid-item-banner"></div>
+    <!-- 우측배너 -->
+    <div class="grid-item grid-item-rightbanner">
+        <div class="rightbanner">
+            <a href="@UserWeb.Properties.Settings.Default.DOWNLOAD_URL2" target="_blank" class="btn btn-4"><span>게임다운로드</span></a>
+            <a href="/game/GameInfo" class="btn btn-4"><span>게임가이드</span></a>
+            <a href="#" onclick="fnOpenModal('준비중입니다.')" class="btn btn-4"><span>게임무료충전</span></a>
+            <a href="#" onclick="OpenComMenu('/Customer/NoticeList', 630, 600);return false;" class="btn btn-4"><span>공지사항</span></a>
+        </div>
+    </div>
+
+    <div class="grid-item grid-item-blank"></div>
+
+    <!-- 바둑이 바로가기 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/badugi.png">
+            <img src="/img/main/badugi_u.png" class="img-top" onclick="onlinegame2('b')">
+        </div>
+    </div>
+    <!-- 맞고 바로가기 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/matgo.png">
+            <img src="/img/main/matgo_u.png" class="img-top" onclick="onlinegame2('m')">
+        </div>
+    </div>
+    <!-- 홀덤 바로가기 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/holdem.png">
+            <img src="/img/main/holdem_u.png" class="img-top" onclick="onlinegame2('h')">
+        </div>
+    </div>
+
+    <!-- 로그인 -->
+
+    @if (Model.IsLogon == false)
+    {
+        <div class="grid-item" style="background: url('/img/main/login_bg_new.png') no-repeat center; background-size: contain;">
+            <form>
+                <div class="LoginBefore">
+                    <div class="loginBeforeBottomImg">
+                        <img src="/img/main/login_join.png" onclick="window.location.href='/member/join01'">
+                        <input type="text" class="cpatchaText" placeholder="숫자" id="cpatchaTextBox" onKeyPress="javascript:fnLoginBoxEnter();" />
+                        <canvas id="captcha" style="font-size:18px;">  </canvas>
+                    </div>
+                    <div class="LoginBeforeInput">
+                        <input type="text" id="LoginID" name="m_id" placeholder="아이디" onKeyPress="javascript:fnLoginBoxEnter();">
+                        <input type="password" id="LoginPWD" name="m_pw" placeholder="비밀번호" onKeyPress="javascript:fnLoginBoxEnter();">
+                    </div>
+                    <img class="loginBtn" id="TryLoginImage" src="/img/main/login_btn.png">
+                </div>
+            </form>
+        </div>
+    }
+    @if (Model.IsLogon == true)
+    {
+
+        <div class="grid-item" style="background: url('/img/main/loginafter_bg_new.png') no-repeat center; background-size: contain;">
+            <form>
+                <div class="loginAfterInfo pull-left">
+                    <div>
+                        <span class="pull-left playerInfo" style="padding-top: 3px;padding-left: 10px;">@ViewBag.Nickname (님)</span>
+                        <span class="pull-right logoutbnt" style="padding-top: 0px;">
+                            <a href="/member/logout" class="logoutButton" style="margin-top: 0px;">로그아웃</a><br />
+                            <a href="/member/MyInfo" class="myinfoButton" style="margin-top: 5px;">내정보 </a><br />
+                            <a href="/member/coupon" class="friendlistButton" style="margin-top: 5px;">쿠폰충전</a>
+                            @*@if (ViewBag.PlayerInfo.HaveFriend != 0)
+                                {
+                                    <a href="/member/FriendList" class="friendlistButton" style="margin-top: 5px;">친구목록</a>
+                                }*@
+                        </span>
+                    </div>
+                    <div class="playerInfo">
+                        <ul>
+                            <li>
+                                <span>게임머니</span>
+                                <span style="color: #E4940A;">@ViewBag.PlayerInfo.FreeMoney.ToString("N0")</span>
+                                <span>@UserWeb.Properties.Settings.Default.GS_MONEY_NAME</span>
+                            </li>
+                            <li>
+                                <span>금고머니</span>
+                                <span style="color: #E4940A;">@ViewBag.PlayerInfo.SafeMoney.ToString("N0")</span>
+                                <span>@UserWeb.Properties.Settings.Default.GS_MONEY2_NAME</span>
+                            </li>
+
+                            <li>
+                                <span>마일리지</span>
+                                <span style="color: #E4940A;">
+                                    @ViewBag.PlayerInfo.Mileage.ToString("N0")
+                                    @if (ViewBag.PlayerInfo.Type == 6)
+                                    {
+                                        @:(
+                                        @ViewBag.PlayerInfo.Mileage2.ToString("N0")
+                                        @:)
+                                    }
+                                </span>
+                                <span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+
+    <!-- 게임머니 유실 신고 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/reportlost.png">
+            <img src="/img/main/reportlost_u.png" class="img-top" onclick="fnOpenModal('준비중입니다.')">
+        </div>
+    </div>
+    <!-- 결제정보 도용 신고 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/reportpayment.png">
+            <img src="/img/main/reportpayment_u.png" class="img-top" onclick="fnOpenModal('준비중입니다.')">
+        </div>
+    </div>
+    <!-- 비매너 행위 신고 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/reportpirate.png">
+            <img src="/img/main/reportpirate_u.png" class="img-top" onclick="fnOpenModal('준비중입니다.')">
+        </div>
+    </div>
+    <!-- 명의도용 신고 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/reportmanner.png">
+            <img src="/img/main/reportmanner_u.png" class="img-top" onclick="fnOpenModal('준비중입니다.')">
+        </div>
+    </div>
+    <!-- 고객센터 -->
+    <div class="grid-item">
+        <div class="grid-img-button">
+            <img src="/img/main/customer_center.png">
+            <img src="/img/main/customer_center.png" class="img-top">
+        </div>
+    </div>
+
+<!--     
+    <div class="grid-item grid-item-foot">
+        <div class="mainFootMenu">
+            <a onclick="OpenComMenu('/main/TermConditions',600,600)">이용약관</a> /
+            <a onclick="OpenComMenu('/main/PrivacyPolicy',600,600)">개인정보취급방침</a> /
+            <a onclick="OpenComMenu('/main/YouthPolicy',600,600)">청소년보호정책</a>
+        </div>
+        <div class="mainFootTxt">
+            대표자:김철우　서울 영등포구 영등포로 109, 3층 다 22호　Tel : 010-5621-3137　사업자등록번호 353-24-00972
+            <br />Copyrightⓒ 회사. 엠G엔터. All Rights Reserved.
+        </div>
+        <div class="mainFootRating">
+            <div class="mainFootGameLink">
+                <a onclick="mainFootRating1()">맞고</a>
+                <a onclick="mainFootRating2()">바둑이</a>
+            </div>
+            <div class="mainFootGameRating">
+                <div id="mainFootRating1" class="mainFootGameRatingImg" style="display: block;"><img src="/Img/main/rating1.png" /></div>
+                <div id="mainFootRating2" class="mainFootGameRatingImg" style="display: none;"><img src="/Img/main/rating2.png" /></div>
+            </div>
+        </div>
+    </div> -->
+</div>
+<script>
+    $('.grid').masonry({
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 300
+    });
+</script>
+
+<div class="alertError xjmodal hidden">
+    <div class="noticeTitle">
+        <span class="pull-left"></span>
+        <button class="pull-right erroeClose">×</button>
+    </div>
+    <div class="text-center buysuccessContent"><span id="ajaxErrorInfo"></span></div>
+    <div class="text-center bugSuccessBtn">
+        <img class="btnmodalClose" src="/img/item/bt_ok.gif">
+    </div>
+    <div class="alertModalBottom"></div>
+</div>
+
+<div id="popup_notice">
+    <div id="content">
+        <div>
+            @Html.Raw(@Model.popupNotice)
+            <div style="width:1000px;padding-top:8px;text-align:center;  background: #ffffff;">
+                <input type="checkbox" name="hidePopup" id="hidePopup" value="Y" onclick="closepopup();" /> 24시간 동안 다시보지 않기
+                <a href="#" onclick="closepopup();"><img src="/images/web/btn_close.png" alt="" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+@if ( !String.IsNullOrEmpty(Model.popupNotice)){
+    <text>
+    jquery_layerpop("popup_notice", "center");
+    if (getCookie('hide_popup') != '')
+    {
+	    $('#popup_notice').hide();
+    }
+    else
+    {
+	    $('#popup_notice').show();
+    }
+    function closepopup()
+    {
+        var chk = uf_getCheckedVal('hidePopup');
+        if (chk == "Y")
+        {
+            setCookie('hide_popup', 'yes', 1);
+        }
+	    $('#popup_notice').hide();
+	    $('#popup_notice').html('');
+    }
+    </text>
+}
+</script>

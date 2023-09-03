@@ -1,0 +1,125 @@
+
+
+
+
+.xjavatar {
+    width: 1045px;
+    margin: 0 auto;
+    display: table;
+    margin-top: 5px;
+}
+
+.xjmain_avatar {
+    margin: 10px;
+    height: 100%;
+    background: url("/img/avatar/avatar_bg.png") no-repeat center;
+}
+
+
+.mainavatarList {
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+.xjmain_avatar_title {
+    margin-top: 20px;
+}
+
+    .mainavatarList > li {
+        float: left;
+        width: 20%;
+        display: table
+    }
+
+
+.mainavatarList ul li {
+    font-size: 10px;
+    margin-top: 20px;
+    color: #ffffff;
+    padding-left: 5px;
+    margin-bottom: 10px
+}
+
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #666;
+    width: 100%;
+    font-size: 25px;
+    background-color: #fff;
+}
+
+    ul.tabs li {
+        text-align: center;
+        cursor: pointer;
+        width: 82px;
+        height: 31px;
+        line-height: 31px;
+        border: 1px solid #666;
+        font-weight: bold;
+        background: #fafafa;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+    }
+
+        ul.tabs li.active {
+            background: #FFFFFF;
+            border-bottom: 1px solid #FFFFFF;
+        }
+
+.tab_container {
+    border: 1px solid #666;
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 100%;
+    background: #FFFFFF;
+}
+
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+
+.tab_container .tab_content ul {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .tab_container .tab_content ul li {
+        padding: 5px;
+        list-style: none;
+    }
+
+#container {
+    width: 249px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+}
+.cashIcon {
+    background-color: #ff6a00;
+    color: #fff;
+    padding: 2px 3px 1px 3px;
+    border-radius: 50%;
+}
+.moneyIcon {
+    background-color: #000033;
+    color: #fff;
+    padding: 2px 3px 1px 3px;
+    border-radius: 50%;
+}
+.money2Icon {
+    background-color: #000033;
+    color: #fff;
+    padding: 2px 3px 1px 3px;
+    border-radius: 50%;
+}

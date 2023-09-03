@@ -1,0 +1,87 @@
+﻿@model UserWeb.Models.RestrictedViewData
+<style>
+    body {
+        background: #000000;
+    }
+    .main_box{width:100%;height:260px;}
+    .maintw_box{ border-radius:5px;}
+</style>
+
+<div class="container">
+    <!-- body_area -->
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>이용제한 자가설정</li>
+                                </ul>
+                            </div>
+                            <!-- // title -->
+                            <div class="cont_wrap">
+                                <!-- 내용 시작 -->
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">이용제한 자가설정</h1>
+                                </div>
+                                <form name="form_setrestrict" method="post" onsubmit="return uf_RestrictSubmit();" style="text-align:left;">
+                                    <table class="main_box">
+                                        <tr class="maintw_box">
+                                            <td bgcolor="#efefef" valign="top" align="left" style="padding:10px;">
+
+                                                @if (@Model.isRestricted == false)
+                                                {
+                                                    <div style="padding:0 0 5px 0;margin-bottom:15px;">자가제한일 : <input type="text" name="m_date" value="설정되지 않았습니다." style="width:300px;height:20px;border:1px solid #cccccc; border-radius:4px; text-indent:5px; outline:none;" readonly /></div>
+                                                }
+                                                else
+                                                {
+                                                    <div style="padding:0 0 5px 0;">자가제한일 : <input type="text" name="m_date" value="@Model.restrictedTime.ToString("yyyy년 MM월 dd일 hh시 mm분 ss초까지 ")" style="width:300px;height:20px;border:1px solid #cccccc; border-radius:4px; text-indent:5px; outline:none;" readonly /></div>
+                                                }
+                                                <div style="padding:0 0 5px 0;">자가제한 일수 설정 : <input type="number" name="m_setnum" style="width:100px;height:20px;border:1px solid #cccccc; border-radius:4px; text-indent:5px; outline:none;" /></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="50" style="color:#eee;">※ 현재 기준으로 설정하려는 일수만큼 게임에 접속이 불가해집니다.</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="50" style="color:#eee;">※ 설정된 날짜보다 이후로 일수를 추가 설정할 수 있지만, 설정된 날짜보다 이전으로는 설정할 수는 없습니다.</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="30" align="center">
+                                                <button type="submit" class="btn btn-red" style="width:100px;height:30px;font-size:15px; padding: 5px 15px 5px 15px;">제한 설정</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                </div>
+                <!-- // content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+<script type="text/javascript" src="/include/js/common.js"></script>
+<script type="text/javascript">
+
+    function uf_RestrictSubmit() {
+        var frm = document.form_setrestrict;
+        frm.action = "SelfRestrictedSetting";
+        frm.target = "HiddenFrame";
+        if (frm.m_setnum.value == "") { alert('자가제한일을 입력하세요!'); frm.m_setnum.focus(); return false; }
+
+        frm.submit();
+    }
+</script>

@@ -1,0 +1,47 @@
+﻿@model UserWeb.Models.KCPRequestFormData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>본인 인증 준비중입니다</title>
+    <script type="text/javascript" src="~/Scripts/jquery-3.0.0.min.js" ></script>
+</head>
+<body>
+    <form method="post" action="@UserWeb.Properties.Settings.Default.KCP_CERT_URL" id="SubmitForm">
+        <input type="hidden" name="action" value="@UserWeb.Properties.Settings.Default.KCP_CERT_URL" />
+        <input type="hidden" name="cert_able_yn" value="" />
+        <input type="hidden" name="cert_enc_use" value="Y" />
+        <input type="hidden" name="cert_method" value="01" />
+        <input type="hidden" name="cert_otp_use" value="Y" />
+        <input type="hidden" name="cert_enc_use_ext" value="Y" />
+        <input type="hidden" name="ordr_idxx" value="@Model.ordr_idxx" />
+        <input type="hidden" name="param_opt_1" value="@Model.param_opt_1" />
+        <input type="hidden" name="param_opt_2" value="@Model.param_opt_2" />
+        <input type="hidden" name="param_opt_3" value="@Model.param_opt_3" />
+        <input type="hidden" name="req_tx" value="cert" />
+        <input type="hidden" name="Ret_URL" value="@Model.Ret_URL" />
+        <input type="hidden" name="site_cd" value="@UserWeb.Properties.Settings.Default.KCP_SITE_CODE" />
+        <input type="hidden" name="up_hash" value="@Model.up_hash" />
+        <input type="hidden" name="user_name" value="@Model.user_name" />
+        <input type="hidden" name="web_siteid" value="" />
+        <input type="hidden" name="web_siteid_hashYN" value="" />
+        <input type="hidden" name="local_code" value="@Model.local_code" />
+        <input type="hidden" name="sex_code" value="@Model.sex_code" />
+    </form>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            // 페이지가 표시되자마자 KCP 인증 시작 페이지로 이동
+            $("#SubmitForm").submit();
+        });
+
+    </script>
+</body>
+</html>

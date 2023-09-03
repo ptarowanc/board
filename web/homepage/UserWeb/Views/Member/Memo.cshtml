@@ -1,0 +1,137 @@
+﻿@model UserWeb.Controllers.MemberController.AdminMemoData
+@{
+    var oddeven = true;
+}
+<style>
+    body {
+        background: #000000;
+    }
+</style>
+
+<!-- body_area -->
+<div class="container">
+    <div class="body_area">
+        <div class="bg_body">
+            <div class="body_wrap">
+                <!-- content -->
+                <div class="row featured same-height-row">
+                    <div class="col-sm-9">
+                        <section>
+                            <!-- title -->
+                            <div class="breadcrumbs">
+                                <ul class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li>관리자쪽지</li>
+                                </ul>
+                            </div>
+
+                            <!-- // title -->
+
+                            <div class="cont_wrap">
+
+                                <div class="tit_box" style="margin-bottom:20px; border-bottom:3px solid #dedede;">
+                                    <h1 class="heading" style="color:#dedede;">관리자쪽지</h1>
+                                </div>
+
+                                <form name="form_memo" method="post" >
+                                    <table cellpadding="0" cellspacing="0" width="100%" >
+                                        <tr>
+                                            <td height="40" width="30" class="board-title" align="center"><input type="checkbox" name="check_all" onclick="LS_check_all(this, 'memo_list')" /></td>
+                                            <td height="40" width="100" class="board-title" align="center">보낸사람</td>
+                                            <td height="40" width="*" class="board-title" align="center">내 용</td>
+                                            <td height="40" width="105" class="board-title" align="center">등록일</td>
+                                        </tr>
+                                        @if (Model.items.Count > 0)
+                                        {
+                                            foreach (var entry in Model.items)
+                                            {
+                                                var trbg = oddeven ? "#f9f9f9" : "#ffffff";
+                                                oddeven = !oddeven;
+                                                <text>
+                                                    <tr>
+                                                        <td height="30" bgcolor="@trbg" align="center"><input type="checkbox" name="memo_list" class="memo_list" value="@entry.id" /></td>
+                                                        <td height="30" bgcolor="@trbg" align="center">[관리자]</td>
+                                                        <td height="30" bgcolor="@trbg" align="left">&nbsp;@entry.message</td>
+                                                        <td height="30" bgcolor="@trbg" align="center">@entry.createdOn.ToString("yyyy-MM-dd")</td>
+                                                    </tr>
+                                                </text>
+                                            }
+                                            <text>
+                                                <tr>
+                                                    <td colspan="4" align="left" style="color:#999999;padding:5px;">
+                                                        * 선택하신 쪽지만 삭제가 가능합니다<br /><a href="#" onclick="uf_GoDel();"><img src="/images/web/btn_delete.png" alt="" /></a>
+                                                    </td>
+                                                </tr>
+                                            </text>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="4" height="26" class="board-list" align="center">등록된 메모가 없습니다.</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                    <div id="paging_box" style="text-align:center;">
+                                        @RenderPage("../common/pager.cshtml", new { StartPage = Model.startPage, currentPage = Model.currentPageNo, totalPages = Model.totalPages, fn = "uf_GoList" })
+                                    </div>
+                                </form>
+                                <!-- // 내용 끝  -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-sm-3">
+                        @RenderPage("../common/RightMyPage.cshtml")
+                    </div>
+                </div>
+                <!-- // content -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // body_area -->
+
+
+<form name="GoFrm" method="post">
+    <input type="hidden" name="idx" value="" />
+    <input type="hidden" name="PageNo" value="<%=PageNo%>" />
+    <input type="hidden" name="StartPage" value="<%=StartPage%>" />
+</form>
+
+<script type="text/javascript">
+    //<![CDATA[
+    //새로고침
+    function uf_Reload() {
+        var frm = document.form_search;
+        frm.action = "memo";
+        frm.target = "_self";
+        frm.submit();
+    }
+    //페이징
+    function uf_GoList(PageNo, StartPage) {
+        var frm = document.GoFrm;
+        frm.PageNo.value = PageNo;
+        frm.StartPage.value = StartPage;
+        frm.action = "memo";
+        frm.target = "_self";
+        frm.submit();
+    }
+    //메모삭제
+    function uf_GoDel() {
+        if ($("input:checkbox[name='memo_list']").is(":checked") == false) {
+            alert("삭제할 목록을 선택하여 주세요");
+            return;
+        }
+        var chk = confirm("선택한 목록을 삭제하시겠습니까?");
+        if (chk == true) {
+            var frm = document.form_memo;
+            frm.action = "memoDel";
+            frm.target = "HiddenFrame";
+            frm.submit();
+        }
+    }
+    //아이프레임 리사이즈
+    $(document).ready(function () {
+        parent.resize_frame('embeded-content');
+    });
+//]]>
+</script>

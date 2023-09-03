@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Join03";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form name="form_join" method="post" onsubmit="return uf_GoSubmit();">
+    <!-- body_area -->
+    <div class="container">
+        <div class="body_area">
+            <div class="bg_body">
+                <div class="body_wrap">
+                    <!-- content -->
+                    <div class="row featured same-height-row">
+                        <div class="col-md-12">
+                            <section>
+                                <!-- title -->
+
+                                <div class="breadcrumbs">
+                                    <ul class="breadcrumb">
+                                        <li><a href="/">Home</a></li>
+                                        <li>회원가입</li>
+                                    </ul>
+                                </div>
+                                <!-- // title -->
+
+                                <div class="cont_wrap">
+                                    <!-- 내용 시작 -->
+                                    <div class="tit_box">
+                                        <h1 class="heading">개인정보입력</h1>
+                                    </div>
+                                    <table class="tb_list" width="100%">
+                                        나머지 정보를 입력하세요. (필수입력*)
+                                        <tr>
+                                            <th height="25">이름*</th>
+                                            <td class="lt"><input type="text" name="m_name" size="20" maxlength="10" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25" valign="top">휴대폰번호*</th>
+                                            <td valign="top" class="lt">
+                                                <input type="text" name="m_phone1" size="5" maxlength="3" onkeypress="fnOnlyNumber();" onkeyup="fnChkNumber(this);" style="ime-mode: disabled;" value="" />-
+                                                <input type="text" name="m_phone2" size="5" maxlength="4" onkeypress="fnOnlyNumber();" onkeyup="fnChkNumber(this);" style="ime-mode: disabled;" value="" />-
+                                                <input type="text" name="m_phone3" size="5" maxlength="4" onkeypress="fnOnlyNumber();" onkeyup="fnChkNumber(this);" style="ime-mode: disabled;" value="" />
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">아이디*</th>
+                                            <td class="lt"><input type="text" name="m_id" size="20" maxlength="20" /> 영문, 숫자 조합으로 6~20자 내외로 작성 해주세요. </td>
+                                        </tr>
+                                        <tr>
+                                            <th height="50" valign="top">닉네임*</th>
+                                            <td valign="top" class="lt">
+                                                <input type="text" name="m_nick" size="20" maxlength="10" /> 한글,숫자 2~7자 이내 (영문 불가)
+                                                <div style="padding-top:2px;">욕설이나 미풍양속에 어긋나는 닉네임 사용으로 신고 접수 시 계정 이용이 제한될 수 있습니다.</div>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">비밀번호*</th>
+                                            <td class="lt"><input type="password" name="m_pwd1" size="20" maxlength="20" /> 6~20자 내외로 작성 해주세요.	</td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">비밀번호 확인*</th>
+                                            <td class="lt"><input type="password" name="m_pwd2" size="20" maxlength="20" />	</td>
+                                        </tr>
+                                        <tr>
+                                            <th height="25">추천인</th>
+                                            <td class="lt"><input type="text" name="m_recomid" size="20" maxlength="20" />	추천인이 있을때만 작성 해주세요.</td>
+                                        </tr>
+                                    </table>
+                                    <div style="width:100%;text-align:center;">
+
+                                        <input type="submit" onclick="uf_GoSubmit(); return false;" class="btn btn-sea" value="회원가입" style="max-width:120px;max-height:30px;font-size:15px; padding: 5px 15px 5px 15px;">
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a href="/" class="btn btn-rouge" style="max-width:120px;max-height:30px;font-size:15px; padding: 5px 15px 5px 15px;">가입취소</a>
+                                    </div>
+                                    <!-- // 내용 끝  -->
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // content -->
+</form>
+
+<!-- // body_area -->
+<script type="text/javascript" src="/include/js/common.js"></script>
+<script type="text/javascript">
+    var submited = true;
+    function uf_GoSubmit() {
+
+        if (submited) {
+            submited = !submited;
+            setTimeout(function () {
+                submited = true;
+            }, 2000)
+            var frm = document.form_join;
+            frm.action = "JoinProc";
+            frm.target = "HiddenFrame";
+            /*
+            if(validNAME(frm.m_name.value)!=1){frm.m_name.focus(); return false;}
+            if(validID(frm.m_id.value)!=1){frm.m_id.focus(); return false;}
+            if(validNICKNAME(frm.m_nick.value)!=1){frm.m_nick.focus(); return false;}
+            if(validPWD(frm.m_pwd1.value)!=1){frm.m_pwd1.focus(); return false;}
+            if(validPWD(frm.m_pwd2.value)!=1){frm.m_pwd2.focus(); return false;}
+            if(validBANKPWD(frm.m_bank_pwd.value)!=1){frm.m_bank_pwd.focus(); return false;}
+            */
+            if (frm.m_pwd1.value != frm.m_pwd2.value) { alert("비밀번호가 일치하지 않습니다."); frm.m_pwd2.value = ""; frm.m_pwd2.focus(); return false; }
+            if (frm.m_pwd1.value != frm.m_pwd2.value) { alert("비밀번호가 일치하지 않습니다."); frm.m_pwd2.value = ""; frm.m_pwd2.focus(); return false; }
+            if (frm.m_phone1.value.length < 3) { alert("휴대폰 번호를 입력하세요"); frm.m_phone1.focus(); return false; }
+            if (frm.m_phone2.value.length < 3) { alert("휴대폰 번호를 입력하세요"); frm.m_phone2.focus(); return false; }
+            if (frm.m_phone3.value.length < 4) { alert("휴대폰 번호를 입력하세요"); frm.m_phone3.focus(); return false; }
+            frm.submit();
+        }
+    }
+    //휴대폰인증
+    function uf_HpCheck() {
+        //document.getElementById('HiddenFrame').contentWindow.location="/hpcheck/checkplus_main.asp";
+    }
+    /*
+    function uf_KcpCheck() {
+        //document.getElementById('hpcheck').contentWindow.location="/kcp_hp/WEB_ENC/kcpcert_start.asp";
+        pop_win("kcpcheck", "/kcp_hp/WEB_ENC/kcpcert_start.asp", 0, 0, 600, 500, 0, 0, 0, 0, 0);
+    }
+    */
+</script>
+
+
+
