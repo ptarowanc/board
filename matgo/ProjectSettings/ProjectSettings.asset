@@ -256,7 +256,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: F:/dev/NewMobile/matgo/keystore/jangbimatgo.keystore
+  AndroidKeystoreName: C:/Users/PC8/Documents/GitHub/board/matgo/keystore/jangbimatgo.keystore
   AndroidKeyaliasName: jangbimatgo
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
