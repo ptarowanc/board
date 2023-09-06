@@ -164,7 +164,7 @@ PlayerSettings:
   buildNumber: {}
   AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -252,7 +252,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: F:/dev/NewMobile/badugi/keystore/jangbibadugi.keystore
+  AndroidKeystoreName: C:/Users/PC8/Documents/GitHub/board/badugi/keystore/jangbibadugi.keystore
   AndroidKeyaliasName: jangbibadugi
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
@@ -307,7 +307,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: d138db36675115f4f83d9fdeb5703b0f, type: 3}
+      m_Icon: {fileID: 2800000, guid: 578338abeb5eddf4b9ec6625a0057308, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
