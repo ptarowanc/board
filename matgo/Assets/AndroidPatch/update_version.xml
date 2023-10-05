@@ -2,16 +2,16 @@
 <update>
       
       <code name ="img_store.unity3d">
-        <ver>1</ver>
-        <url><![CDATA[http://13.209.168.110:2100/mobilepatch/matgojangbi/img_store.unity3d]]></url>
+        <ver>2</ver>
+        <url><![CDATA[http://15.152.125.228:2100/mobilepatch/matgojangbi/img_store.unity3d]]></url>
       </code> 
       <code name ="img_card.unity3d">
-        <ver>1</ver>
-        <url><![CDATA[http://13.209.168.110:2100/mobilepatch/matgojangbi/img_card.unity3d]]></url>
+        <ver>2</ver>
+        <url><![CDATA[http://15.152.125.228:2100/mobilepatch/matgojangbi/img_card.unity3d]]></url>
       </code> 
       <code name ="img_avatar.unity3d">
-        <ver>1</ver>
-        <url><![CDATA[http://13.209.168.110:2100/mobilepatch/matgojangbi/img_avatar.unity3d]]></url>
+        <ver>2</ver>
+        <url><![CDATA[http://15.152.125.228:2100/mobilepatch/matgojangbi/img_avatar.unity3d]]></url>
       </code> 
 
 </update>

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1186166351
+CRC: 1444167822
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c38c3204c252aebdafc64cbcf54152ec
+    Hash: 9bdcae37c3e7cac0cca3fb69a806e0d9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 4774d6da9b606debf00b5a5d61c4487c
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -14,30 +14,15 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/AndroidPatch/img_store/img_charge_5.png
-- Assets/AndroidPatch/img_store/img_charge_4.png
 - Assets/AndroidPatch/img_store/avatar_0008.png
-- Assets/AndroidPatch/img_store/card_matgo_0003.png
-- Assets/AndroidPatch/img_store/card_matgo_0004.png
-- Assets/AndroidPatch/img_store/card_matgo_0002.png
 - Assets/AndroidPatch/img_store/avatar_0004.png
 - Assets/AndroidPatch/img_store/avatar_0003.png
 - Assets/AndroidPatch/img_store/avatar_0005.png
-- Assets/AndroidPatch/img_store/img_charge_7.png
-- Assets/AndroidPatch/img_store/card_matgo_0001.png
-- Assets/AndroidPatch/img_store/img_charge_3.png
-- Assets/AndroidPatch/img_store/img_charge_1.png
 - Assets/AndroidPatch/img_store/avatar_0002.png
 - Assets/AndroidPatch/img_store/avatar_0011.png
-- Assets/AndroidPatch/img_store/card_matgo_0006.png
 - Assets/AndroidPatch/img_store/avatar_0009.png
-- Assets/AndroidPatch/img_store/avatar_0012.png
 - Assets/AndroidPatch/img_store/avatar_0010.png
-- Assets/AndroidPatch/img_store/card_matgo_0005.png
 - Assets/AndroidPatch/img_store/avatar_0001.png
-- Assets/AndroidPatch/img_store/img_charge_2.png
-- Assets/AndroidPatch/img_store/img_charge_6.png
-- Assets/AndroidPatch/img_store/event_card.png
 - Assets/AndroidPatch/img_store/avatar_0007.png
 - Assets/AndroidPatch/img_store/avatar_0006.png
 Dependencies: []

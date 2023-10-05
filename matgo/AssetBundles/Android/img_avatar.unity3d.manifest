@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4165016432
+CRC: 4049186112
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2412b770261f5a1d6d852cc1b54664ba
+    Hash: c19e899507bd83a0ab72d8ed6c8a6de2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 4774d6da9b606debf00b5a5d61c4487c
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -25,5 +25,4 @@ Assets:
 - Assets/AndroidPatch/img_avatar/avatar_0003.png
 - Assets/AndroidPatch/img_avatar/avatar_0009.png
 - Assets/AndroidPatch/img_avatar/avatar_0011.png
-- Assets/AndroidPatch/img_avatar/avatar_0012.png
 Dependencies: []

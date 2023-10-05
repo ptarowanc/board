@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2854668715
+CRC: 1791699068
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -7,4 +7,10 @@ AssetBundleManifest:
       Dependencies: {}
     Info_1:
       Name: update_version.xml
+      Dependencies: {}
+    Info_2:
+      Name: img_avatar.unity3d
+      Dependencies: {}
+    Info_3:
+      Name: img_store.unity3d
       Dependencies: {}
