@@ -76,11 +76,11 @@ public class LobbyJackpotManager : MonoBehaviour
 
         // 등차수열에 사용될 위치값 및 공차
         float numberX = 680;
-        float numberY = 495;
+        float numberY = 450;
         float numberZ = 0;
         float numberD = -25;
 
-        float dotY = 495;
+        float dotY = 450;
         float dotZ = 0;
         float dotD = -20;
 

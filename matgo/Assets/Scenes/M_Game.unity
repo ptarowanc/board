@@ -12915,7 +12915,7 @@ SpriteRenderer:
   m_Size: {x: 24, y: 24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1312922824
@@ -15311,7 +15311,7 @@ SpriteRenderer:
   m_Size: {x: 24, y: 24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1590289662
@@ -19299,7 +19299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 850, y: -240}
+  m_AnchoredPosition: {x: 850, y: -227.5}
   m_SizeDelta: {x: 211, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966101082
@@ -20924,16 +20924,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 396283036}
     m_Modifications:
-    - target: {fileID: 6061709600085333292, guid: fcd1d5656c77c1044928e15de9adc917,
-        type: 3}
-      propertyPath: m_Name
-      value: Bink
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061709600085333292, guid: fcd1d5656c77c1044928e15de9adc917,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6061709600085333291, guid: fcd1d5656c77c1044928e15de9adc917,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20987,6 +20977,16 @@ PrefabInstance:
     - target: {fileID: 6061709600085333291, guid: fcd1d5656c77c1044928e15de9adc917,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061709600085333292, guid: fcd1d5656c77c1044928e15de9adc917,
+        type: 3}
+      propertyPath: m_Name
+      value: Bink
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061709600085333292, guid: fcd1d5656c77c1044928e15de9adc917,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

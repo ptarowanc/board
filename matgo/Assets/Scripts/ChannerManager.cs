@@ -134,11 +134,22 @@ public class ChannerManager : MonoBehaviour
                 else room.GetComponent<Button>().interactable = false;
 
                 // 위치 조정
+                //ParentObject.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+                //ParentObject.GetComponent<RectTransform>().offsetMax = new Vector2(-1350 + roomCount * 450, 0);
+                //room.transform.SetParent(ParentObject.transform);
+                //room.transform.localScale = Vector3.one;
+                //room.GetComponent<RectTransform>().anchoredPosition = new Vector2((roomCount * 225) + (roomIndex * -450), 0);
+                //roomIndex++;
+
+                // 위치 조정
                 ParentObject.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
-                ParentObject.GetComponent<RectTransform>().offsetMax = new Vector2(-1350 + roomCount * 450, 0);
+                ParentObject.GetComponent<RectTransform>().offsetMax = new Vector2(0, -100 * roomCount);
+
                 room.transform.SetParent(ParentObject.transform);
                 room.transform.localScale = Vector3.one;
-                room.GetComponent<RectTransform>().anchoredPosition = new Vector2((roomCount * 225) + (roomIndex * -450), 0);
+
+                // y축 방향으로 100 크기 간격으로 위치 설정
+                room.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, (-100 * roomCount) + (roomIndex * -100));
                 roomIndex++;
 
                 // 방번호 생성
